@@ -26,7 +26,7 @@ print("你的姓名是：" + content, end="\n\n")
 import sys; x = 'hello world'; sys.stdout.write(x + ",good bye world\n\n")
 
 # 生成随机数
-import random;
+import random
 
 random_num1 = random.choice(range(10))  # 随机0~9
 random_num2 = random.randrange(10, 200) # 随机 10~200
@@ -34,6 +34,6 @@ random_num3 = random.random()  # 随机 0~1
 print('random_nums: %d %d %f' %(random_num1,random_num2,random_num3), end="\n\n")
 
 # 数学常量
-import math;
+import math
 print('圆周率：%.40f' %(math.pi), end="\n\n")
 print('自然常数：%.20f' %(math.e), end="\n\n")
