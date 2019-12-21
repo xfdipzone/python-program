@@ -81,7 +81,7 @@ print(lists)
 lists.insert(1, ['a','b','c','d'])
 print(lists)
 
-# 追加加列表元素
+# 追加列表元素
 lists.append([13,14,15,16])
 print(lists)
 
