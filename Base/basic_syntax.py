@@ -52,6 +52,11 @@ print(str[0:4], end="\n")
 print(str[4:8], end="\n")
 print(str[str_len-4:str_len-1], end="\n\n")
 
+# 打印字符串，使用 f 方法
+print(f"1+1={1+1}", end="\n")
+print(f"Isabel is {28/7} dog years old.", end="\n")
+print(f"Isabel is {28/7:.0f} dog years old.", end="\n\n")
+
 # 多行字符串
 str = '''
 故人西辞黄鹤楼，
