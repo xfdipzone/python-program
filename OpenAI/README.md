@@ -27,7 +27,7 @@
 
 [03. AI 情感分析评论](./sentiment_analysis.py)
 
-让 AI 判断评论是好评还是差评
+让 AI 根据正面与负面的评论例子，判断给出的评论是正面还是负面
 
 [04. AI 客服](./customer_service.py)
 

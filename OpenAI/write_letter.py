@@ -8,7 +8,7 @@ client = OpenAI(
 
 completion = client.chat.completions.create(
   model="gpt-4o-mini",
-  store=True,
+  store=False, # true: 保存结果 false: 不保存结果
   messages=[
     {"role": "user", "content": "write a lover letter about ai, use chinese language."}
   ]
