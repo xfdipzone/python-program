@@ -21,8 +21,13 @@ def get_response(prompt, temperature = 1.0, stop=None):
     message = completions.choices[0].message
     return message.content
 
+# 随机性 0.5
 print("第一次回答：" + get_response(prompt, 0.5))
 time.sleep(1)
+
+# 随机性 1.0
 print("第二次回答：" + get_response(prompt, 1.0))
 time.sleep(1)
+
+# 随机性 0.0
 print("第三种回答：" + get_response(prompt, 0.0))
