@@ -13,7 +13,7 @@ def get_response(prompt, temperature = 1.0, stop=None):
     completions = client.chat.completions.create(
         model=COMPLETION_MODEL, # 模型
         messages=[{"role": "user", "content": prompt}], # 提示词
-        max_tokens=1024, # 最大可用的 token 数，包括提示词与返回内容的用量
+        max_tokens=1024, # 输出内容最大可用的 token 数 (max_tokens+prompt_token<=model_max_tokens)
         n=1, # 返回 1 个结果，如果是写作有关的可以调整为 3，返回多个文案
         stop=stop, # 遇到指定字符停止输出
         temperature=temperature, # 控制输出内容随机性，范围 0 ~ 2.0，越大表示随机性越好
@@ -22,11 +22,11 @@ def get_response(prompt, temperature = 1.0, stop=None):
     return message.content
 
 # 随机性 0.5
-print("第一次回答：" + get_response(prompt, 0.5))
+print("第一种回答：" + get_response(prompt, 0.5))
 time.sleep(1)
 
 # 随机性 1.0
-print("第二次回答：" + get_response(prompt, 1.0))
+print("第二种回答：" + get_response(prompt, 1.0))
 time.sleep(1)
 
 # 随机性 0.0
