@@ -3,14 +3,25 @@ from openai import OpenAI
 import os
 import time
 import logging
+import tiktoken
 
 """
 游戏百科全书问答机器人
 """
 client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
 
-# 配置日志
+"""
+配置日志
+在 Google CoLab 中使用时，必须设置 force=True
+"""
 logging.basicConfig(level=logging.INFO, filemode='a', filename='app.log', format='%(asctime)s - %(levelname)s - %(message)s', force=True)
+
+"""
+配置 tiktoken
+Model 使用的编码
+参考 https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb
+"""
+encoding = tiktoken.get_encoding("o200k_base")
 
 class Conversation:
     def __init__(self, prompt, num_of_round):
@@ -81,17 +92,33 @@ prompt = """你是一个游戏百科全书，用中文回答游戏的问题。�
 2. 回答限制在100个字以内"""
 conv1 = Conversation(prompt, 2)
 
+# 使用 tiktoken 统计 token 消耗数量
+prompt_count = len(encoding.encode(prompt))
+print("prompt : %s\nTikToken 统计 : prompt 消耗 %d token\n" % (prompt, prompt_count))
+
 questions = [
     "你是谁？",
     "请问仙剑奇侠传这款游戏是什么年份的？",
     "那轩辕剑2外传枫之舞呢？",
     "那明星志愿3是什么类型的游戏？",
-    "那大富翁4呢？"
+    "那大富翁4呢？",
+    "古剑奇谭一共有多少部作品？"
 ]
 
-for question in questions:
+questions_count = len(questions)
+
+for index, question in enumerate(questions):
     print("用户问题 : %s" % question)
     answer,num_of_tokens = conv1.ask(question)
     print("AI 回答 : %s" % answer)
-    print("消费的 token 数量 : %d\n" % num_of_tokens)
-    time.sleep(1)
+    print("消耗的 token 数量 : %d" % num_of_tokens)
+
+    # 使用 tiktoken 统计 token 消耗数量
+    question_count = len(encoding.encode(question))
+    answer_count = len(encoding.encode(answer))
+    total_count = question_count + answer_count
+    print("TikToken统计 : 问题消耗 %d token，回答消耗 %d token，总共消耗 %d token\n" % (question_count, answer_count, total_count))
+
+    # 每次对话间隔 20s，避免被限流
+    if index < questions_count-1:
+        time.sleep(20)

@@ -9,7 +9,7 @@
 创建 `*.ipynb` 文件保存测试代码
 
 ```shell
-!pip install openai numpy
+!pip install openai numpy tiktoken
 %env OPENAI_API_KEY=[填写您的 OpenAI API Key]
 ```
 
