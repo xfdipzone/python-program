@@ -40,3 +40,11 @@
 [06. OpenAI 模型列表](./models.py)
 
 获取 OpenAI 支持的模型列表
+
+---
+
+## 聊天机器人
+
+[01. 游戏百科聊天机器人](./ChatBot/game_conversation_chatbot.py)
+
+基于 Gradio 实现对话界面的游戏百科聊天机器人
