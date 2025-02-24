@@ -73,7 +73,7 @@ class Conversation:
             completions = client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": history + "\n\n请总结一下上面 User 和 Assistant 聊了些什么：\n"}
+                    {"role": "system", "content": history + "\n\n请用100字以内总结一下上面 User 和 Assistant 聊了些什么：\n"}
                 ],
                 max_tokens=2048,
                 n=1,

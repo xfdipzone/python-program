@@ -36,3 +36,7 @@
 [05. AI 对话机器人](./game_encyclopedia.py)
 
 让 AI 身份是游戏百科全书，与用户进行对话，回答用户提出的游戏问题
+
+[06. OpenAI 模型列表](./models.py)
+
+获取 OpenAI 支持的模型列表
