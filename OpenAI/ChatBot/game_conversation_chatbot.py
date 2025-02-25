@@ -6,6 +6,7 @@ import gradio as gr
 
 """
 游戏百科全书问答机器人
+hugging face app: https://fdizone-game-conversation-chatbot.hf.space/
 """
 client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
 
