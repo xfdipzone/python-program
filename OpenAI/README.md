@@ -53,6 +53,12 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 获取 OpenAI 支持的模型列表
 
+[07. OpenAI 检测文字内容是否符合法规](./moderation.py)
+
+检测文字内容是否符合法规
+
+包含 `hate`, `hate/threatening`, `self-harm`, `sexual`, `sexual/minors`, `violence`, `violence/graphic` 则不符合法规
+
 ---
 
 ## 聊天机器人
