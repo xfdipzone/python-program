@@ -59,6 +59,10 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 包含 `hate`, `hate/threatening`, `self-harm`, `sexual`, `sexual/minors`, `violence`, `violence/graphic` 则不符合法规
 
+[08. AI 文本插入器](./text_inserter.py)
+
+让 AI 根据前文与后文，插入中间文本内容
+
 ---
 
 ## 聊天机器人
