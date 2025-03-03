@@ -63,6 +63,10 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 让 AI 根据前文与后文，插入中间文本内容
 
+[09. AI 产品数据生成器](./product_data_generator.py)
+
+让 AI 根据需求，生成产品数据用于测试
+
 ---
 
 ## 聊天机器人
