@@ -67,6 +67,14 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 让 AI 根据需求，生成产品数据用于测试
 
+[10. AI 根据语料库回答问题](./CorpusSearch)
+
+提供语料库，让 AI 根据语料库内容回答问题
+
+- [版本1，基于 llama-index 实现](./CorpusSearch/read_corpus_search.py)
+
+- [版本2，基于 client.chat.completions.create 接口实现](./CorpusSearch/read_corpus_search_v2.py)
+
 ---
 
 ## 聊天机器人
