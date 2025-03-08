@@ -75,11 +75,13 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [版本2，基于 client.chat.completions.create 接口实现](./CorpusSearch/read_corpus_search_v2.py)
 
-[11. 文本转向量](./Embedding)
+[11. Embedding](./Embedding)
 
-- [基于 Sentence Transformers](./Embedding/sentence_transformers_embedding.py)
+- [基于 Sentence Transformers 实现文本转向量](./Embedding/sentence_transformers_embedding.py)
 
-- [基于 Hugging Face Embedding](./Embedding/hugging_face_embedding.py)
+- [基于 Hugging Face Embedding 实现文本转向量](./Embedding/hugging_face_embedding.py)
+
+- [基于 Embedding 实现情感分析](./Embedding/sentiment_analysis.py)
 
 ---
 
