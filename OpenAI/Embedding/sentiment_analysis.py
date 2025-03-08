@@ -1,7 +1,7 @@
 # coding=utf-8
 """
-使用 embedding 做情感分析
-判断评论是好评还是产品
+基于 embedding 做情感分析
+判断评论是好评还是差评
 
 dependency packages
 pip install numpy
