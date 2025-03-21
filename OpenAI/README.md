@@ -83,6 +83,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [基于 Embedding 实现情感分析](./Embedding/sentiment_analysis.py)
 
+- [测试基于 Embedding 计算的评论分级准确率](./Embedding/comment_level.py)
+
 ---
 
 ## 聊天机器人
