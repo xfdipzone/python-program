@@ -2,8 +2,14 @@
 from openai import OpenAI
 import os
 
+"""
+AI 查询产品价格范围
+
+dependency packages
+pip install openai
+"""
 client = OpenAI(
-  api_key=os.environ['OPENAI_API_KEY'],
+    api_key=os.environ['OPENAI_API_KEY'],
 )
 COMPLETION_MODEL = "gpt-4o-mini"
 
@@ -28,5 +34,6 @@ def get_response(prompt):
     )
     message = completions.choices[0].message
     return message.content
+
 
 print(get_response(prompt))

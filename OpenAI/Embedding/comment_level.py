@@ -27,7 +27,8 @@ import numpy as np
 import pandas as pd
 
 # 使用 SentenceTransformer 加载计算文本向量模型
-embed_model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-mpnet-base-v2")
+embed_model = SentenceTransformer(
+    "sentence-transformers/paraphrase-multilingual-mpnet-base-v2")
 
 """
 计算文本的向量 (embedding)
@@ -36,18 +37,19 @@ def get_embedding(text):
     # SentenceTransformer 的 encode 方法可以直接处理文本并返回嵌入向量
     return embed_model.encode(text)
 
+
 """
 计算向量的余弦相似度
 """
 def cosine_similarity(vector_a, vector_b):
-  dot_product = np.dot(vector_a, vector_b)
-  norm_a = np.linalg.norm(vector_a)
-  norm_b = np.linalg.norm(vector_b)
-  epsilon = 1e-10
-  cosine_similarity = dot_product / (norm_a * norm_b + epsilon)
-  return cosine_similarity
+    dot_product = np.dot(vector_a, vector_b)
+    norm_a = np.linalg.norm(vector_a)
+    norm_b = np.linalg.norm(vector_b)
+    epsilon = 1e-10
+    cosine_similarity = dot_product / (norm_a * norm_b + epsilon)
+    return cosine_similarity
 
-def evaluate_embeddings_approach(labels = ['negative', 'positive']):
+def evaluate_embeddings_approach(labels=['negative', 'positive']):
     label_embeddings = [get_embedding(label) for label in labels]
 
     # label_score 为 evaluate_embeddings_approach 的嵌套方法
@@ -55,13 +57,15 @@ def evaluate_embeddings_approach(labels = ['negative', 'positive']):
         return cosine_similarity(review_embedding, label_embeddings[1]) - cosine_similarity(review_embedding, label_embeddings[0])
 
     probas = df["embedding"].apply(lambda x: label_score(x, label_embeddings))
-    preds = probas.apply(lambda x: 'positive' if x>0 else 'negative')
+    preds = probas.apply(lambda x: 'positive' if x > 0 else 'negative')
 
     report = classification_report(df.sentiment, preds)
     print(report)
 
-    display = PrecisionRecallDisplay.from_predictions(df.sentiment, probas, pos_label='positive')
+    display = PrecisionRecallDisplay.from_predictions(
+        df.sentiment, probas, pos_label='positive')
     _ = display.ax_.set_title("2-class Precision-Recall curve")
+
 
 datafile_path = "data/fine_food_reviews_with_embeddings_1k.csv"
 
@@ -71,6 +75,8 @@ df["embedding"] = df.combined.apply(lambda x: get_embedding(x))
 
 # convert 5-star rating to binary sentiment
 df = df[df.Score != 3]
-df = df.assign(sentiment=df["Score"].replace({1: "negative", 2: "negative", 4: "positive", 5: "positive"}))
+df = df.assign(sentiment=df["Score"].replace(
+    {1: "negative", 2: "negative", 4: "positive", 5: "positive"}))
 
-evaluate_embeddings_approach(labels=['An Amazon review with a negative sentiment.', 'An Amazon review with a positive sentiment.'])
+evaluate_embeddings_approach(labels=[
+                             'An Amazon review with a negative sentiment.', 'An Amazon review with a positive sentiment.'])

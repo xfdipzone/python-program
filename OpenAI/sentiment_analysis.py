@@ -2,7 +2,13 @@
 from openai import OpenAI
 import os
 
-client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
+"""
+AI 情感分析评论
+
+dependency packages
+pip install openai
+"""
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 COMPLETION_MODEL = "gpt-4o-mini"
 
@@ -27,6 +33,7 @@ def get_response(prompt):
     )
     message = completions.choices[0].message
     return message.content
+
 
 # 正面的评论
 good_case = prompts + """

@@ -23,22 +23,25 @@ def get_embedding(text):
     # HuggingFaceEmbedding 的 get_text_embedding 方法可以直接处理文本并返回嵌入向量
     return embed_model.get_text_embedding(text)
 
+
 """
 计算多个文本的向量 (embedding)
 """
 def get_embeddings(list_of_texts):
     return embed_model.get_text_embedding_batch(list_of_texts)
 
+
 """
 计算向量的余弦相似度
 """
 def cosine_similarity(vector_a, vector_b):
-  dot_product = np.dot(vector_a, vector_b)
-  norm_a = np.linalg.norm(vector_a)
-  norm_b = np.linalg.norm(vector_b)
-  epsilon = 1e-10
-  cosine_similarity = dot_product / (norm_a * norm_b + epsilon)
-  return cosine_similarity
+    dot_product = np.dot(vector_a, vector_b)
+    norm_a = np.linalg.norm(vector_a)
+    norm_b = np.linalg.norm(vector_b)
+    epsilon = 1e-10
+    cosine_similarity = dot_product / (norm_a * norm_b + epsilon)
+    return cosine_similarity
+
 
 list_of_texts = [
     "【优惠】气质小清新拼接百搭双肩斜挎包",
@@ -54,7 +57,8 @@ list_of_texts = [
 for text in list_of_texts:
     embedding = get_embedding(text)
     embeddings_np = np.array(embedding)
-    print("%s (dimensions %d)\nembedding : %s\n" % (text, embeddings_np.shape[0], embedding[:5]))
+    print("%s (dimensions %d)\nembedding : %s\n" %
+          (text, embeddings_np.shape[0], embedding[:5]))
 
 """
 批量计算多个 text embedding
@@ -63,7 +67,8 @@ embeddings = get_embeddings(list_of_texts)
 
 # 将列表转换为 NumPy 数组以使用 .shape
 embeddings_np = np.array(embeddings)
-print("num: %d\ndimensions: %d\n" % (embeddings_np.shape[0], embeddings_np.shape[1]))
+print("num: %d\ndimensions: %d\n" %
+      (embeddings_np.shape[0], embeddings_np.shape[1]))
 
 for index, text in enumerate(list_of_texts):
     print("%s\nembedding : %s\n" % (text, embeddings[index][:5]))
@@ -82,7 +87,7 @@ for index, text in enumerate(list_of_texts):
     similarities.append((text, sim))
 
 # 按余弦相似度高到低排序
-sorted_similarities = sorted(similarities, key=lambda x:x[1], reverse=True)
+sorted_similarities = sorted(similarities, key=lambda x: x[1], reverse=True)
 
 print("%s 与文本相似度排序\n" % search)
 

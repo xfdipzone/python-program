@@ -2,7 +2,13 @@
 from openai import OpenAI
 import os
 
-client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
+"""
+AI 文本插入器
+
+dependency packages
+pip install openai
+"""
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # 提示词
 prompt = """你是一个文本插入器，根据前文与后文的内容，补充中间的文本内容。
@@ -37,6 +43,7 @@ def insert_text(prefix, suffix):
     )
 
     return completions.choices[0].message.content
+
 
 print("前文：\n%s\n" % prefix)
 print("AI 插入的文本：\n%s\n" % insert_text(prefix, suffix))

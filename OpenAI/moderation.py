@@ -2,7 +2,13 @@
 from openai import OpenAI
 import os
 
-client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
+"""
+AI 检测文字内容是否符合法规
+
+dependency packages
+pip install openai
+"""
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 """
 判断文字内容是否被标记
@@ -15,6 +21,7 @@ def moderation(text):
     )
     output = response["results"][0]
     return output
+
 
 """
 判断文字内容是否被标记
@@ -33,7 +40,7 @@ def custom_moderation(content, parameters):
     # Call model with the prompt
     response = client.chat.completions.create(
         model="gpt-4o-mini",
-        response_format={ "type": "json_object" },
+        response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": "You are a content moderation assistant."},
             {"role": "user", "content": prompt}
@@ -44,6 +51,7 @@ def custom_moderation(content, parameters):
     assessment = response.choices[0].message.content
 
     return assessment
+
 
 """
 标记分类
@@ -58,7 +66,9 @@ violence/graphic : 以极端血腥细节描绘死亡、暴力或严重身体伤�
 parameters = "hate, hate/threatening, self-harm, sexual, sexual/minors, violence, violence/graphic"
 
 good_text = "I love my motherland"
-print("text : %s\nresult : %s\n\n" % (good_text, custom_moderation(good_text, parameters)))
+print("text : %s\nresult : %s\n\n" %
+      (good_text, custom_moderation(good_text, parameters)))
 
 bad_text = "I'm going to rape you daughter and then chop you to death with a knife"
-print("text : %s\nresult : %s\n\n" % (bad_text, custom_moderation(bad_text, parameters)))
+print("text : %s\nresult : %s\n\n" %
+      (bad_text, custom_moderation(bad_text, parameters)))

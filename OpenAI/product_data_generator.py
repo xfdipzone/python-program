@@ -3,7 +3,14 @@ from openai import OpenAI
 import os
 import pandas as pd
 
-client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
+"""
+AI 产品数据生成器
+
+dependency packages
+pip install openai
+pip install pandas
+"""
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 """
 产品数据生成器
@@ -29,6 +36,7 @@ class ProductDataGenerator:
         message = completions.choices[0].message
         return message.content
 
+
 """
 清洗生成的产品数据
 """
@@ -40,6 +48,7 @@ def format_product_data(data):
     # 去除返回结果的标号
     df.product_name = df.product_name.apply(lambda x: x.split('.')[1].strip())
     return df
+
 
 # 提示词
 prompts = [
