@@ -49,7 +49,7 @@ def cosine_similarity(vector_a, vector_b):
     cosine_similarity = dot_product / (norm_a * norm_b + epsilon)
     return cosine_similarity
 
-def evaluate_embeddings_approach(labels=['negative', 'positive']):
+def evaluate_embeddings_approach(df, labels=['negative', 'positive']):
     label_embeddings = [get_embedding(label) for label in labels]
 
     # label_score 为 evaluate_embeddings_approach 的嵌套方法
@@ -78,5 +78,5 @@ df = df[df.Score != 3]
 df = df.assign(sentiment=df["Score"].replace(
     {1: "negative", 2: "negative", 4: "positive", 5: "positive"}))
 
-evaluate_embeddings_approach(labels=[
+evaluate_embeddings_approach(df, labels=[
                              'An Amazon review with a negative sentiment.', 'An Amazon review with a positive sentiment.'])
