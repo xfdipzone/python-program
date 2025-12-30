@@ -9,8 +9,22 @@
 创建 `*.ipynb` 文件保存测试代码
 
 ```shell
+# 安装依赖包
 !pip install openai numpy tiktoken
+
+# OPENAI_API_KEY 存放在环境变量中
 %env OPENAI_API_KEY=[填写您的 OpenAI API Key]
+
+# 读取环境变量
+import os
+os.environ.get("OPENAI_API_KEY")
+```
+
+```shell
+# OPENAI_API_KEY 存放在 Google Colab Secret 中
+# 读取 Secret
+from google.colab import userdata
+userdata.get("OPENAI_API_KEY")
 ```
 
 Model 使用的编码
