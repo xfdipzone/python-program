@@ -1,6 +1,6 @@
 # coding=utf-8
 from openai import OpenAI
-import os
+from google.colab import userdata
 
 """
 AI 情感分析评论
@@ -8,7 +8,7 @@ AI 情感分析评论
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
 
 COMPLETION_MODEL = "gpt-4o-mini"
 
