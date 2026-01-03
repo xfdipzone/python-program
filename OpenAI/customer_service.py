@@ -1,8 +1,9 @@
 # coding=utf-8
 from openai import OpenAI
-import os
+from google.colab import userdata
 import time
 import tiktoken
+import shutil
 
 """
 AI 客服
@@ -11,12 +12,13 @@ dependency packages
 pip install openai
 pip install tiktoken
 """
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
 
 COMPLETION_MODEL = "gpt-4o-mini"
 
 """
 配置 tiktoken
+设置分词使用的编码
 """
 encoding = tiktoken.get_encoding("o200k_base")
 
@@ -31,6 +33,14 @@ token_ids = encoding.encode("高兴")
 bias_map = {}
 for token in token_ids:
     bias_map[token] = -100
+
+# 输出一条分隔线
+def print_line(char='─', width=None):
+    """输出一条分隔线，默认字符 ─，默认宽度=终端列宽"""
+    if width is None:
+        width = shutil.get_terminal_size().columns
+    print(char * width + '\n')
+
 
 # 原文案
 prompt = '请你用朋友的语气回复给到客户，回复的内容按容易阅读的格式返回，并称他为“亲”，他的订单已经发货在路上了，预计在3天之内会送达，订单号2025YEAS，我们很抱歉因为天气的原因物流时间比原来长，感谢他选购我们的商品。'
@@ -63,6 +73,7 @@ print("第一种参数配置：(消耗的 token 数量：%d)\n" % num_of_tokens)
 for index, answer in enumerate(response):
     print("version %d: %s\n\n" % (index + 1, answer.content))
 
+print_line('=')
 time.sleep(1)
 
 # 随机性 1.5
@@ -71,6 +82,7 @@ print("第二种参数配置：(消耗的 token 数量：%d)\n" % num_of_tokens)
 for index, answer in enumerate(response):
     print("version %d: %s\n\n" % (index + 1, answer.content))
 
+print_line('=')
 time.sleep(1)
 
 # 随机性 1.0
