@@ -28,11 +28,23 @@ encoding = tiktoken.get_encoding("o200k_base")
 范围 [-100, 100]，越小越不出现，越大越需要出现
 一般设置在 [-1, 1] 之间足够
 """
-token_ids = encoding.encode("高兴")
+words = {
+    "高兴": -100,
+    "抱歉": -5,
+    "物流": -100
+}
 
-bias_map = {}
-for token in token_ids:
-    bias_map[token] = -100
+# 获取限制词配置
+def get_bias_map(words):
+    bias_map = {}
+    for word, bias_value in words.items():
+        token_ids = encoding.encode(word)
+        for token in token_ids:
+            bias_map[token] = bias_value
+    return bias_map
+
+
+bias_map = get_bias_map(words)
 
 # 输出一条分隔线
 def print_line(char='─', width=None):
