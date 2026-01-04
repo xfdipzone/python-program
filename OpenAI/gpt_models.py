@@ -4,6 +4,29 @@ from google.colab import userdata
 import pandas as pd
 
 """
+设置全局 pd option
+可选项列表 pd.describe_option()
+设置可选项 pd.set_option(key, value)
+重置可选项 pd.reset_option(key)
+重置所有可选项 pd.reset_option('all')
+
+设置临时可选项（只对当前的 display 有效）
+with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+    display(df[['id', 'created', 'object', 'owned_by']])
+"""
+# 显示所有行
+pd.set_option('display.max_rows', None)
+
+# 显示所有列
+pd.set_option('display.max_columns', None)
+
+# 单元格内容完整显示，不截断
+pd.set_option('display.max_colwidth', None)
+
+# 提高换行阈值，防止自动换行
+pd.set_option('display.width', 1000)
+
+"""
 获取 OpenAI GPT 支持的模型列表
 
 dependency packages
