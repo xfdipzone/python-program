@@ -63,7 +63,7 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 让 AI 身份是游戏百科全书，与用户进行对话，回答用户提出的游戏问题
 
-[06. OpenAI 模型列表](./models.py)
+[06. OpenAI GPT 模型列表](./models.py)
 
 获取 OpenAI 支持的模型列表
 

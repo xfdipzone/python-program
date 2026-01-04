@@ -1,16 +1,17 @@
 # coding=utf-8
 from openai import OpenAI
-import os
+from google.colab import userdata
 import pandas as pd
 
 """
-获取 OpenAI 支持的模型列表
+获取 OpenAI GPT 支持的模型列表
 
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
 
+# 获取 OpenAI GPT 可用模型列表，默认按 id 升序排序
 def models(orderby='id'):
     try:
         models = client.models.list()
@@ -26,7 +27,7 @@ def models(orderby='id'):
         # 将 created 时间戳转为 datetime 格式，单位秒
         df['created'] = pd.to_datetime(df['created'], unit='s')
 
-        display(df[['id', 'created', 'owned_by']])
+        display(df[['id', 'created', 'object', 'owned_by']])
     except Exception as e:
         print(e)
 
