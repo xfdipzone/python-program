@@ -27,11 +27,23 @@ from google.colab import userdata
 userdata.get("OPENAI_API_KEY")
 ```
 
-Model 使用的编码
+---
+
+## Model 使用的编码
 
 参考：[https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb](<https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb>)
 
 使用 tiktoken 统计 token 数量时，需要使用与 Model 一样的编码
+
+**获取 Model 使用的编码：**
+
+例如 Model=`gpt-4o-mini`，则使用下面代码获取使用的编码
+
+```python3
+encoding = tiktoken.encoding_for_model('gpt-4o-mini')
+```
+
+**设置 tiktoken 编码：**
 
 例如 Model=`gpt-4o-mini`，则 `tiktoken` 配置以下的编码
 
@@ -43,7 +55,7 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 ## 项目列表
 
-[01. AI 写情信](./write_letter.py)
+[01. AI 写情信](./write_love_letter.py)
 
 让 AI 写一封情信
 
@@ -63,7 +75,7 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 让 AI 身份是游戏百科全书，与用户进行对话，回答用户提出的游戏问题
 
-[06. OpenAI GPT 模型列表](./models.py)
+[06. OpenAI GPT 模型列表](./gpt_models.py)
 
 获取 OpenAI 支持的模型列表
 
