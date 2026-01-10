@@ -83,7 +83,11 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 [OpenAI GPT 模型列表](./gpt_models.py)
 
-获取 OpenAI 支持的模型列表
+获取 OpenAI GPT 支持的模型列表
+
+[OpenAI GPT 模型编码](./gpt_models_encoding.py)
+
+获取 OpenAI GPT 模型使用的编码
 
 [OpenAI 检测文字内容是否符合法规](./moderation.py)
 
