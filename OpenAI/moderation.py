@@ -1,6 +1,6 @@
 # coding=utf-8
 from openai import OpenAI
-import os
+from google.colab import userdata
 
 """
 AI 检测文字内容是否符合法规
@@ -8,7 +8,7 @@ AI 检测文字内容是否符合法规
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
 
 """
 判断文字内容是否被标记
