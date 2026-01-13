@@ -20,7 +20,7 @@ training_data = pd.read_parquet("data/20_newsgroup_with_embedding.parquet")
 print("样本数据概览：")
 print(f"数据集形状: {training_data.shape}")
 print(f"列名: {training_data.columns.tolist()}")
-print(f"类别数量: {training_data['target'].nunique()}")
+print(f"类别数量: {training_data['target'].nunique()}\n")
 
 # 从样本中随机抽取 10000 条记录用于训练于测试
 # random_state 是随机乱数，用于保证每次随机抽取的记录一致
@@ -41,13 +41,13 @@ clf.fit(X_train, y_train)
 preds = clf.predict(X_test)
 
 report = classification_report(y_test, preds)
-print("\n训练结果：\n")
+print("训练结果：")
 print(report)
 
 # 每个类别的概率（用于置信度分析）
 probas = clf.predict_proba(X_test)
 
-print("\n更多分析：")
+print("更多分析：")
 
 # 对数损失
 logloss = log_loss(y_test, probas)
@@ -59,3 +59,45 @@ print(f"对数损失：{logloss:.4f}")
 confidences = np.max(probas, axis=1)
 print(f"平均置信度：{confidences.mean():.4f}")
 print(f"低置信度（<0.6）样本比例：{(confidences<0.6).mean():.2%}")
+
+"""
+样本数据概览：
+数据集形状: (10640, 5)
+列名: ['text', 'target', 'title', 'n_tokens', 'embedding']
+类别数量: 20
+
+训练结果：
+              precision    recall  f1-score   support
+
+           0       0.53      0.56      0.54        79
+           1       0.66      0.67      0.67        98
+           2       0.70      0.72      0.71       119
+           3       0.59      0.67      0.63       114
+           4       0.74      0.57      0.64       114
+           5       0.85      0.87      0.86       108
+           6       0.82      0.84      0.83       109
+           7       0.83      0.81      0.82       106
+           8       0.76      0.75      0.75       104
+           9       0.76      0.93      0.84       108
+          10       0.88      0.86      0.87        91
+          11       0.87      0.71      0.78       106
+          12       0.74      0.66      0.70       102
+          13       0.78      0.86      0.82       104
+          14       0.75      0.83      0.79        95
+          15       0.66      0.88      0.76        97
+          16       0.59      0.80      0.68        91
+          17       0.82      0.84      0.83       100
+          18       0.65      0.55      0.60        89
+          19       0.75      0.05      0.09        66
+
+    accuracy                           0.73      2000
+   macro avg       0.74      0.72      0.71      2000
+weighted avg       0.74      0.73      0.72      2000
+
+更多分析：
+对数损失：1.6797
+平均置信度：0.2672
+低置信度（<0.6）样本比例：97.95%
+
+运行用时：3min
+"""
