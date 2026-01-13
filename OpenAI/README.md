@@ -121,6 +121,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [测试基于 Embedding 计算的评论分级准确率](./Embedding/comment_level.py)
 
+- [基于随机森林算法训练预测新闻类别](./Embedding/news_grouping_by_random_forest.py)
+
 ---
 
 ## 聊天机器人
