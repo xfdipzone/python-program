@@ -1,4 +1,5 @@
 # coding=utf-8
+from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score, log_loss, roc_auc_score
@@ -31,21 +32,26 @@ X_train, X_test, y_train, y_test = train_test_split(
     list(df.embedding.values), df.target, test_size=0.2, random_state=42
 )
 
+# 特征标准化
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
 # 创建逻辑回归分类器
 clf = LogisticRegression()
 
 # 训练
-clf.fit(X_train, y_train)
+clf.fit(X_train_scaled, y_train)
 
 # 预测
-preds = clf.predict(X_test)
+preds = clf.predict(X_test_scaled)
 
 report = classification_report(y_test, preds)
 print("训练结果：")
 print(report)
 
 # 每个类别的概率（用于置信度分析）
-probas = clf.predict_proba(X_test)
+probas = clf.predict_proba(X_test_scaled)
 
 print("更多分析：")
 
@@ -69,35 +75,35 @@ print(f"低置信度（<0.6）样本比例：{(confidences<0.6).mean():.2%}")
 训练结果：
               precision    recall  f1-score   support
 
-           0       0.56      0.63      0.59        79
-           1       0.70      0.76      0.73        98
-           2       0.71      0.75      0.73       119
-           3       0.65      0.69      0.67       114
-           4       0.81      0.65      0.72       114
-           5       0.90      0.86      0.88       108
-           6       0.81      0.82      0.81       109
-           7       0.80      0.81      0.80       106
-           8       0.78      0.73      0.75       104
-           9       0.78      0.94      0.85       108
-          10       0.96      0.88      0.92        91
-          11       0.88      0.74      0.80       106
-          12       0.75      0.75      0.75       102
-          13       0.83      0.88      0.85       104
-          14       0.77      0.84      0.80        95
-          15       0.77      0.82      0.80        97
-          16       0.63      0.81      0.71        91
-          17       0.88      0.84      0.86       100
-          18       0.62      0.66      0.64        89
-          19       0.60      0.14      0.22        66
+           0       0.61      0.58      0.60        79
+           1       0.68      0.77      0.72        98
+           2       0.65      0.71      0.68       119
+           3       0.67      0.70      0.69       114
+           4       0.79      0.68      0.73       114
+           5       0.89      0.85      0.87       108
+           6       0.79      0.82      0.81       109
+           7       0.84      0.82      0.83       106
+           8       0.82      0.72      0.77       104
+           9       0.81      0.94      0.87       108
+          10       0.94      0.87      0.90        91
+          11       0.84      0.72      0.78       106
+          12       0.66      0.71      0.68       102
+          13       0.91      0.83      0.87       104
+          14       0.77      0.83      0.80        95
+          15       0.75      0.84      0.79        97
+          16       0.64      0.69      0.66        91
+          17       0.84      0.86      0.85       100
+          18       0.66      0.71      0.68        89
+          19       0.53      0.36      0.43        66
 
     accuracy                           0.76      2000
-   macro avg       0.76      0.75      0.74      2000
+   macro avg       0.75      0.75      0.75      2000
 weighted avg       0.76      0.76      0.76      2000
 
 更多分析：
-对数损失：1.0094
-平均置信度：0.5150
-低置信度（<0.6）样本比例：60.10%
+对数损失：1.3732
+平均置信度：0.9203
+低置信度（<0.6）样本比例：6.80%
 
-运行用时：13s
+运行用时：28s
 """
