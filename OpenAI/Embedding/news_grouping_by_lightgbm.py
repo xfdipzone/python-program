@@ -14,6 +14,17 @@ pip install lightgbm
 pip install scikit-learn
 pip install pandas
 pip install numpy
+
+流程：
+1 读取源数据文件，随机取出 10000 条记录
+2.拆分训练集与测试集（80:20）
+3.从训练集中拆分出真正的训练集与验证集（90:10）
+4.训练集，验证集，测试集转为 numpy 数组格式
+5.训练集，验证集，测试集从 numpy 数组格式转为 DataFrame 格式并指定列名
+6.训练
+7.预测
+8.打印预测报告
+9.打印对数损失，平均置信度，低置信度（<0.6）样本比例
 """
 # 读取样本数据文件
 training_data = pd.read_parquet("data/20_newsgroup_with_embedding.parquet")
@@ -76,7 +87,7 @@ clf.fit(
     eval_metric='multi_logloss',
     callbacks=[
         early_stopping(stopping_rounds=20),
-        log_evaluation(period=0)
+        log_evaluation(period=0)  # 控制打印训练日志的频率（0:不打印 N:每经过 N 轮打印一次）
     ]
 )
 
