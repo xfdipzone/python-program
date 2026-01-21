@@ -129,6 +129,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [基于梯度提升决策树算法（LightGBM）训练预测新闻类别](./Embedding/news_grouping_by_lightgbm.py)
 
+- [基于梯度提升决策树算法（LightGBM）训练预测新闻类别模型评估](./Embedding/news_grouping_by_lightgbm_model_evaluation.py)
+
 ---
 
 ## 聊天机器人
