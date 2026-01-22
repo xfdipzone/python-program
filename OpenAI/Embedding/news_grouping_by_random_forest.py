@@ -22,7 +22,7 @@ print(f"数据集形状: {training_data.shape}")
 print(f"列名: {training_data.columns.tolist()}")
 print(f"类别数量: {training_data['target'].nunique()}\n")
 
-# 从样本中随机抽取 10000 条记录用于训练于测试
+# 从样本中随机抽取 10000 条记录用于训练与测试
 # random_state 是随机乱数，用于保证每次随机抽取的记录一致
 df = training_data.sample(10000, random_state=42)
 
