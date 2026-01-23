@@ -12,6 +12,15 @@ dependency packages
 pip install scikit-learn
 pip install pandas
 pip install numpy
+
+流程：
+1.读取源数据文件，随机取出 10000 条记录
+2.拆分训练集与测试集（80:20）
+3.创建随机森林分类器
+4.训练
+5.预测
+6.打印预测报告
+7.打印对数损失，平均置信度，低置信度（<0.6）样本比例
 """
 # 读取样本数据文件
 training_data = pd.read_parquet("data/20_newsgroup_with_embedding.parquet")
