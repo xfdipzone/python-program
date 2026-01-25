@@ -133,6 +133,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [训练预测新闻类别特征主成分分析（PCA）](./Embedding/news_grouping_pca.py)
 
+- [随机森林模型重要特征分析](./Embedding/news_grouping_random_forest_important_features.py)
+
 ---
 
 ## 聊天机器人
