@@ -78,7 +78,8 @@ def plot_feature_importance(importances, indices, top_n=50):
     )
 
     # 前 {top_n} 个特征重要性分布 (是否存在断层)
-    ax1.set_title(f"Top {top_n} Feature Importances", fontsize=15)
+    ax1.set_title(
+        f"Top {top_n} Feature Importances (Random Forest Model)", fontsize=15)
 
     # 特征排行 (从高到低)
     ax1.set_xlabel("Feature Rank (Index)")
@@ -153,9 +154,12 @@ def run_shap_analysis(model, X_data, feature_names=None, target_class_index=0, s
     ax2.set_title(f"Class {target_class_index}: Impact Direction", pad=20)
     ax2.set_xlabel("SHAP value (Impact on Output)", labelpad=15)
 
-    # 调整子图之间的水平间距
-    # wspace 控制左右子图的距离，0.4 左右通常能解决文字重合问题
-    plt.subplots_adjust(wspace=0.4, bottom=0.15)
+    # 设置总标题
+    fig.suptitle(
+        f"SHAP Analysis for Class {target_class_index} (Random Forest)", fontsize=18, y=0.98)
+
+    # 自适应子图排版
+    plt.tight_layout()
 
     plt.show()
 
@@ -163,7 +167,7 @@ def run_shap_analysis(model, X_data, feature_names=None, target_class_index=0, s
 # 生成列名列表
 feat_names = [f"dim_{i}" for i in range(len(X_test[0]))]
 
-# 调用函数
+# 打印指定类别的特征重要性柱形图与蜂窝图（target_class_index 设置打印的类别）
 run_shap_analysis(
     clf,
     X_test,
