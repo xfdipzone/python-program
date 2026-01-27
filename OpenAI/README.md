@@ -135,6 +135,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [随机森林模型重要特征分析](./Embedding/news_grouping_random_forest_important_features.py)
 
+- [逻辑回归模型重要特征分析](./Embedding/news_grouping_logistic_regression_important_features.py)
+
 ---
 
 ## 聊天机器人
