@@ -137,6 +137,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [逻辑回归模型重要特征分析](./Embedding/news_grouping_logistic_regression_important_features.py)
 
+- [梯度提升决策树模型（LightGBM）重要特征分析](./Embedding/news_grouping_lightgbm_important_features.py)
+
 ---
 
 ## 聊天机器人
