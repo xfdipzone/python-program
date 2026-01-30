@@ -132,7 +132,7 @@ cm_norm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
 plt.figure(figsize=(15, 12))
 sns.heatmap(cm_norm, annot=True, fmt=".2f", cmap="YlGnBu",
             xticklabels=range(20), yticklabels=range(20))
-plt.title("Normalized Confusion Matrix (Recall by Class)")
+plt.title("LightGBM Normalized Confusion Matrix (Recall by Class)")
 plt.xlabel("Predicted Label")
 plt.ylabel("True Label")
 plt.show()
@@ -145,4 +145,5 @@ if target_class in y_test.values:
     for idx in top_error_indices:
         if idx != target_class and cm[target_class][idx] > 0:
             percent = (cm[target_class][idx] / cm[target_class].sum()) * 100
-            print(f"被误判为类别 {idx:2} 的样本数: {cm[target_class][idx]:2} ({percent:.1f}%)")
+            print(
+                f"被误判为类别 {idx:2} 的样本数: {cm[target_class][idx]:2} ({percent:.1f}%)")
