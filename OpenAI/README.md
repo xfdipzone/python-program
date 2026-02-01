@@ -131,6 +131,8 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 - [基于随机森林算法（Random Forest）训练预测新闻类别模型评估](./Embedding/news_grouping_by_random_forest_model_evaluation.py)
 
+- [基于逻辑回归算法（Logistic Regression）训练预测新闻类别模型评估](./Embedding/news_grouping_by_logistic_regression_model_evaluation.py)
+
 - [基于梯度提升决策树算法（LightGBM）训练预测新闻类别模型评估](./Embedding/news_grouping_by_lightgbm_model_evaluation.py)
 
 - [训练预测新闻类别特征主成分分析（PCA）](./Embedding/news_grouping_pca.py)
