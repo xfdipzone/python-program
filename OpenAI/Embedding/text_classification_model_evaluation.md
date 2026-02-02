@@ -4,7 +4,21 @@
 
 使用不同模型进行训练预测的评估报告
 
-## 随机森林模型（Random Forest）
+## PCA（Principal Component Analysis）数据特征主成分分析
+
+根据阈值获取对应的维度数
+
+![PCA主成分分析](<./img/pca-variance-automated-detection.svg>)
+
+根据 95% 的要求，系统自动建议的维度数量为: 688
+
+原始特征维度: 1536
+PCA 降维后维度: 688
+保留的累计方差贡献率: 95.01%
+
+---
+
+## 随机森林模型评估（Random Forest）
 
 ```txt
 样本数据概览：
@@ -63,7 +77,7 @@ weighted avg       0.74      0.73      0.72      2000
 
 ---
 
-## 逻辑回归模型（Logistic Regression）
+## 逻辑回归模型评估（Logistic Regression）
 
 ```txt
 样本数据概览：
@@ -120,7 +134,7 @@ weighted avg       0.78      0.78      0.78      2000
 
 ---
 
-## 梯度提升决策树模型（Light Gradient Boosting Machine）
+## 梯度提升决策树模型评估（Light Gradient Boosting Machine）
 
 ```txt
 样本数据概览：
