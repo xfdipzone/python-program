@@ -1,4 +1,4 @@
-# 文本分类模型对比评估
+# 文本分类模型对比评估文档
 
 文本数据文件：[./data/20_newsgroup_with_embedding.parquet](<./data/20_newsgroup_with_embedding.parquet>)
 
@@ -144,7 +144,7 @@ weighted avg       0.78      0.78      0.78      2000
 
 Training until validation scores don't improve for 20 rounds
 Early stopping, best iteration is:
-[330]	valid_0's multi_logloss: 0.760011
+[330] valid_0's multi_logloss: 0.760011
 训练结果：
               precision    recall  f1-score   support
 

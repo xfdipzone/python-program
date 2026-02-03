@@ -123,7 +123,7 @@ print(f"低置信度（<0.6）样本比例：{(confidences<0.6).mean():.2%}")
 
 Training until validation scores don't improve for 20 rounds
 Early stopping, best iteration is:
-[330]	valid_0's multi_logloss: 0.760011
+[330] valid_0's multi_logloss: 0.760011
 训练结果：
               precision    recall  f1-score   support
 
