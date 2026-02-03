@@ -17,9 +17,9 @@ pip install numpy
 
 流程：
 1.读取源数据文件，随机取出 10000 条记录
-2.拆分训练集与测试集（80:20）
-3.从训练集中拆分出真正的训练集与验证集（90:10）
-4.训练集，验证集，测试集转为 numpy 数组格式
+2.将数据列表转换为 numpy 数组格式（适合 LightGBM）
+3.拆分训练集与测试集（80:20）
+4.从训练集中拆分出真正的训练集与验证集（90:10）
 5.训练集，验证集，测试集从 numpy 数组格式转为 DataFrame 格式并指定列名
 6.创建梯度提升决策树分类器
 7.训练
@@ -40,20 +40,18 @@ print(f"类别数量: {training_data['target'].nunique()}\n")
 # random_state 是随机乱数，用于保证每次随机抽取的记录一致
 df = training_data.sample(10000, random_state=42)
 
+# 将列表转换为适合 LightGBM 的格式（如果 embedding 已经是 numpy 数组格式，则不需要转换）
+X = np.stack(df.embedding.values)
+
 # 划分训练集与测试集（80% 的数据作为训练集，20% 的数据作为测试集）
 X_train_val, X_test, y_train_val, y_test = train_test_split(
-    list(df.embedding.values), df.target, test_size=0.2, random_state=42
+    X, df.target, test_size=0.2, random_state=42
 )
 
 # 从训练集中分割出训练集与验证集（90% 的数据作为训练集，10% 的数据作为验证集）
 X_train, X_val, y_train, y_val = train_test_split(
     X_train_val, y_train_val, test_size=0.125, random_state=42
 )
-
-# 将列表转换为适合 LightGBM 的格式（如果 embedding 已经是 numpy 数组格式，则不需要转换）
-X_train = np.array(X_train)
-X_val = np.array(X_val)
-X_test = np.array(X_test)
 
 # 获取特征维度并生成列名列表
 feature_dim = X_train.shape[1]
