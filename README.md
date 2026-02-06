@@ -10,6 +10,6 @@ python开发的程序，不定期更新。
 
   基础语法
 
-* [OpenAI](./OpenAI)
+* [AI](./AI)
 
-  基于 OpenAI API 项目
+  AI 项目

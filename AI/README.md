@@ -1,4 +1,4 @@
-# OpenAI 项目说明
+# AI 项目说明
 
 ## 测试环境初始化
 
@@ -26,6 +26,13 @@ os.environ.get("OPENAI_API_KEY")
 from google.colab import userdata
 userdata.get("OPENAI_API_KEY")
 ```
+
+使用其他 AI 则修改为对应的 API KEY
+
+AI | API KEY
+--|--
+Gemini | GOOGLE_API_KEY
+Kimi | KIMI_API_KEY
 
 ---
 
@@ -89,7 +96,7 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 获取 OpenAI GPT 模型使用的编码
 
-[OpenAI 检测文字内容是否符合法规](./moderation.py)
+[AI 检测文字内容是否符合法规](./moderation.py)
 
 检测文字内容是否符合法规
 
