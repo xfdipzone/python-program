@@ -22,8 +22,8 @@ client = OpenAI(
 # 对话管理器类
 class Conversation:
     # 初始化模型，设置系统提示词和保存的对话轮数限制
-    def __init__(self, prompt, num_of_round):
-        self.model = "moonshot-v1-8k"
+    def __init__(self, model, prompt, num_of_round):
+        self.model = model
         self.prompt = prompt
         self.num_of_round = num_of_round
         self.messages = []
@@ -96,7 +96,8 @@ prompt = """你是一个游戏百科全书，用中文回答游戏的问题。�
 2. 回答限制在100个字以内"""
 
 # 初始化对话管理器
-conv = Conversation(prompt, 2)
+COMPLETION_MODEL = "moonshot-v1-8k"
+conv = Conversation(COMPLETION_MODEL, prompt, 2)
 
 # 定义提问按钮的方法
 # 调用对话管理器，获取问题的回答
