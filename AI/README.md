@@ -92,6 +92,10 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 获取 OpenAI GPT 支持的模型列表
 
+[Google Gemini 模型列表](./google_gemini_models.py)
+
+获取 Google Gemini 支持的模型列表
+
 [OpenAI GPT 模型编码](./gpt_models_encoding.py)
 
 获取 OpenAI GPT 模型使用的编码
