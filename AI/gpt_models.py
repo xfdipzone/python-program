@@ -31,6 +31,7 @@ pd.set_option('display.width', 1000)
 
 dependency packages
 pip install openai
+pip install pandas
 """
 client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
 
@@ -40,6 +41,7 @@ def models(orderby='id'):
         models = client.models.list()
         data = [[model.id, model.created, model.object, model.owned_by]
                 for model in models.data]
+
         df = pd.DataFrame(
             data, columns=['id', 'created', 'object', 'owned_by'])
 
