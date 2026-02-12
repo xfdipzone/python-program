@@ -88,17 +88,19 @@ encoding = tiktoken.get_encoding("o200k_base")
 
 让 AI 身份是游戏百科全书，与用户进行对话，回答用户提出的游戏问题
 
-[OpenAI GPT 模型列表](./gpt_models.py)
+[模型列表](./Models)
 
-获取 OpenAI GPT 支持的模型列表
+- [OpenAI GPT 模型列表](./Models/gpt_models.py)
 
-[Google Gemini 模型列表](./google_gemini_models.py)
+  获取 OpenAI GPT 支持的模型列表
 
-获取 Google Gemini 支持的模型列表
+- [Google Gemini 模型列表](./Models/google_gemini_models.py)
 
-[Kimi 模型列表](./kimi_models.py)
+  获取 Google Gemini 支持的模型列表
 
-获取 Kimi 支持的模型列表
+- [Kimi 模型列表](./Models/kimi_models.py)
+
+  获取 Kimi 支持的模型列表
 
 [OpenAI GPT 模型编码](./gpt_models_encoding.py)
 
