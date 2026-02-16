@@ -8,9 +8,12 @@ AI 查询产品价格范围
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=userdata.get("KIMI_API_KEY"),
+    base_url="https://api.moonshot.cn/v1"
+)
 
-COMPLETION_MODEL = "gpt-4o-mini"
+COMPLETION_MODEL = "moonshot-v1-8k"
 
 prompt = """
 Consideration product : 轩辕剑三外传天之痕steam
