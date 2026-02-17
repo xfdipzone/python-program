@@ -8,9 +8,12 @@ AI 情感分析评论
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=userdata.get("KIMI_API_KEY"),
+    base_url="https://api.moonshot.cn/v1"
+)
 
-COMPLETION_MODEL = "gpt-4o-mini"
+COMPLETION_MODEL = "moonshot-v1-8k"
 
 # 提示词，给出正面与负面例子
 prompts = """
@@ -44,7 +47,7 @@ good_case = prompts + """
 情感：
 """
 
-print(get_response(good_case))
+print(get_response(good_case) + "\n")
 
 # 负面的评论
 bad_case = prompts + """
@@ -52,7 +55,7 @@ bad_case = prompts + """
 情感：
 """
 
-print(get_response(bad_case))
+print(get_response(bad_case) + "\n")
 
 # 正面的评论
 good_restaurant = prompts + """
@@ -60,7 +63,7 @@ good_restaurant = prompts + """
 情感：
 """
 
-print(get_response(good_restaurant))
+print(get_response(good_restaurant) + "\n")
 
 # 负面的评论
 bad_restaurant = prompts + """
@@ -68,4 +71,4 @@ bad_restaurant = prompts + """
 情感：
 """
 
-print(get_response(bad_restaurant))
+print(get_response(bad_restaurant) + "\n")
