@@ -17,7 +17,7 @@ client = OpenAI(
     base_url="https://api.moonshot.cn/v1"
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = "kimi-k2-thinking"
 
 """
 配置 tiktoken
@@ -60,16 +60,32 @@ def print_line(char='─', width=None):
 # 原文案
 prompt = "请你用朋友的语气回复给到客户，回复的内容按容易阅读的格式返回，并称他为“亲”，他的订单已经发货在路上了，预计在3天之内会送达，订单号2025YEAS，我们很抱歉因为天气的原因物流时间比原来长，感谢他选购我们的商品。"
 
+# 系统提示词
+system_prompt = """你是一个文字内容优化的工具，可以根据用户给出的文字进行优化。
+被优化后的内容中的词汇会有一些控制规则
+需要被控制的词汇都会有一个值，值的范围是 [-100, 100]，其中 -100 表示一定不能出现在内容中，100 表示一定要出现在内容中
+这个值越小，越小概率出现，越大，越多概率出现。
+"""
+
 # 根据提示词生成客服回复内容
-def get_response(prompt, num=1, presence_penalty=0.0, frequency_penalty=0.0, temperature=1.0, stop=None):
+def get_response(prompt, words, num=1, presence_penalty=0.0, frequency_penalty=0.0, temperature=1.0, stop=None):
+    # 词汇控制
+    words_prompt = "被控制的词汇列表如下：\n"
+    for word, bias_value in words.items():
+        words_prompt += f"{word} : {bias_value}\n"
+
     responses = []
+    messages = [
+        {"role": "system", "content": system_prompt + words_prompt},
+        {"role": "user", "content": prompt}
+    ]
 
     completions = client.chat.completions.create(
         # 模型
         model=COMPLETION_MODEL,
 
         # 提示词
-        messages=[{"role": "user", "content": prompt}],
+        messages=messages,
 
         # 输出内容最大可用的 token 数 (max_tokens+prompt_tokens<=model_max_tokens)
         max_tokens=1024,
@@ -101,7 +117,7 @@ def get_response(prompt, num=1, presence_penalty=0.0, frequency_penalty=0.0, tem
 
 
 # 随机性 0.3
-response, num_of_tokens = get_response(prompt, 3, 0.0, 0.0, 0.3)
+response, num_of_tokens = get_response(prompt, words, 3, 0.0, 0.0, 0.3)
 print("第一种参数配置：(消耗的 token 数量：%d)\n" % num_of_tokens)
 for index, answer in enumerate(response):
     print("version %d: %s\n\n" % (index + 1, answer.content))
@@ -110,7 +126,7 @@ print_line('=')
 time.sleep(1)
 
 # 随机性 1.0
-response, num_of_tokens = get_response(prompt, 3, 0.0, 2.0, 1.0)
+response, num_of_tokens = get_response(prompt, words, 3, 0.0, 2.0, 1.0)
 print("第二种参数配置：(消耗的 token 数量：%d)\n" % num_of_tokens)
 for index, answer in enumerate(response):
     print("version %d: %s\n\n" % (index + 1, answer.content))
@@ -119,7 +135,7 @@ print_line('=')
 time.sleep(1)
 
 # 随机性 0.5
-response, num_of_tokens = get_response(prompt, 3, 2.0, 0.0, 0.5)
+response, num_of_tokens = get_response(prompt, words, 3, 2.0, 0.0, 0.5)
 print("第三种参数配置：(消耗的 token 数量：%d)\n" % num_of_tokens)
 for index, answer in enumerate(response):
     print("version %d: %s\n\n" % (index + 1, answer.content))
