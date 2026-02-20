@@ -8,9 +8,12 @@ AI 聊天机器人（V1）
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=userdata.get("KIMI_API_KEY"),
+    base_url="https://api.moonshot.cn/v1"
+)
 
-COMPLETION_MODEL = "gpt-4o-mini"
+COMPLETION_MODEL = "moonshot-v1-8k"
 
 print("你好，我是一个聊天机器人，请你提出你的问题吧！")
 
