@@ -1,5 +1,6 @@
 # coding=utf-8
 from openai import OpenAI
+from google.colab import userdata
 import os
 import time
 import logging
@@ -12,7 +13,10 @@ dependency packages
 pip install openai
 pip install tiktoken
 """
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=userdata.get("KIMI_API_KEY"),
+    base_url="https://api.moonshot.cn/v1"
+)
 
 """
 配置日志
@@ -28,14 +32,17 @@ Model 使用的编码
 """
 encoding = tiktoken.get_encoding("o200k_base")
 
+# 对话管理器类
 class Conversation:
-    def __init__(self, prompt, num_of_round):
-        self.model = "gpt-4o-mini"
+    # 初始化模型，设置系统提示词和保存的对话轮数限制
+    def __init__(self, model, prompt, num_of_round):
+        self.model = model
         self.prompt = prompt
         self.num_of_round = num_of_round
         self.messages = []
         self.messages.append({"role": "system", "content": self.prompt})
 
+    # 调用 AI 回答问题，将问题与回答追加到 messages 中保存
     def ask(self, question):
         try:
             self.messages.append({"role": "user", "content": question})
@@ -95,10 +102,14 @@ class Conversation:
         return summarized
 
 
+# 系统提示词
 prompt = """你是一个游戏百科全书，用中文回答游戏的问题。你的回答需要满足以下要求:
 1. 你的回答必须是中文
 2. 回答限制在100个字以内"""
-conv1 = Conversation(prompt, 2)
+
+# 初始化对话管理器
+COMPLETION_MODEL = "moonshot-v1-8k"
+conv = Conversation(COMPLETION_MODEL, prompt, 2)
 
 # 使用 tiktoken 统计 token 消耗数量
 prompt_count = len(encoding.encode(prompt))
@@ -118,7 +129,7 @@ questions_count = len(questions)
 
 for index, question in enumerate(questions):
     print("用户问题 : %s" % question)
-    answer, num_of_tokens = conv1.ask(question)
+    answer, num_of_tokens = conv.ask(question)
     print("AI 回答 : %s" % answer)
     print("消耗的 token 数量 : %d" % num_of_tokens)
 
@@ -129,6 +140,6 @@ for index, question in enumerate(questions):
     print("TikToken统计 : 问题消耗 %d token，回答消耗 %d token，总共消耗 %d token\n" %
           (question_count, answer_count, total_count))
 
-    # 每次对话间隔 20s，避免被限流
+    # 每次对话间隔 1s，避免被限流
     if index < questions_count - 1:
-        time.sleep(20)
+        time.sleep(1)
