@@ -8,20 +8,12 @@ AI 检测文字内容是否符合法规
 dependency packages
 pip install openai
 """
-client = OpenAI(api_key=userdata.get("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=userdata.get("KIMI_API_KEY"),
+    base_url="https://api.moonshot.cn/v1"
+)
 
-"""
-判断文字内容是否被标记
-例如包含色情，暴力等不合适的内容
-调用此接口需要 OpenAI Quota
-"""
-def moderation(text):
-    response = client.moderations.create(
-        input=text
-    )
-    output = response["results"][0]
-    return output
-
+COMPLETION_MODEL = "moonshot-v1-8k"
 
 """
 判断文字内容是否被标记
@@ -39,7 +31,7 @@ def custom_moderation(content, parameters):
 
     # Call model with the prompt
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=COMPLETION_MODEL,
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": "You are a content moderation assistant."},
