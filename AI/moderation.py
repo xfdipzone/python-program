@@ -22,11 +22,11 @@ COMPLETION_MODEL = "moonshot-v1-8k"
 """
 def custom_moderation(content, parameters):
     # Define the prompt
-    prompt = f"""Please assess the following content for any inappropriate material. You should base your assessment on the given parameters.
-    Your answer should be in json format with the following fields:
-        - flagged: a boolean indicating whether the content is flagged for any of the categories in the parameters
-        - reason: a string explaining the reason for the flag, if any
-        - parameters: a dictionary of the parameters used for the assessment and their values
+    prompt = f"""请评估以下内容是否存在不当内容。评估应基于给定的参数。
+    您的答案应为 JSON 格式，并包含以下字段：
+        - flagged: 布尔值，指示内容是否因参数中的任何类别而被标记
+        - reason: 字符串，使用中文解释标记原因（如有）
+        - parameters: 字典，包含用于评估的参数及其值
     Parameters: {parameters}\n\nContent:\n{content}\n\nAssessment:"""
 
     # Call model with the prompt
@@ -34,7 +34,7 @@ def custom_moderation(content, parameters):
         model=COMPLETION_MODEL,
         response_format={"type": "json_object"},
         messages=[
-            {"role": "system", "content": "You are a content moderation assistant."},
+            {"role": "system", "content": "您是一名内容审核助理。"},
             {"role": "user", "content": prompt}
         ]
     )
