@@ -79,22 +79,17 @@ prompts = [
 ]
 
 # Data Frames
-total_df = None
+dfs = []
 
 # 生成产品数据
 generator = ProductDataGenerator()
 
 for prompt in prompts:
     product_data = generator.generate(prompt)
+    dfs.append(format_product_data(product_data))
 
-    df = format_product_data(product_data)
-    if total_df is None:
-        total_df = df
-    else:
-        total_df = pd.concat([total_df, df], axis=0)
-
-# 解决索引重复
-total_df = total_df.reset_index(drop=True)
+# 合并数据
+total_df = pd.concat(dfs, ignore_index=True)
 
 # 索引从 1 开始
 total_df.index = np.arange(1, len(total_df) + 1)
