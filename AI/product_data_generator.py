@@ -3,6 +3,8 @@ from openai import OpenAI
 from google.colab import userdata
 import pandas as pd
 import numpy as np
+import re
+import inspect
 
 # 显示所有行
 pd.set_option('display.max_rows', None)
@@ -38,18 +40,24 @@ class ProductDataGenerator:
     def __init__(self):
         self.model = COMPLETION_MODEL
 
+        # 使用 cleandoc 自动去除多余的首行空行和缩进
+        self.system_prompt = inspect.cleandoc("""
+            你是一个熟悉中国电商平台（淘宝、京东等）的运营专家，擅长撰写吸引消费者的商品标题，了解各品类的促销话术和用户心理。
+            输出格式：【促销类型】商品标题
+        """)
+
     def generate(self, prompt):
         try:
             completions = client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "你是一个熟悉中国电商平台（淘宝、京东等）的运营专家，擅长撰写吸引消费者的商品标题，了解各品类的促销话术和用户心理。"},
+                    {"role": "system", "content": self.system_prompt},
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.5
+                temperature=0.8
             )
         except Exception as e:
             print(e)
@@ -68,14 +76,15 @@ def format_product_data(data):
     df = pd.DataFrame({'product_name': product_names})
 
     # 去除返回结果的标号
-    df.product_name = df.product_name.apply(lambda x: x.split('.')[1].strip())
+    df.product_name = df.product_name.apply(
+        lambda x: re.sub(r'^\d+[\.\s、]+', '', x).strip())
     return df
 
 
 # 提示词
 prompts = [
-    """请你生成50条淘宝网里的商品的标题，每条在30个字左右，品类是3C数码产品，标题里往往也会有一些促销类的信息，每行一条。""",
-    """请你生成50条淘宝网里的商品的标题，每条在30个字左右，品类是女性的服饰箱包等等，标题里往往也会有一些促销类的信息，每行一条。"""
+    """请你生成 50 条淘宝网里的商品的标题，每条在 30 个字左右，品类是3C数码产品，标题里往往也会有一些促销类的信息，每行一条。""",
+    """请你生成 50 条淘宝网里的商品的标题，每条在 30 个字左右，品类是女性的服饰箱包等等，标题里往往也会有一些促销类的信息，每行一条。"""
 ]
 
 # Data Frames
