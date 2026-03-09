@@ -78,6 +78,7 @@ def format_product_data(data):
     # 去除返回结果的标号
     df.product_name = df.product_name.apply(
         lambda x: re.sub(r'^\d+[\.\s、]+', '', x).strip())
+
     return df
 
 
