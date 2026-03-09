@@ -1,6 +1,6 @@
 # 文本分类模型对比评估文档
 
-文本数据文件：[./data/20_newsgroup_with_embedding.parquet](<./data/20_newsgroup_with_embedding.parquet>)
+文本数据文件：[./data/20_newsgroup_with_embedding.parquet](<../data/20_newsgroup_with_embedding.parquet>)
 
 使用不同模型进行训练预测的评估报告
 
