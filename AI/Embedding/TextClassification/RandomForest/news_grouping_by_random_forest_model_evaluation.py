@@ -87,6 +87,7 @@ print(f"低置信度（<0.6）样本比例：{(confidences<0.6).mean():.2%}")
 # 5. 混淆矩阵可视化 (分析类别 19)
 # ==========================================
 cm = confusion_matrix(y_test, preds)
+
 # 归一化处理
 cm_norm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
 
