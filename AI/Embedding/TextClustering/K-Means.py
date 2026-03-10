@@ -1,12 +1,16 @@
 # coding=utf-8
+from openai import OpenAI
+from google.colab import userdata
 from sklearn.cluster import KMeans
 import pandas as pd
 import numpy as np
+import re
 
 """
 通过 K-Means 算法实现文本聚类
 
 dependency packages
+pip install openai
 pip install scikit-learn
 pip install pandas
 pip install numpy
@@ -83,3 +87,51 @@ new_df = new_df.sort_values(
 
 # 输出结果
 display(new_df)
+
+
+# ==========================================
+# 3. 生成聚类主题
+# ==========================================
+client = OpenAI(
+    api_key=userdata.get("KIMI_API_KEY"),
+    base_url="https://api.moonshot.cn/v1"
+)
+
+COMPLETION_MODEL = "moonshot-v1-8k"
+
+# 每个聚类中取 10% 的数据用于总结主题
+items_per_cluster = 10
+
+print("\n\033[1;32mClustering Themes\033[0m\n")
+
+for i in range(num_of_clusters):
+    cluster_name = new_df[new_df.cluster == i].iloc[0].rank1
+    print(f"Cluster {i:02}, Rank 1: {cluster_name}, Theme:", end=" ")
+
+    content = "\n".join(
+        embedding_df[embedding_df.cluster == i].text.sample(
+            items_per_cluster, random_state=42).values
+    )
+
+    prompt = f"""
+        我们想要给下面的内容，分组成有意义的类别，以便我们可以对其进行总结。
+        请根据下面这些内容的共同点，使用中文总结一个 50 字以内的新闻组的名称。
+        只需要给出名称，比如 “PC硬件”
+
+        内容:
+        {content}
+    """
+
+    completions = client.chat.completions.create(
+        model=COMPLETION_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        max_tokens=100,
+        top_p=1,
+    )
+
+    response = completions.choices[0].message.content
+
+    # 数据清洗
+    pattern = r'“|”|\n'
+    print(re.sub(pattern, '', response).strip())
