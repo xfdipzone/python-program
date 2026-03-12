@@ -16,6 +16,7 @@ pip install scikit-learn
 pip install pandas
 pip install numpy
 pip install shap
+pip install matplotlib
 """
 # 读取样本数据文件
 training_data = pd.read_parquet("data/20_newsgroup_with_embedding.parquet")
