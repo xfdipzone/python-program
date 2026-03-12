@@ -1,6 +1,6 @@
 # coding=utf-8
-import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
@@ -14,6 +14,7 @@ KMeans 容易陷入局部最优解。如果 n_init 很小（比如 1），算法
 
 dependency packages
 pip install scikit-learn
+pip install matplotlib
 pip install pandas
 pip install numpy
 """
@@ -30,11 +31,11 @@ num_of_clusters = 20
 测试 n_init 参数对 KMeans 聚类结果（Inertia）的影响。
 
 参数:
-matrix: 训练数据 (feature matrix)
+X: 训练数据 (feature matrix)
 cluster_num: 聚类簇数 (k值)
 max_n_init: 测试 n_init 的最大上限，默认为 30
 """
-def test_n_init_impact(matrix, cluster_num, max_n_init=30):
+def test_n_init_impact(X, cluster_num, max_n_init=30):
     inertias = []
     n_init_range = range(1, max_n_init + 1)
 
@@ -46,7 +47,7 @@ def test_n_init_impact(matrix, cluster_num, max_n_init=30):
             n_init=n,
             random_state=None  # 允许观察随机性带来的差异
         )
-        model.fit(matrix)
+        model.fit(X)
         inertias.append(model.inertia_)
 
     # 绘图
