@@ -8,7 +8,10 @@ import numpy as np
 """
 分析 K-Means 算法轮廓系数 (Silhouette Score)
 
-轮廓系数同时考虑了类内的紧凑度和类间的分离度。它的取值范围在 $[-1, 1]$ 之间，越接近 1 代表聚类效果越好。
+用于找出最优的聚类数量（即划分多少个聚类）
+
+轮廓系数同时考虑了类内的紧凑度和类间的分离度。
+它的取值范围在 $[-1, 1]$ 之间，越接近 1 代表聚类效果越好。
 
 dependency packages
 pip install scikit-learn
@@ -72,6 +75,7 @@ def plot_silhouette_scores(X, k_range, sample_size=5000):
 # 调用函数
 k_list = list(range(2, 31))
 plot_silhouette_scores(matrix, k_list, 10000)
+
 
 """
 不同 K 值的轮廓系数

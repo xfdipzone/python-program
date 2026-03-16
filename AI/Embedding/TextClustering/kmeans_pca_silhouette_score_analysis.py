@@ -10,7 +10,10 @@ import numpy as np
 """
 分析 K-Means 算法 PCA 降维轮廓系数 (Silhouette Score)
 
-轮廓系数同时考虑了类内的紧凑度和类间的分离度。它的取值范围在 $[-1, 1]$ 之间，越接近 1 代表聚类效果越好。
+用于找出最优的聚类数量（即划分多少个聚类）
+
+轮廓系数同时考虑了类内的紧凑度和类间的分离度。
+它的取值范围在 $[-1, 1]$ 之间，越接近 1 代表聚类效果越好。
 
 dependency packages
 pip install scikit-learn
@@ -28,8 +31,8 @@ matrix = np.vstack(embedding_df.embedding.values)
 测试不同 K 值的轮廓系数（原始数据会先执行 PCA 降维）
 
 参数:
-X: 原始高维数据 (feature matrix)
-k_range: 想要测试的 K 值列表
+X: 原始高维特征矩阵 (feature matrix)
+k_range: 想要测试的 K 值列表，例如 range(2, 21)
 n_components: 保留多少方差，0.95 表示保留能解释 95% 变异的主成分
 """
 def analyze_with_pca_and_silhouette(X, k_range, n_components=0.95):
