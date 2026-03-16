@@ -134,6 +134,10 @@ encoding = tiktoken.get_encoding("o200k_base")
 
   文本分类模型训练与测试（随机森林，逻辑回归，梯度提升决策树等）
 
+- [文本聚类 Text Clustering](./Embedding/TextClustering/)
+
+  文本聚类算法（K-Means）测试，包括聚类主题总结，n_init，轮廓系数分析，可视化聚类分布等
+
 - [基于 Sentence Transformers 实现文本转向量](./Embedding/sentence_transformers_embedding.py)
 
 - [基于 Hugging Face Embedding 实现文本转向量](./Embedding/hugging_face_embedding.py)
