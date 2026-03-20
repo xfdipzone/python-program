@@ -21,6 +21,12 @@ pip install numpy
 # 读取数据文件
 embedding_df = pd.read_parquet("data/20_newsgroup_with_embedding.parquet")
 
+# 移除文本为空、或只包含换行符/空格的行
+embedding_df = embedding_df[embedding_df['text'].str.strip().astype(bool)]
+
+# 移除字数太少的文本，比如少于 10 个字符的
+embedding_df = embedding_df[embedding_df['text'].str.len() > 10]
+
 # 准备特征矩阵
 matrix = np.vstack(embedding_df.embedding.values)
 
