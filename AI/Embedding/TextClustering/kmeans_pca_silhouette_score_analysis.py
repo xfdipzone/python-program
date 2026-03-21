@@ -24,6 +24,12 @@ pip install numpy
 # 读取数据文件
 embedding_df = pd.read_parquet("data/20_newsgroup_with_embedding.parquet")
 
+# 移除文本为空、或只包含换行符/空格的行
+embedding_df = embedding_df[embedding_df['text'].str.strip().astype(bool)]
+
+# 移除字数太少的文本，比如少于 10 个字符的
+embedding_df = embedding_df[embedding_df['text'].str.len() > 10]
+
 # 准备特征矩阵
 matrix = np.vstack(embedding_df.embedding.values)
 
@@ -78,37 +84,37 @@ X_pca = analyze_with_pca_and_silhouette(matrix, k_list)
 
 
 """
-原始维度: 1536, 降维后维度: 710
+原始维度: 1536, 降维后维度: 709
 
 原始数据降维后不同 K 值的轮廓系数
 
-K= 2, Silhouette Score: 0.0407
-K= 3, Silhouette Score: 0.0399
-K= 4, Silhouette Score: 0.0375
-K= 5, Silhouette Score: 0.0307
+K= 2, Silhouette Score: 0.0408
+K= 3, Silhouette Score: 0.0402
+K= 4, Silhouette Score: 0.0381
+K= 5, Silhouette Score: 0.0310
 K= 6, Silhouette Score: 0.0283
-K= 7, Silhouette Score: 0.0316
+K= 7, Silhouette Score: 0.0311
 K= 8, Silhouette Score: 0.0299
-K= 9, Silhouette Score: 0.0301
-K=10, Silhouette Score: 0.0326
-K=11, Silhouette Score: 0.0346
-K=12, Silhouette Score: 0.0348
-K=13, Silhouette Score: 0.0356
-K=14, Silhouette Score: 0.0344
-K=15, Silhouette Score: 0.0290
-K=16, Silhouette Score: 0.0291
-K=17, Silhouette Score: 0.0305
-K=18, Silhouette Score: 0.0296
-K=19, Silhouette Score: 0.0307
-K=20, Silhouette Score: 0.0300
-K=21, Silhouette Score: 0.0303
-K=22, Silhouette Score: 0.0315
-K=23, Silhouette Score: 0.0312
-K=24, Silhouette Score: 0.0312
-K=25, Silhouette Score: 0.0315
-K=26, Silhouette Score: 0.0317
-K=27, Silhouette Score: 0.0299
-K=28, Silhouette Score: 0.0328
-K=29, Silhouette Score: 0.0323
-K=30, Silhouette Score: 0.0311
+K= 9, Silhouette Score: 0.0299
+K=10, Silhouette Score: 0.0325
+K=11, Silhouette Score: 0.0324
+K=12, Silhouette Score: 0.0330
+K=13, Silhouette Score: 0.0350
+K=14, Silhouette Score: 0.0327
+K=15, Silhouette Score: 0.0328
+K=16, Silhouette Score: 0.0340
+K=17, Silhouette Score: 0.0322
+K=18, Silhouette Score: 0.0333
+K=19, Silhouette Score: 0.0327
+K=20, Silhouette Score: 0.0323
+K=21, Silhouette Score: 0.0326
+K=22, Silhouette Score: 0.0339
+K=23, Silhouette Score: 0.0326
+K=24, Silhouette Score: 0.0293
+K=25, Silhouette Score: 0.0322
+K=26, Silhouette Score: 0.0301
+K=27, Silhouette Score: 0.0315
+K=28, Silhouette Score: 0.0309
+K=29, Silhouette Score: 0.0298
+K=30, Silhouette Score: 0.0318
 """
