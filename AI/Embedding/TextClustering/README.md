@@ -43,3 +43,9 @@
 - [可视化 K-Means 聚类分布（包含聚类主题标签）](./kmeans_tsne_cluster_distribution_with_topic.py)
 
   使用 t-SNE 非线形降维技术，可视化 K-Means 聚类分布（每个簇自动打上主题标签 Label）
+
+---
+
+## K-Means 算法评估
+
+- [K-Means 文本聚类评估文档](./kmeans_clustering_evaluation.md)
