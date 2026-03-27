@@ -35,11 +35,12 @@ def get_response(prompt):
             stop=None,
             temperature=0.0,
         )
-        message = completions.choices[0].message
-        return message.content
     except Exception as e:
         print(e)
         return e
+
+    message = completions.choices[0].message
+    return message.content
 
 
 print(get_response(prompt))
