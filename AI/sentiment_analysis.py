@@ -26,16 +26,21 @@ prompts = """
 """
 
 def get_response(prompt):
-    completions = client.chat.completions.create(
-        model=COMPLETION_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.0
-    )
-    message = completions.choices[0].message
-    return message.content
+    try:
+        completions = client.chat.completions.create(
+            model=COMPLETION_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.0
+        )
+        message = completions.choices[0].message
+        return message.content
+
+    except Exception as e:
+        print(e)
+        return e
 
 
 # 正面的评论
@@ -72,3 +77,22 @@ bad_restaurant = prompts + """
 """
 
 print(get_response(bad_restaurant) + "\n")
+
+
+"""
+情感：正面
+
+这个评论中，用户对苹果产品的外形外观、拍照效果、运行速度等方面都给予了高度评价，使用了“非常漂亮”、“太好了”、“好”、“非常耐看”等正面词汇，整体情感倾向是积极的。
+
+情感：负面
+
+这个评论提到了信号不好和电池不耐用的问题，并且明确表示不推荐购买，所以整体情感是负面的。
+
+情感：正面
+
+评论中的“这家餐馆太好吃了”表达了用户对餐馆的正面评价，而“一点都不糟糕”则进一步强调了这种正面感受。因此，整体上这条评论的情感倾向是正面的。
+
+情感：负面
+
+这个评论中提到了“这家餐馆太糟糕了”和“一点都不好吃”，这些表达都是负面的，所以整体情感是负面的。
+"""
