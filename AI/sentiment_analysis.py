@@ -35,12 +35,12 @@ def get_response(prompt):
             stop=None,
             temperature=0.0
         )
-        message = completions.choices[0].message
-        return message.content
-
     except Exception as e:
         print(e)
         return e
+
+    message = completions.choices[0].message
+    return message.content
 
 
 # 正面的评论
@@ -90,7 +90,7 @@ print(get_response(bad_restaurant) + "\n")
 
 情感：正面
 
-评论中的“这家餐馆太好吃了”表达了用户对餐馆的正面评价，而“一点都不糟糕”则进一步强调了这种正面感受。因此，整体上这条评论的情感倾向是正面的。
+评论中的“这家餐馆太好吃了”表达了对餐馆的正面评价，而“一点都不糟糕”则进一步强调了这种正面感受。因此，整体情感是正面的。
 
 情感：负面
 
