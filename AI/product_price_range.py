@@ -36,8 +36,7 @@ def get_response(prompt):
             temperature=0.0,
         )
     except Exception as e:
-        print(e)
-        return e
+        raise e
 
     message = completions.choices[0].message
     return message.content
@@ -52,9 +51,9 @@ print(get_response(prompt))
   "selling_points": [
     "1. 深受玩家喜爱的经典角色扮演游戏，丰富的剧情和角色发展。",
     "2. 独特的中国风画面和音乐，带来沉浸式的游戏体验。",
-    "3. 精心设计的战斗系统，策略与技巧的完美结合。",
-    "4. 探索广阔的游戏世界，解锁隐藏的秘密和支线任务。",
-    "5. 支持Steam平台，享受便捷的游戏管理和更新服务。"
+    "3. 精心设计的战斗系统，策略性与挑战性并存。",
+    "4. 包含丰富的支线任务和隐藏要素，增加游戏的可玩性和探索性。",
+    "5. 支持Steam平台，方便玩家在PC上享受游戏。"
   ],
   "price_range": "20美元至40美元"
 }
