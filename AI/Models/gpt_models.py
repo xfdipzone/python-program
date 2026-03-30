@@ -54,7 +54,7 @@ def models(orderby='id'):
 
         display(df[['id', 'created', 'object', 'owned_by']])
     except Exception as e:
-        print(e)
+        raise e
 
 
 # 按 id 排序
