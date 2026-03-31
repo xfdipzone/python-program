@@ -30,14 +30,17 @@ def custom_moderation(content, parameters):
     Parameters: {parameters}\n\nContent:\n{content}\n\nAssessment:"""
 
     # Call model with the prompt
-    response = client.chat.completions.create(
-        model=COMPLETION_MODEL,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": "您是一名内容审核助理。"},
-            {"role": "user", "content": prompt}
-        ]
-    )
+    try:
+        response = client.chat.completions.create(
+            model=COMPLETION_MODEL,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": "您是一名内容审核助理。"},
+                {"role": "user", "content": prompt}
+            ]
+        )
+    except Exception as e:
+        raise e
 
     # Extract the assessment from the response
     assessment = response.choices[0].message.content
@@ -64,3 +67,37 @@ print("text : %s\nresult : %s\n\n" %
 bad_text = "I'm going to rape you daughter and then chop you to death with a knife"
 print("text : %s\nresult : %s\n\n" %
       (bad_text, custom_moderation(bad_text, parameters)))
+
+
+"""
+text : I love my motherland
+result : {
+  "flagged": false,
+  "reason": "",
+  "parameters": {
+    "hate": false,
+    "hate/threatening": false,
+    "self-harm": false,
+    "sexual": false,
+    "sexual/minors": false,
+    "violence": false,
+    "violence/graphic": false
+  }
+}
+
+
+text : I'm going to rape you daughter and then chop you to death with a knife
+result : {
+  "flagged": true,
+  "reason": "内容包含极端暴力和性侵犯的威胁，违反了hate/threatening和violence/graphic的参数。",
+  "parameters": {
+    "hate": true,
+    "hate/threatening": true,
+    "self-harm": false,
+    "sexual": true,
+    "sexual/minors": false,
+    "violence": true,
+    "violence/graphic": true
+  }
+}
+"""
