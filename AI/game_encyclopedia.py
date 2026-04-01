@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO, filemode='a', filename='app.log',
 Model 使用的编码
 参考 https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb
 """
-encoding = tiktoken.get_encoding("o200k_base")
+encoding = tiktoken.get_encoding("cl100k_base")
 
 # 对话管理器类
 class Conversation:
@@ -147,35 +147,35 @@ for index, question in enumerate(questions):
 prompt : 你是一个游戏百科全书，用中文回答游戏的问题。你的回答需要满足以下要求:
 1. 你的回答必须是中文
 2. 回答限制在100个字以内
-TikToken 统计 : prompt 消耗 39 token
+TikToken 统计 : prompt 消耗 67 token
 
 用户问题 : 你是谁？
-AI 回答 : 你好，我是你的游戏知识助手，可以回答各种游戏相关的问题。
+AI 回答 : 你好！我是你的游戏百科助手，随时准备回答你的游戏相关问题。
 消耗的 token 数量 : 66
-TikToken统计 : 问题消耗 3 token，回答消耗 14 token，总共消耗 17 token
+TikToken统计 : 问题消耗 5 token，回答消耗 34 token，总共消耗 39 token
 
 用户问题 : 请问仙剑奇侠传这款游戏是什么年份的？
 AI 回答 : 仙剑奇侠传最初发行于1995年。
 消耗的 token 数量 : 95
-TikToken统计 : 问题消耗 14 token，回答消耗 13 token，总共消耗 27 token
+TikToken统计 : 问题消耗 24 token，回答消耗 18 token，总共消耗 42 token
 
 用户问题 : 那轩辕剑2外传枫之舞呢？
 AI 回答 : 轩辕剑2外传枫之舞发行于1998年。
 消耗的 token 数量 : 128
-TikToken统计 : 问题消耗 14 token，回答消耗 17 token，总共消耗 31 token
+TikToken统计 : 问题消耗 19 token，回答消耗 21 token，总共消耗 40 token
 
 用户问题 : 那明星志愿3是什么类型的游戏？
-AI 回答 : 明星志愿3是一款模拟经营养成类游戏。
-消耗的 token 数量 : 100
-TikToken统计 : 问题消耗 10 token，回答消耗 13 token，总共消耗 23 token
+AI 回答 : 明星志愿3是一款模拟养成类游戏。
+消耗的 token 数量 : 99
+TikToken统计 : 问题消耗 18 token，回答消耗 20 token，总共消耗 38 token
 
 用户问题 : 那大富翁4呢？
-AI 回答 : 大富翁4是一款休闲桌面类型的棋盘游戏。
+AI 回答 : 大富翁4是一款经典的棋盘式的策略经营游戏。
 消耗的 token 数量 : 125
-TikToken统计 : 问题消耗 7 token，回答消耗 16 token，总共消耗 23 token
+TikToken统计 : 问题消耗 12 token，回答消耗 31 token，总共消耗 43 token
 
 用户问题 : 古剑奇谭一共有多少部作品？
-AI 回答 : 古剑奇谭系列共有5部作品，包括《古剑奇谭：琴心剑魄今何在》、《古剑奇谭二：永夜初晗凝碧天》、《古剑奇谭三：梦付千秋星垂野》、《古剑奇谭网络版》以及《古剑奇谭木语人》。
-消耗的 token 数量 : 220
-TikToken统计 : 问题消耗 11 token，回答消耗 79 token，总共消耗 90 token
+AI 回答 : 古剑奇谭系列目前共有四部作品。
+消耗的 token 数量 : 153
+TikToken统计 : 问题消耗 17 token，回答消耗 19 token，总共消耗 36 token
 """
