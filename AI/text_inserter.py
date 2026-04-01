@@ -13,7 +13,7 @@ client = OpenAI(
     base_url="https://api.moonshot.cn/v1"
 )
 
-COMPLETION_MODEL = "moonshot-v1-32k"
+COMPLETION_MODEL = "kimi-k2-thinking"
 
 # 提示词
 prompt = """你是一个文本插入器，根据前文与后文的内容，补充中间的文本内容。
@@ -51,10 +51,24 @@ def insert_text(prefix, suffix, temperature):
 
         return completions.choices[0].message.content
     except Exception as e:
-        print(e)
-        return e
+        raise e
 
 
 print("前文：\n%s\n" % prefix)
 print("AI 插入的文本：\n%s\n" % insert_text(prefix, suffix, 0.5))
 print("后文：\n%s" % suffix)
+
+
+"""
+前文：
+在这个快节奏的现代社会中，我们每个人都面临着各种各样的挑战和困难。
+在这些挑战和困难中，有些是由外部因素引起的，例如经济萧条、全球变暖和自然灾害等。
+
+AI 插入的文本：
+而另一些则源于我们内心，如心理压力、职业倦怠和人际关系紧张等。无论源自何处，这些挑战都在考验着我们的适应能力与成长潜力。
+
+后文：
+面对这些挑战和困难，我们需要采取积极的态度和行动来克服它们。
+这意味着我们必须具备坚韧不拔的意志和创造性思维，以及寻求外部支持的能力。
+只有这样，我们才能真正地实现自己的潜力并取得成功。
+"""
