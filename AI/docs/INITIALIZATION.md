@@ -28,7 +28,7 @@ pip install "python-dotenv[cli]"
 
 **1. 在代码中加载 .env 文件：**
 
-代码中需要显式加载
+需要在代码中显式加载
 
 ```python
 from dotenv import load_dotenv
@@ -39,7 +39,7 @@ load_dotenv()
 
 **2. 命令行执行时加载 .env 文件：**
 
-不需要在代码中显式加载，改为在命令行设置加载的 `.env` 文件
+不需要在代码中显式加载，在命令行设置加载的 `.env` 文件
 
 ```shell
 # 默认使用当前目录的 .env
