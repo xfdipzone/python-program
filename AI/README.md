@@ -1,62 +1,10 @@
 # AI 项目说明
 
-## 测试环境初始化
+## 初始化
 
-使用 `Google Colab` 环境测试
+[项目初始化说明文档](./docs/INITIALIZATION.md)
 
-[https://colab.research.google.com/](<https://colab.research.google.com/>)
-
-创建 `*.ipynb` 文件保存测试代码
-
-```shell
-# 安装依赖包
-!pip install openai numpy tiktoken
-
-# OPENAI_API_KEY 存放在环境变量中
-%env OPENAI_API_KEY=[填写您的 OpenAI API Key]
-
-# 读取环境变量
-import os
-os.environ.get("OPENAI_API_KEY")
-```
-
-```shell
-# OPENAI_API_KEY 存放在 Google Colab Secret 中
-# 读取 Secret
-from google.colab import userdata
-userdata.get("OPENAI_API_KEY")
-```
-
-使用其他 AI 则修改为对应的 API KEY
-
-AI | API KEY
---|--
-Gemini | GOOGLE_API_KEY
-Kimi | KIMI_API_KEY
-
----
-
-## Model 使用的编码
-
-参考：[https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb](<https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb>)
-
-使用 tiktoken 统计 token 数量时，需要使用与 Model 一样的编码
-
-**获取 Model 使用的编码：**
-
-例如 Model=`gpt-4o-mini`，则使用下面代码获取使用的编码
-
-```python3
-encoding = tiktoken.encoding_for_model('gpt-4o-mini')
-```
-
-**设置 tiktoken 编码：**
-
-例如 Model=`gpt-4o-mini`，则 `tiktoken` 配置以下的编码
-
-```python3
-encoding = tiktoken.get_encoding("o200k_base")
-```
+本地环境初始化（虚拟环境、Jupyter、环境变量）、Google Colab 配置以及模型 token 编码
 
 ---
 
