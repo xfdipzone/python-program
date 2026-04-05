@@ -2,18 +2,29 @@
 
 ## 本地初始化
 
+Python 版本 version 3.12
+
+下载地址：[https://www.python.org/downloads/release/python-3129/](<https://www.python.org/downloads/release/python-3129/>)
+
 ### 安装 .venv 虚拟环境
 
 **.venv** 将这个项目需要的 Python 版本和第三方插件全部隔离在项目的文件夹里、不影响系统，也不受其他项目干扰。
 
 ```shell
-python3 -m venv .venv
+python3.12 -m venv .venv
 ```
 
 ### 安装 Jupyter Notebook 内核
 
 ```shell
-pip install ipykernel
+# 更新 pip
+python -m pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pythonhosted.org
+
+# 安装 ipykernel
+pip install ipykernel --trusted-host pypi.org --trusted-host files.pythonhosted.org
+
+# 强制更新虚拟环境中最基础的基建工具和核心依赖库
+pip install --upgrade pip setuptools typing_extensions pydantic
 ```
 
 ### 本地环境变量设置
