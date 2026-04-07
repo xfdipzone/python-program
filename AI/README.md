@@ -10,7 +10,7 @@
 
 ## 项目列表
 
-### Base
+### Base（基础应用）| [Explore](./Base/)
 
 **定位：** 基础 AI 应用，展示 AI 一些基本功能
 
@@ -60,7 +60,7 @@
 
 ---
 
-### Models
+### Models（模型）| [Explore](./Models/)
 
 **定位：** 热门模型，包括 OpenAI, Kimi, Gemini 等 AI 平台支持的具体模型列表
 
@@ -78,7 +78,7 @@
 
 ---
 
-### Embedding
+### Embedding（向量嵌入）| [Explore](./Embedding/)
 
 **定位：** 语义向量化、机器学习、文本挖掘相关应用
 
@@ -100,7 +100,7 @@
 
 ---
 
-### CorpusSearch
+### CorpusSearch（语料库检索）| [Explore](./CorpusSearch/)
 
 **定位：** RAG（检索增强生成），通过整合私有语料库，使 AI 能够突破通用知识的限制，针对特定文档内容进行精准回答
 
@@ -110,7 +110,7 @@
 
 ---
 
-### ChatBot
+### ChatBot（机器人）| [Explore](./ChatBot/)
 
 **定位：** 机器人相关 AI 应用，包括交互设计、垂直领域应用、图形化界面
 
