@@ -10,7 +10,9 @@
 
 ## 项目列表
 
-### [Base](./Base)
+### Base
+
+**定位：** 基础 AI 应用，展示 AI 一些基本功能
 
 - [AI 写情信](./Base/write_love_letter.py)
 
@@ -58,7 +60,9 @@
 
 ---
 
-### [Models](./Models)
+### Models
+
+**定位：** 热门模型，包括 OpenAI, Kimi, Gemini 等 AI 平台支持的具体模型列表
 
 - [OpenAI GPT 模型列表](./Models/gpt_models.py)
 
@@ -74,7 +78,9 @@
 
 ---
 
-### [Embedding](./Embedding)
+### Embedding
+
+**定位：** 语义向量化、机器学习、文本挖掘相关应用
 
 - [文本分类 Text Classification](./Embedding/TextClassification/)
 
@@ -94,9 +100,9 @@
 
 ---
 
-### [CorpusSearch](./CorpusSearch)
+### CorpusSearch
 
-提供语料库，让 AI 根据语料库内容回答问题
+**定位：** RAG（检索增强生成），通过整合私有语料库，使 AI 能够突破通用知识的限制，针对特定文档内容进行精准回答
 
 - [版本 1，基于 llama-index 实现](./CorpusSearch/read_corpus_search.py)
 
@@ -104,7 +110,9 @@
 
 ---
 
-### [ChatBot](./ChatBot)
+### ChatBot
+
+**定位：** 机器人相关 AI 应用，包括交互设计、垂直领域应用、图形化界面
 
 - [01. 游戏百科聊天机器人](./ChatBot/game_conversation_chatbot.py)
 
