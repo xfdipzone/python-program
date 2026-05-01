@@ -90,13 +90,15 @@
 
   文本聚类算法（K-Means）测试，包括聚类主题总结，n_init，轮廓系数分析，可视化聚类分布等
 
+- [零样本文本分类 Zero Shot Classification](./Embedding/ZeroShotClassification/)
+
+  不进行任何样本训练（零样本），只基于模型计算 Embedding 相似度来实现文本分类
+
 - [基于 Sentence Transformers 实现文本转向量](./Embedding/sentence_transformers_embedding.py)
 
 - [基于 Hugging Face Embedding 实现文本转向量](./Embedding/hugging_face_embedding.py)
 
 - [基于 Embedding 实现情感分析](./Embedding/sentiment_analysis.py)
-
-- [测试基于 Embedding 计算的评论分级准确率](./Embedding/comment_level.py)
 
 ---
 
