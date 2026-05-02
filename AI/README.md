@@ -98,8 +98,6 @@
 
 - [基于 Hugging Face Embedding 实现文本转向量](./Embedding/hugging_face_embedding.py)
 
-- [基于 Embedding 实现情感分析](./Embedding/sentiment_analysis.py)
-
 ---
 
 ### CorpusSearch（语料库检索）| [Explore](./CorpusSearch/)
