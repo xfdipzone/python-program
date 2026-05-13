@@ -84,7 +84,7 @@ importances_gain = clf.booster_.feature_importance(importance_type='gain')
 importances = importances_gain / np.sum(importances_gain)
 indices = np.argsort(importances)[::-1]
 
-# 打印前 25 个最重要的原始特征维度
+# 打印前 25 个最重要的原始特征
 print("原始特征重要性排行")
 
 for i in range(25):

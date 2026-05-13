@@ -46,7 +46,7 @@ clf.fit(X_train, y_train)
 importances = clf.feature_importances_
 indices = np.argsort(importances)[::-1]
 
-# 打印前 25 个最重要的原始特征维度
+# 打印前 25 个最重要的原始特征
 print("原始特征重要性排行")
 
 for i in range(25):

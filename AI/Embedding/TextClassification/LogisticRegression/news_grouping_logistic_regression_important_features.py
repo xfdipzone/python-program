@@ -63,7 +63,7 @@ clf.fit(X_train_scaled, y_train)
 importances = np.mean(np.abs(clf.best_estimator_.coef_), axis=0)
 indices = np.argsort(importances)[::-1]
 
-# 打印前 25 个最重要的原始特征维度
+# 打印前 25 个最重要的原始特征
 print("原始特征重要性排行")
 
 for i in range(25):
