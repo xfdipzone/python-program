@@ -13,6 +13,8 @@ import os
 dependency packages
 pip install sentence-transformers
 pip install pandas
+pip install pyarrow
+pip install fastparquet
 """
 # Login HuggingFace Hub
 login(token=userdata.get("HF_TOKEN"))
@@ -147,3 +149,8 @@ if not os.path.exists(output_dir):
 csv_file = os.path.join(output_dir, 'product_data.csv')
 df.to_csv(csv_file, index=False, encoding='utf_8_sig')
 print(f"CSV 已保存：{csv_file}")
+
+# parquet 文件
+parquet_file = os.path.join(output_dir, 'product_data.parquet')
+df.to_parquet(parquet_file, index=False)
+print(f"Parquet 已保存：{parquet_file}")
