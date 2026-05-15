@@ -147,7 +147,7 @@ if not os.path.exists(output_dir):
 
 # csv 文件
 csv_file = os.path.join(output_dir, 'product_data.csv')
-df.to_csv(csv_file, index=False, encoding='utf_8_sig')
+df.to_csv(csv_file, index=False)
 print(f"CSV 已保存：{csv_file}")
 
 # parquet 文件
