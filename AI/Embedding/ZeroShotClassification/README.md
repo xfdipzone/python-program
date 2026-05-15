@@ -11,3 +11,11 @@
 - [情感分析](./sentiment_analysis.py)
 
   基于 Embedding 相似度计算评论内容是正面还是负面
+
+- [产品数据生成](./generate_product_file_with_embedding.py)
+
+  生成产品数据文件（CSV 与 Parquet 格式），包含每个产品的 Embedding
+
+  [CSV 数据文件](../data/product_data.csv)
+
+  [Parquet 数据文件](../data/product_data.parquet)
