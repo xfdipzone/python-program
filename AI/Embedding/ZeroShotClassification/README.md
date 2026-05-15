@@ -12,7 +12,7 @@
 
   基于 Embedding 相似度计算评论内容是正面还是负面
 
-- [产品数据生成](./generate_product_file_with_embedding.py)
+- [生成带 Embedding 的产品数据文件](./generate_product_file_with_embedding.py)
 
   生成产品数据文件（CSV 与 Parquet 格式），包含每个产品的 Embedding
 
