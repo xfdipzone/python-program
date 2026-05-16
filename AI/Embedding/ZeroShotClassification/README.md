@@ -16,6 +16,12 @@
 
   生成产品数据文件（CSV 与 Parquet 格式），包含每个产品的 Embedding
 
-  [CSV 数据文件](../data/product_data.csv)
+  - [CSV 数据文件](../data/product_data.csv)
 
-  [Parquet 数据文件](../data/product_data.parquet)
+  - [Parquet 数据文件](../data/product_data.parquet)
+
+- [从 CSV 中搜索相似产品](./csv_similarity_product_search.py)
+
+  读取 CSV 产品文件，利用 Embedding 余弦相似度搜索相似的产品 `(threshold_value > 0.5)`
+
+  Embedding 余弦相似度使用 `scipy` 包的 `cosine` 计算
