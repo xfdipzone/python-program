@@ -2,6 +2,14 @@
 
 本项目不进行任何样本训练（零样本），只基于模型计算 Embedding 相似度来实现文本分类
 
+## 计算文本 Embedding
+
+- [HuggingFaceEmbedding 计算文本 Embedding](./hugging_face_embedding.py)
+
+  使用 HuggingFaceEmbedding 计算文本的 Embedding 与维度
+
+---
+
 ## 评论文本分类
 
 - [计算评论分级准确率](./comment_level.py)
