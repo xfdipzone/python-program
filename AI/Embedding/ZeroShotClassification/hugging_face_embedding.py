@@ -20,17 +20,13 @@ embed_model = HuggingFaceEmbedding(
     embed_batch_size=32
 )
 
-"""
-计算文本的向量 (embedding)
-"""
+# 计算文本的向量 (embedding)
 def get_embedding(text):
     # HuggingFaceEmbedding 的 get_text_embedding 方法可以直接处理文本并返回嵌入向量
     return embed_model.get_text_embedding(text)
 
 
-"""
-计算多个文本的向量 (embedding)
-"""
+# 计算多个文本的向量 (embedding)
 def get_embeddings(list_of_texts):
     return embed_model.get_text_embedding_batch(list_of_texts)
 
@@ -44,18 +40,14 @@ list_of_texts = [
     "【特惠】百搭潮流活力色彩拼色双肩斜挎"
 ]
 
-"""
-遍历 text 逐一计算 embedding
-"""
+# 遍历 text 逐一计算 embedding
 for text in list_of_texts:
     embedding = get_embedding(text)
     embeddings_np = np.array(embedding)
     print("%s (dimensions %d)\nembedding : %s\n" %
           (text, embeddings_np.shape[0], embedding[:5]))
 
-"""
-批量计算多个 text embedding
-"""
+# 批量计算多个 text embedding
 embeddings = get_embeddings(list_of_texts)
 
 # 将列表转换为 NumPy 数组以使用 .shape
