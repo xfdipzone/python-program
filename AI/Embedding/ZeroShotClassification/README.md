@@ -8,6 +8,10 @@
 
   使用 HuggingFaceEmbedding 计算文本的 Embedding 与维度
 
+- [SentenceTransformer 计算文本 Embedding](./sentence_transformer_embedding.py)
+
+  使用 SentenceTransformer 计算文本的 Embedding 与维度
+
 ---
 
 ## 评论文本分类
