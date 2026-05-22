@@ -94,10 +94,6 @@
 
   不进行任何样本训练（零样本），只基于模型计算 Embedding 相似度来实现文本分类
 
-- [基于 Sentence Transformers 实现文本转向量](./Embedding/sentence_transformers_embedding.py)
-
-- [基于 Hugging Face Embedding 实现文本转向量](./Embedding/hugging_face_embedding.py)
-
 ---
 
 ### CorpusSearch（语料库检索）| [Explore](./CorpusSearch/)
