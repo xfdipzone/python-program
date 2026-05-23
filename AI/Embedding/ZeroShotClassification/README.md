@@ -47,3 +47,9 @@
   读取 Parquet 产品文件，利用 Embedding 余弦相似度搜索相似的产品 `(threshold_value > 0.5)`
 
   Embedding 余弦相似度使用 `sentence_transformers` 包的 `util` 计算
+
+- [基于 Faiss 搜索相似产品](./faiss_similarity_product_search.py)
+
+  读取 Parquet 产品文件，保存到 `Faiss` (Facebook AI Similarity Search) 中
+
+  在 `Faiss` 中搜索最接近的产品，然后按 `(threshold_value > 0.5)` 进行过滤，返回符合条件的产品
