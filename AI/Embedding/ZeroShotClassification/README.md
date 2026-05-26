@@ -40,7 +40,7 @@
 
   读取 CSV 产品文件，利用 Embedding 余弦相似度搜索相似的产品 `(threshold_value > 0.5)`
 
-  Embedding 余弦相似度使用 `scipy` 包的 `cosine` 计算
+  Embedding 余弦相似度使用 `sentence_transformers` 包的 `util` 计算
 
 - [从 Parquet 中搜索相似产品](./parquet_similarity_product_search.py)
 
