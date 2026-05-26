@@ -1,19 +1,20 @@
 # coding=utf-8
 from sentence_transformers import SentenceTransformer
+from sentence_transformers import util
 from google.colab import userdata
 from huggingface_hub import login
-from scipy.spatial.distance import cosine
 import pandas as pd
 import numpy as np
+import torch
 
 """
 搜索相似产品
 
 dependency packages
 pip install sentence-transformers
-pip install scipy
 pip install pandas
 pip install numpy
+pip install torch
 """
 # Login HuggingFace Hub
 login(token=userdata.get("HF_TOKEN"))
@@ -21,15 +22,9 @@ login(token=userdata.get("HF_TOKEN"))
 # 使用 SentenceTransformer 加载计算文本向量模型
 embed_model = SentenceTransformer("google/embeddinggemma-300M")
 
-# 计算文本的向量 (embedding)
-def get_embedding(text):
-    return embed_model.encode(text)
-
-
-# 计算向量的余弦相似度
-def cosine_similarity(vector_a, vector_b):
-    # 注意：scipy 计算的是距离，相似度 = 1 - 距离
-    return 1 - cosine(vector_a, vector_b)
+# 计算多个文本的向量 (embedding)
+def get_embeddings(list_of_texts, batch_size=32):
+    return embed_model.encode(list_of_texts, batch_size=batch_size, convert_to_tensor=True)
 
 
 # 将 csv 中 Embedding 字符串转为数组（Embeddings 使用空格分隔）
@@ -38,36 +33,45 @@ def parse_embedding(embeddings_string):
 
 
 # 搜索产品
-def search_product(df, query, n=3, threshold=0.5):
-    # 要搜索的产品名称的 Embedding
-    product_embedding = get_embedding(query)
+def search_product(df, all_embeddings, queries, n=3, threshold=0.5):
+    # 要搜索的产品名称的 Embeddings
+    product_embeddings = get_embeddings(queries)
 
-    # 计算搜索的产品与每一个产品 Embedding 的余弦相似度
-    df["similarity"] = df.embedding.apply(
-        lambda x: cosine_similarity(x, product_embedding))
+    # 构建结果，dict(query=>search results)
+    results_dict = {}
 
-    # 过滤相似度，只保留大于 threshold 的结果
-    filtered_df = df[df["similarity"] > threshold]
+    for i, query in enumerate(queries):
+        # 要搜索的产品名称的 Embedding
+        product_embedding = product_embeddings[i:i + 1]
 
-    results = (
-        filtered_df.sort_values("similarity", ascending=False)
-        .head(n)
-    )
+        # 计算搜索的产品与每一个产品 Embedding 的余弦相似度
+        cosine_scores = util.cos_sim(product_embedding, all_embeddings)[0]
 
-    return results
+        # 使用 .assign() 临时生成一个带 similarity 的视图，并进行过滤操作
+        results_dict[query] = (
+            df.assign(similarity=cosine_scores.cpu().numpy())
+            .query("similarity > @threshold")
+            .sort_values("similarity", ascending=False)
+            .head(n)
+        )
+
+    return results_dict
 
 
 # 打印结果
-def print_results(results):
-    if results.empty:
-        print(f"没有找到相似的产品")
-    else:
-        print(f"找到以下产品：")
-        for idx, row in results.iterrows():
-            name = row["product_name"]
-            score = row["similarity"]
-            print(f"产品编号：{idx:2}｜相似度：{score:.4f}｜产品名称：{name}")
-    print("-" * 80)
+def print_results(results_dict):
+    # 遍历结果字典键值对
+    for query, results in results_dict.items():
+        print(f"搜索：{query}")
+        if results.empty:
+            print(f"没有找到相似的产品")
+        else:
+            print(f"找到以下产品：")
+            for idx, row in results.iterrows():
+                name = row["product_name"]
+                score = row["similarity"]
+                print(f"产品编号：{idx:2}｜相似度：{score:.4f}｜产品名称：{name}")
+        print("-" * 80)
 
 
 # 读取 csv 文件到 Data Frame
@@ -76,18 +80,17 @@ df = pd.read_csv(csv_datafile_path)
 
 df["embedding"] = df["embedding"].apply(parse_embedding)
 
+# 将产品 Embedding 转为 Pytorch 张量（Tensor）
+all_embeddings = torch.tensor(
+    np.stack(df["embedding"].values)).to(embed_model.device)
+
 # 相似度阈值
 threshold_value = 0.5
 
-query = "优雅自然女背包"
-results = search_product(df, query, n=3, threshold=threshold_value)
-print(f"搜索：{query}")
-print_results(results)
-
-query = "高颜值高性能手机"
-results = search_product(df, query, n=3, threshold=threshold_value)
-print(f"搜索：{query}")
-print_results(results)
+queries = ["优雅自然女背包", "高颜值高性能手机"]
+results_dict = search_product(
+    df, all_embeddings, queries, n=3, threshold=threshold_value)
+print_results(results_dict)
 
 """
 搜索：优雅自然女背包
