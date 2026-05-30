@@ -22,9 +22,21 @@
 weighted avg       0.95      0.95      0.95       925
 ```
 
+**好评率可视化评估：**
+
+横轴 (Recall)：查全率，代表模型找回好评的覆盖面
+
+纵轴 (Precision)：查准率，代表模型判定为好评的结果中有多少是真的
+
 Gemma-300M 正面评价的精确率-召回率曲线
 
 ![Gemma-300M positive Reviews Precision-Recall curve](<./img/gemma-300m_positive_reviews_precision_recall_curve.svg>)
+
+**差评率可视化评估：**
+
+横轴 (Recall)：查全率，代表模型找回差评的覆盖面
+
+纵轴 (Precision)：查准率，代表模型判定为差评的结果中有多少是真的
 
 Gemma-300M 负面评价精确率-召回率曲线
 
