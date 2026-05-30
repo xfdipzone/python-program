@@ -7,6 +7,7 @@ from huggingface_hub import login
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.spatial.distance import cosine
 
 """
 测试 embedding 计算的评论分级准确率
@@ -19,6 +20,7 @@ pip install scikit-learn
 pip install pandas
 pip install numpy
 pip install matplotlib
+pip install scipy
 """
 # Login HuggingFace Hub
 login(token=userdata.get("HF_TOKEN"))
@@ -38,12 +40,8 @@ def get_embedding(text, is_query=False):
 
 # 计算向量的余弦相似度
 def cosine_similarity(vector_a, vector_b):
-    dot_product = np.dot(vector_a, vector_b)
-    norm_a = np.linalg.norm(vector_a)
-    norm_b = np.linalg.norm(vector_b)
-    epsilon = 1e-10
-    cosine_similarity = dot_product / (norm_a * norm_b + epsilon)
-    return cosine_similarity
+    # 注意：scipy 计算的是距离，相似度 = 1 - 距离
+    return 1 - cosine(vector_a, vector_b)
 
 
 # 评估零样本（Zero-shot）文本分类效果，通过 Embedding 相似度计算评论属于好评或差评
