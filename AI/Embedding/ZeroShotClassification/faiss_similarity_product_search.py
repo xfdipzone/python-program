@@ -1,6 +1,5 @@
 # coding=utf-8
 from sentence_transformers import SentenceTransformer
-from sentence_transformers import util
 from google.colab import userdata
 from huggingface_hub import login
 import pandas as pd
