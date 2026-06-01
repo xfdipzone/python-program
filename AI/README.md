@@ -100,9 +100,9 @@
 
 **定位：** RAG（检索增强生成），通过整合私有语料库，使 AI 能够突破通用知识的限制，针对特定文档内容进行精准回答
 
-- [版本 1，基于 llama-index 实现](./CorpusSearch/read_corpus_search.py)
+- [文本类语料库检索](./CorpusSearch/TextCorpusSearch/)
 
-- [版本 2，基于 client.chat.completions.create 接口实现](./CorpusSearch/read_corpus_search_v2.py)
+  对文本类语料库检索，针对文本内容进行精准回答
 
 ---
 
