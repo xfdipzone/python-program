@@ -7,7 +7,7 @@ from huggingface_hub import login
 import os
 
 """
-根据提供的语料库，回答用户提出的问题
+根据提供的语料库，使用 AI 大语言模型分析，回答用户提出的问题
 
 dependency packages
 pip install llama-index
@@ -61,10 +61,23 @@ else:
     storage_context = StorageContext.from_defaults(persist_dir=index_dir)
     index = load_index_from_storage(storage_context)
 
-# 执行查询
-question = "鲁迅先生在日本学习医学的老师是谁？"
+# 查询引擎
 query_engine = index.as_query_engine()
-response = query_engine.query(question)
 
-print(f"问题：{question}")
-print(f"回答：{response}")
+# 执行查询
+questions = [
+    "鲁迅先生在日本学习医学的老师是谁？",
+    "作者在离开仙台时，对藤野先生说了什么谎话？他为什么要说这个谎话？",
+    "文章中提到了哪两处鲁迅在仙台期间“受到优待”或“被特殊照顾”的例子？",
+    "日本爱国青年学生为什么要给作者写匿名信？匿名信的开头引用了谁的什么句子？",
+    "是什么具体的事件促使作者做出了“不学医学”、离开仙台的决定？这一事件对他的思想产生了怎样的冲击？",
+    "作者保存的藤野先生修改过的讲义最终去向如何？现在作者手头还留有什么关于藤野先生的纪念物？"
+]
+
+for index, question in enumerate(questions):
+    # 优化问题，增加 prompt 说明
+    prompted_question = f"{question} （请用一段话简短回答，不超过 80 字）"
+
+    response = query_engine.query(prompted_question)
+    print(f"问题{index + 1}: {question}")
+    print(f"回答{index + 1}: {response}\n")
