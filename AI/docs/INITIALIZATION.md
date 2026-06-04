@@ -1,6 +1,6 @@
 # 项目初始化说明文档
 
-## 本地初始化
+## 1. 本地初始化
 
 Python 版本 version 3.12
 
@@ -64,7 +64,7 @@ dotenv -f .env run -- python main.py
 
 ---
 
-## Google Colab
+## 2. Google Colab
 
 使用 `Google Colab` 环境测试
 
@@ -100,7 +100,7 @@ userdata.get("OPENAI_API_KEY")
 
 ---
 
-## Model 使用的编码
+## 3. Model 使用的编码
 
 参考：[https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb](<https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb>)
 
