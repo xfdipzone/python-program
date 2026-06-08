@@ -22,8 +22,8 @@ pip install bitsandbytes
 pip install accelerate
 
 优化安装（分三个单元格运行，安装完之后重启一次会话）
-!pip install transformers==4.48.3 huggingface_hub==0.28.1 accelerate==1.3.0 bitsandbytes==0.45.0 llama-index-core llama-index-embeddings-huggingface llama-index-llms-huggingface llama-index-readers-file --quiet
-!pip install git+https://github.com/huggingface/transformers.git huggingface_hub>=1.0 --upgrade --quiet
+!pip install transformers==4.48.3 huggingface_hub==0.28.1 accelerate==1.3.0 bitsandbytes==0.45.0 llama-index-core llama-index-embeddings-huggingface llama-index-llms-huggingface llama-index-readers-file --quiet 2>/dev/null
+!pip install git+https://github.com/huggingface/transformers.git huggingface_hub>=1.0 --upgrade --quiet 2>/dev/null
 !pip install -U bitsandbytes --quiet
 """
 # Login HuggingFace Hub
@@ -62,7 +62,11 @@ llm = HuggingFaceLLM(
     tokenizer_name=model_id,
     context_window=4096,
     max_new_tokens=256,
-    generate_kwargs={"temperature": 0.3, "do_sample": True},
+    generate_kwargs={
+        "temperature": 0.3,
+        "do_sample": True,
+        "repetition_penalty": 1.2
+    },
     model_kwargs={"quantization_config": quantization_config},  # 注入量化配置
     # 屏蔽 clean_up_tokenization_spaces 提示
     tokenizer_kwargs={"clean_up_tokenization_spaces": False},
@@ -112,7 +116,7 @@ questions = [
 
 for index, question in enumerate(questions):
     # 优化问题，增加 prompt 说明
-    prompted_question = f"{question} （请用一段话简短回答，不超过 80 字，如果内容中没有与问题相关的内容，请回答 '不知道'）"
+    prompted_question = f"{question} （请用一段中文简短回答，不超过 80 字，如果内容中没有与问题相关的内容，请回答 '不知道'）"
 
     response = query_engine.query(prompted_question)
     print(f"问题{index + 1}: {question}")
