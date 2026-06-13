@@ -53,3 +53,9 @@
   读取 Parquet 产品文件，保存到 `Faiss` (Facebook AI Similarity Search) 中
 
   在 `Faiss` 中搜索最接近的产品，然后按 `(threshold_value > 0.5)` 进行过滤，返回符合相似度条件的产品
+
+---
+
+## 零样本文本分类评估
+
+- [零样本文本分类评估](./zero_shot_classification_evaluation.md)
