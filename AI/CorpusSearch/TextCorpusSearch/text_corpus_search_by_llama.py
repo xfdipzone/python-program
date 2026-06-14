@@ -1,5 +1,5 @@
 # coding=utf-8
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext, load_index_from_storage, Settings
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext, load_index_from_storage, Settings, PromptTemplate
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.huggingface import HuggingFaceLLM
 from transformers import BitsAndBytesConfig
@@ -63,7 +63,7 @@ llm = HuggingFaceLLM(
     context_window=4096,
     max_new_tokens=256,
     generate_kwargs={
-        "temperature": 0.3,
+        "temperature": 0.1,
         "do_sample": True,
         "repetition_penalty": 1.2
     },
@@ -100,8 +100,22 @@ else:
     storage_context = StorageContext.from_defaults(persist_dir=index_dir)
     index = load_index_from_storage(storage_context, embed_model=embed_model)
 
+# 定义 RAG 提示词模版 (Llama-3 Template)
+text_qa_template = (
+    "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+    "你是一个严谨的回答专家。请根据提供的上下文回答问题。不超过 80 字。若无相关内容请说'不知道'。<|eot_id|>"
+    "<|start_header_id|>user<|end_header_id|>\n\n"
+    "【参考上下文】\n{context_str}\n\n"
+    "【用户问题】\n{query_str}<|eot_id|>"
+    "<|start_header_id|>assistant<|end_header_id|>\n\n"
+)
+
+text_qa_template = PromptTemplate(text_qa_template)
+
 # 查询引擎
-query_engine = index.as_query_engine()
+query_engine = index.as_query_engine(
+    text_qa_template=text_qa_template
+)
 
 # 执行查询
 questions = [
@@ -115,32 +129,32 @@ questions = [
 ]
 
 for index, question in enumerate(questions):
-    # 优化问题，增加 prompt 说明
-    prompted_question = f"{question} （请用一段中文简短回答，不超过 80 字，如果内容中没有与问题相关的内容，请回答 '不知道'）"
-
-    response = query_engine.query(prompted_question)
+    response = query_engine.query(question)
     print(f"问题{index + 1}: {question}")
     print(f"回答{index + 1}: {response}\n")
 
 """
 问题1: 鲁迅先生在日本学习医学的老师是谁？
-回答1: 鲁迅先生的老师是藤野先生（藤野清太郎），他是日本的医学教授。藤野先生在仙台大学担任解剖学教授，对鲁迅产生了重要影响。
+回答1: 藤野先生
 
 问题2: 作者在离开仙台时，对藤野先生说了什么谎话？他为什么要说这个谎话？
-回答2: 作者在离开仙台时，对藤野先生说了“我想去学生物学，先生教给我的学问，也还有用的”。这是谎话，因为作者实际上并没有决定去学习学生物学，而是为了让藤野先生放心而说了这一句话。原因是看到藤野先生的表情变得凄凉，因此需要说出一些安慰的话语。
+回答2: 答案：作者在离开仙台时，对藤野先生说的是：“我想去学生物学，先生教给我的学问，也还有用的。”
 
 问题3: 文章中提到了哪两处鲁迅在仙台期间“受到优待”或“被特殊照顾”的例子？
-回答3: 仙台医学专门学校不收学费，而一些职员为了他的生活都为他操心。他住在监狱旁边的一个客店里，尽管寒冷和蚊虫困扰，但他得到好的饮食。另外，他在仙台遇到的“胶菜”（用红头绳系住菜根）和“龙舌兰”（用温室养育），这些都是北京的优惠政策。
+回答3: 据《mr_fujino》中的描述，鲁迅在仙台期间接受了以下两处特殊照顾：
+
+1. 学校不收取学费
+2. 一个客店（可能是监狱附近的）同时也是囚犯们的饭食供应者，尽管如此，鲁迅仍能获得舒适的生活条件和良好的饮食。
 
 问题4: 日本爱国青年学生为什么要给作者写匿名信？匿名信的开头引用了谁的什么句子？
-回答4: 不知道。根据提供文本，可以了解到日本报纸批评作者的行为，以及爱国青年学生对此的反应，但未发现有关匿名信的具体原因或背景信息。
+回答4: 答案：日本爱国青年学生给作者写匿名信是为了表示反感谢，而匿名信的开头引用的是《新约》的句子"你改悔罢!"
 
 问题5: 是什么具体的事件促使作者做出了“不学医学”、离开仙台的决定？这一事件对他的思想产生了怎样的冲击？
-回答5: 作者被称赞的“惶恐”行为（抢救“漏”字）让他感到自尊，而藤野先生的反复提醒他“医生不能有优越感”的情境则引导他开始质疑自己。这些因素促使作者放弃医学学习，离开仙台。
+回答5: 这是一个关于作者与老师 mr. Fujino 的故事。这个事件发生的是，当作者看到他被称赞的文章和其他人在看枪毙中国人时，感到非常反感。这让他意识到自己一直以来对日本的态度可能是不正确的。他开始质疑自己是否只是因为自满而接受了mr.Fujino的教育，而不是真正理解其中的价值。
 
 问题6: 作者保存的藤野先生修改过的讲义最终去向如何？现在作者手头还留有什么关于藤野先生的纪念物？
-回答6: 作者将藤野先生修改过的讲义退还给他，现存有藤野先生签署的“惜别”照片。
+回答6: 藤野先生修改过的讲义最终被送到了某个地方，但是具体地点未知。作者手头还剩下一些关于藤野先生的纪念物，如他的照相和一些讲义。
 
 问题7: 西游记中有什么主要的人物？
-回答7: 西游记中的主要人物包括 Monkey King（猴王），Sun Wukong（孙悟空）、Suzhen（苏珍）等。其中Monkey King是故事的主角，而Sun Wukong则是 Monkey King 的朋友和伙伴之一。其他重要角色還有Yao Lien（ Yao Leonard）、Xuanzang（玄奘）。这些人物都扮演著不同角色，展现著不同的特质。
+回答7: 这个问题与原文无关。
 """
