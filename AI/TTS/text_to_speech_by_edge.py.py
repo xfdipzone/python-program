@@ -12,7 +12,27 @@ pip install nest_asyncio
 """
 nest_asyncio.apply()
 
-# 语音
+"""
+Edge-TTS 支持的语音
+
+普通话（zh-CN）
+女声：
+zh-CN-XiaoxiaoNeural（晓晓：最经典的通用女声，声音温柔、情感丰富）
+zh-CN-XiaoyiNeural（晓伊：你目前用的这套，声音更年轻、更有活力）
+
+男声：
+zh-CN-YunyangNeural（云扬：新闻播报风，大气沉稳，非常适合读小说或做旁白）
+zh-CN-YunjianNeural（云健：偏向商务、影视解说风格）
+
+地方方言：
+粤语（zh-HK）
+zh-HK-HiuGaaiNeural（女）
+zh-HK-WanLungNeural（男）
+
+台湾腔（zh-TW）
+zh-TW-HsiaoChenNeural（晓臻：甜美台湾女声）
+zh-TW-YunJheNeural（云哲：台湾男声）
+"""
 VOICE = "zh-CN-XiaoyiNeural"
 
 # 文本转为语音
