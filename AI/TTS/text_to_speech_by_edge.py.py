@@ -1,7 +1,7 @@
 # coding=utf-8
 import edge_tts
 import nest_asyncio
-from IPython.display import Audio, display
+from IPython.display import Audio, display, Markdown
 
 """
 文本转为语音（基于 Microsoft Edge TTS）
@@ -18,7 +18,7 @@ Edge-TTS 支持的语音
 普通话（zh-CN）
 女声：
 zh-CN-XiaoxiaoNeural（晓晓：最经典的通用女声，声音温柔、情感丰富）
-zh-CN-XiaoyiNeural（晓伊：你目前用的这套，声音更年轻、更有活力）
+zh-CN-XiaoyiNeural（晓伊：声音年轻、更有活力）
 
 男声：
 zh-CN-YunyangNeural（云扬：新闻播报风，大气沉稳，非常适合读小说或做旁白）
@@ -35,6 +35,11 @@ zh-TW-YunJheNeural（云哲：台湾男声）
 """
 VOICE = "zh-CN-XiaoyiNeural"
 
+# 声音标注
+VOICE_LABELS = {
+    "zh-CN-XiaoyiNeural": "晓伊：声音年轻、更有活力"
+}
+
 # 文本转为语音
 async def speak_async(text):
     # 在 edge_tts 中可以加入 rate 参数来调整语速（例如 rate="+10%" 变快，rate="-10%" 变慢）
@@ -43,6 +48,10 @@ async def speak_async(text):
     async for chunk in communicate.stream():
         if chunk["type"] == "audio":
             audio_bytes += chunk["data"]
+
+    # 语音标签
+    voice_title = VOICE_LABELS.get(VOICE, VOICE)
+    display(Markdown(f"**当前使用的语音:** `{voice_title}`"))
 
     # rate（采样率）edge-tts 默认采样率为 24kHz
     display(Audio(audio_bytes, autoplay=False, rate=24000))
