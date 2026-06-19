@@ -26,8 +26,9 @@ zh-CN-YunjianNeural（云健：偏向商务、影视解说风格）
 
 地方方言：
 粤语（zh-HK）
-zh-HK-HiuGaaiNeural（女）
-zh-HK-WanLungNeural（男）
+zh-HK-HiuGaaiNeural（晓佳：女声，声音温和自然、极具亲和力）
+zh-HK-HiuMaanNeural（晓曼：女声，声音知性、沉稳、清晰，适合新闻播报与商务演示）
+zh-HK-WanLungNeural（云龙：男声，声音相对沉稳、专业、有力）
 
 台湾腔（zh-TW）
 zh-TW-HsiaoChenNeural（晓臻：甜美台湾女声）
@@ -41,6 +42,7 @@ VOICE_LABELS = {
     "zh-CN-YunyangNeural": "普通话-云扬（男）：新闻播报风，大气沉稳，非常适合读小说或做旁白",
     "zh-CN-YunjianNeural": "普通话-云健（男）：偏向商务、影视解说风格",
     "zh-HK-HiuGaaiNeural": "粤语-晓佳（女）：声音温和自然、极具亲和力，适合日常与情感类文本",
+    "zh-HK-HiuMaanNeural": "粤语-晓曼（女）：声音知性、沉稳、清晰，适合新闻播报与商务演示",
     "zh-HK-WanLungNeural": "粤语-云龙（男）：声音相对沉稳、专业、有力，适合新闻播报与商务演示",
     "zh-TW-HsiaoChenNeural": "台湾腔-晓臻（女）：甜美台湾女声，语调柔和细腻，适合生活流与温柔对白",
     "zh-TW-YunJheNeural": "台湾腔-云哲（男）：标准台湾男声，语气温和自然，适合日常对话与电台广播"
