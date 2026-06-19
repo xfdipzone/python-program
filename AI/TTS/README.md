@@ -18,6 +18,6 @@
 
 ## Microsoft Edge TTS
 
-- [基于 Microsoft Edge TTS 实现的文本转语音](./text_to_speech_by_edge.py.py)
+- [基于 Microsoft Edge TTS 实现的文本转语音](./text_to_speech_by_edge.py)
 
   基于 Microsoft Edge TTS 模型，实现文本转语音功能，可选择适合的语音声音播放（男声/女生，国语/粤语/台语）
