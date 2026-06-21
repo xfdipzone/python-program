@@ -2,10 +2,11 @@
 import edge_tts
 import asyncio
 import nest_asyncio
+import os
 from IPython.display import Audio, display, Markdown
 
 """
-文本并行转为多个语音（基于 Microsoft Edge TTS）
+文本并行转为多个语音（基于 Microsoft Edge TTS）支持播放与保存
 
 dependency packages
 pip install edge-tts
@@ -33,10 +34,14 @@ async def _fetch_single_audio(text, voice, label):
     async for chunk in communicate.stream():
         if chunk["type"] == "audio":
             audio_bytes += chunk["data"]
-    return label, audio_bytes
+    return voice, label, audio_bytes
 
 # 文本转为语音
-async def speak_async(text, voice_labels):
+async def speak_async(text, voice_labels, output_dir="output_audio"):
+    # 检查保存的目录，如不存在则创建目录
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
     # 定义并发任务
     tasks = [
         _fetch_single_audio(text, voice, label)
@@ -47,13 +52,23 @@ async def speak_async(text, voice_labels):
     results = await asyncio.gather(*tasks)
 
     # 统一按顺序输出
-    for label, audio_bytes in results:
+    for voice, label, audio_bytes in results:
+        # 保存语音文件
+        file_path = os.path.join(output_dir, f"{voice}.mp3")
+
+        with open(file_path, "wb") as f:
+            f.write(audio_bytes)
+
         # 语音标签
         display(Markdown(f"**当前使用的语音:** `{label}`"))
+        display(Markdown(f"语音文件已自动保存到：`{file_path}`"))
         display(Audio(audio_bytes, autoplay=False))
 
 # 文本内容
 text = "王总您好，提醒您一下，今天下午两点在三号会议室有一个关于新项目的推进会，各部门经理都会出席。会议资料我已经打印好放在您的办公桌左侧了，另外，五点钟您和李总还有一个视频会议。"
 
+# 保存语音的目录
+output_dir = "data/output_audio"
+
 # 转换为各种声音的语音
-await speak_async(text, VOICE_LABELS)
+await speak_async(text, VOICE_LABELS, output_dir)
