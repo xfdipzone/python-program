@@ -31,3 +31,7 @@
 - [基于 Microsoft Edge TTS 实现的文本并发转多种音色语音](./parallel_text_to_speech_by_edge.py)
 
   基于 Microsoft Edge TTS 模型，实现文本并发转多种音色语音功能，包括（男声/女声，国语/粤语/台语）多种音色的语音，支持播放与保存
+
+- [获取 Microsoft Edge TTS 所有中文语音音色](./edge_tts_voices_list.py)
+
+  获取 Microsoft Edge TTS 所有中文声音列表
