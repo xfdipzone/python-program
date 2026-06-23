@@ -1,6 +1,7 @@
 # coding=utf-8
 import edge_tts
 import nest_asyncio
+import pandas as pd
 
 """
 获取 Microsoft Edge TTS 所有中文声音列表
@@ -8,11 +9,12 @@ import nest_asyncio
 dependency packages
 pip install edge-tts
 pip install nest_asyncio
+pip install pandas
 """
 nest_asyncio.apply()
 
-# 获取所有中文声音列表
-async def list_chinese_voices_detailed():
+# 获取所有中文声音列表（直接打印）
+async def print_chinese_voices_detailed():
     voices = await edge_tts.VoicesManager.create()
 
     # 筛选出所有中文声音（指定地区可用参数 Local=zh-CN）
@@ -28,5 +30,26 @@ async def list_chinese_voices_detailed():
     for v in sorted_voices:
         print(f"{v['Locale']:<15} | {v['ShortName']:<29} | {v['Gender']:<6}")
 
-# 获取列表
-await list_chinese_voices_detailed()
+    print("\n")
+
+# 获取所有中文声音列表（输出到 Data Frame）
+async def chinese_voices_detailed_data_frame():
+    voices = await edge_tts.VoicesManager.create()
+
+    # 筛选出所有中文声音（指定地区可用参数 Local=zh-CN）
+    chinese_voices = voices.find(Language="zh")
+
+    # 将数据保存到 Data Frame
+    df = pd.DataFrame(chinese_voices)
+    df = df.sort_values(by='Locale').reset_index(drop=True)
+    df = df[['Locale', 'ShortName', 'Gender']]
+    df.columns = ['地区/语言区域', '声音名称/播音员', '性别']
+
+    display(df)
+
+
+# 获取列表（直接打印）
+await print_chinese_voices_detailed()
+
+# 获取列表（输出到 Data Frame）
+await chinese_voices_detailed_data_frame()
