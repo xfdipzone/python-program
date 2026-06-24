@@ -24,14 +24,14 @@
 
 通过 WebSocket 协议直接向微软的云端 TTS（从文本到语音）服务器发送请求
 
-- [基于 Microsoft Edge TTS 实现的文本转语音](./text_to_speech_by_edge.py)
+- [基于 Microsoft Edge TTS 实现的文本转语音](./Edge-TTS/text_to_speech_by_edge.py)
 
   基于 Microsoft Edge TTS 模型，实现文本转语音功能，可选择适合的语音声音播放（男声/女声，国语/粤语/台语）
 
-- [基于 Microsoft Edge TTS 实现的文本并发转多种音色语音](./parallel_text_to_speech_by_edge.py)
+- [基于 Microsoft Edge TTS 实现的文本并发转多种音色语音](./Edge-TTS/parallel_text_to_speech_by_edge.py)
 
   基于 Microsoft Edge TTS 模型，实现文本并发转多种音色语音功能，包括（男声/女声，国语/粤语/台语）多种音色的语音，支持播放与保存
 
-- [获取 Microsoft Edge TTS 所有中文语音音色](./edge_tts_voices_list.py)
+- [获取 Microsoft Edge TTS 所有中文语音音色](./Edge-TTS/edge_tts_voices_list.py)
 
   获取 Microsoft Edge TTS 所有中文声音列表
