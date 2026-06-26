@@ -34,7 +34,7 @@
 
 - [获取 Microsoft Edge TTS 所有中文语音音色](./Edge-TTS/edge_tts_voices_list.py)
 
-  获取 Microsoft Edge TTS 所有中文声音列表
+  获取 Microsoft Edge TTS 所有中文声音列表，包括（男声/女声，国语/粤语/台语/辽宁话/陕西话）
 
 ---
 
