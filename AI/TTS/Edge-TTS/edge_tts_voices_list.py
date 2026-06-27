@@ -53,3 +53,24 @@ await print_chinese_voices_detailed()
 
 # 获取列表（输出到 Data Frame）
 await chinese_voices_detailed_data_frame()
+
+"""
+✨ 正在打印 14 种声音列表...
+
+Local           | ShortName                     | Gender
+----------------------------------------------------------
+zh-CN           | zh-CN-XiaoxiaoNeural          | Female
+zh-CN           | zh-CN-XiaoyiNeural            | Female
+zh-CN           | zh-CN-YunjianNeural           | Male
+zh-CN           | zh-CN-YunxiNeural             | Male
+zh-CN           | zh-CN-YunxiaNeural            | Male
+zh-CN           | zh-CN-YunyangNeural           | Male
+zh-CN-liaoning  | zh-CN-liaoning-XiaobeiNeural  | Female
+zh-CN-shaanxi   | zh-CN-shaanxi-XiaoniNeural    | Female
+zh-HK           | zh-HK-HiuGaaiNeural           | Female
+zh-HK           | zh-HK-HiuMaanNeural           | Female
+zh-HK           | zh-HK-WanLungNeural           | Male
+zh-TW           | zh-TW-HsiaoChenNeural         | Female
+zh-TW           | zh-TW-YunJheNeural            | Male
+zh-TW           | zh-TW-HsiaoYuNeural           | Female
+"""
