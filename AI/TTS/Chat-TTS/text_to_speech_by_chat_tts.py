@@ -31,53 +31,53 @@ favorite_voices = {
     "年轻女性": "speaker_39",
 }
 
-voice_name = favorite_voices["活泼女性"]
-
-# 初始化并加载模型
-chat = ChatTTS.Chat()
-chat.load(compile=False)
-
-with open(
-    f"{voice_library_dir}/{voice_name}.txt",
-    "r",
-    encoding="utf-8"
-) as f:
-    spk = f.read()
-
-# 文本内容
-text = "[speed_3] 亲爱的主人，您好呀 [uv_break] 我叫小莹 [uv_break] 是您的专属小助手，[uv_break] 此刻正带着满满的暖意，给您送来这份问候呢。"
-
-wavs = chat.infer(
-    [text],
-    params_infer_code=ChatTTS.Chat.InferCodeParams(
-        spk_emb=spk,
-        temperature=0.3,
-        top_P=0.7,
-        top_K=20
-    )
-)
-
-audio = wavs[0]
-
-if hasattr(audio, "shape") and len(audio.shape) > 1:
-    audio = audio[0]
-
 # 保存语音的目录
 output_dir = "output_audio"
-
-# 语音文件
-file_path = os.path.join(output_dir, "output.wav")
 
 # 检查保存的目录，如不存在则创建目录
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-sf.write(
-    file_path,
-    audio,
-    24000
-)
+# 初始化并加载模型
+chat = ChatTTS.Chat()
+chat.load(compile=False)
 
-display(Markdown("### 🔊 生成的语音"))
-display(Markdown(f"**语音文件已自动保存到：** `{file_path}`"))
-display(Audio(audio, autoplay=False, rate=24000))
+# 文本内容
+text = "[speed_3] 亲爱的主人，您好呀 [uv_break] 我叫小莹 [uv_break] 是您的专属小助手，[uv_break] 此刻正带着满满的暖意，给您送来这份问候呢。"
+
+# 循环遍历所有音色播放
+for name, voice_name in favorite_voices.items():
+    with open(
+        f"{voice_library_dir}/{voice_name}.txt",
+        "r",
+        encoding="utf-8"
+    ) as f:
+        spk = f.read()
+
+    wavs = chat.infer(
+        [text],
+        params_infer_code=ChatTTS.Chat.InferCodeParams(
+            spk_emb=spk,
+            temperature=0.3,
+            top_P=0.7,
+            top_K=20
+        )
+    )
+
+    audio = wavs[0]
+
+    if hasattr(audio, "shape") and len(audio.shape) > 1:
+        audio = audio[0]
+
+    # 语音文件
+    file_path = os.path.join(output_dir, f"{name}_{voice_name}.wav")
+
+    sf.write(
+        file_path,
+        audio,
+        24000
+    )
+
+    display(Markdown(f"--- \n### 🎙️ **{name}** ({voice_name})"))
+    display(Markdown(f"**语音文件已自动保存到：** `{file_path}`"))
+    display(Audio(audio, autoplay=False, rate=24000))
