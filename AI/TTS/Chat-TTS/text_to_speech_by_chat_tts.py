@@ -47,6 +47,8 @@ text = "[speed_3] 亲爱的主人，您好呀 [uv_break] 我叫小莹 [uv_break]
 
 # 循环遍历所有音色播放
 for name, voice_name in favorite_voices.items():
+    print(f"\n进行音色生成 {name} ({voice_name})")
+
     with open(
         f"{voice_library_dir}/{voice_name}.txt",
         "r",
@@ -78,6 +80,6 @@ for name, voice_name in favorite_voices.items():
         24000
     )
 
-    display(Markdown(f"--- \n### 🎙️ **{name}** ({voice_name})"))
-    display(Markdown(f"**语音文件已自动保存到：** `{file_path}`"))
+    display(Markdown(f"### 🎙️ **{name}** ({voice_name})"))
+    display(Markdown(f"语音文件已自动保存到： `{file_path}`"))
     display(Audio(audio, autoplay=False, rate=24000))
