@@ -63,3 +63,11 @@
 - [基于 Chat-TTS 实现的文本转语音](./Chat-TTS/text_to_speech_by_chat_tts.py)
 
   基于 Chat-TTS 模型，实现文本转语音功能，可选择音色库的语音声音播放 (Chat-TTS voice library)
+
+- [基于 Chat-TTS 筛选出 Top 20 好听的年轻女声](./Chat-TTS/filter_top20_female_speaker.py)
+
+  基于 Chat-TTS 随机生成 100 个音色，然后通过音高评分，筛选出 Top 20 好听的年轻女声
+
+  限定了算法寻找人类说话音高的范围（ 60Hz 到 500Hz ）
+
+  男性的基频通常在 85 ~ 180Hz，女性通常在 165 ~ 255Hz，儿童或极高亢的声音会更高
