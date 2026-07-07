@@ -25,8 +25,20 @@ VOICE_LABELS = {
 }
 
 # 文本转为语音
-async def _fetch_single_audio_bytes(text, voice):
-    communicate = edge_tts.Communicate(text, voice)
+async def _fetch_single_audio_bytes(
+    text,
+    voice,
+    rate,
+    volume,
+    pitch
+):
+    communicate = edge_tts.Communicate(
+        text=text,
+        voice=voice,
+        rate=f"{rate:+d}%",
+        volume=f"{volume:+d}%",
+        pitch=f"{pitch:+d}Hz"
+    )
     audio_bytes = bytearray()
 
     async for chunk in communicate.stream():
@@ -37,7 +49,14 @@ async def _fetch_single_audio_bytes(text, voice):
 
 
 # 供 Gradio 调用的核心转换函数
-async def text_to_speech_edge(text, voice_display_name, output_dir="data/output_audio"):
+async def text_to_speech_edge(
+    text,
+    voice_display_name,
+    rate,
+    volume,
+    pitch,
+    output_dir="data/output_audio"
+):
     if not text.strip():
         return None, "请输入文字！"
 
@@ -49,7 +68,7 @@ async def text_to_speech_edge(text, voice_display_name, output_dir="data/output_
 
     # 运行异步合成任务
     try:
-        audio_bytes = await _fetch_single_audio_bytes(text, actual_voice_id)
+        audio_bytes = await _fetch_single_audio_bytes(text, actual_voice_id, rate, volume, pitch)
 
         # 保存音频到本地
         file_path = os.path.join(output_dir, f"{actual_voice_id}.mp3")
@@ -84,6 +103,33 @@ with gr.Blocks(title="Edge-TTS 语音合成器") as demo:
                 value="普通话-晓伊（女）：年轻活力、活泼风格"  # 默认选择你活力女声
             )
 
+            # 语速
+            rate_slider = gr.Slider(
+                minimum=-100,
+                maximum=100,
+                value=0,
+                step=5,
+                label="语速（%）"
+            )
+
+            # 音量
+            volume_slider = gr.Slider(
+                minimum=-100,
+                maximum=100,
+                value=0,
+                step=5,
+                label="音量（%）"
+            )
+
+            # 音调
+            pitch_slider = gr.Slider(
+                minimum=-50,
+                maximum=50,
+                value=0,
+                step=1,
+                label="音调（Hz）"
+            )
+
             btn = gr.Button("⚡ 开始合成语音", variant="primary")
 
         with gr.Column():
@@ -93,8 +139,17 @@ with gr.Blocks(title="Edge-TTS 语音合成器") as demo:
     # 绑定按钮点击事件
     btn.click(
         fn=text_to_speech_edge,
-        inputs=[input_text, voice_dropdown],
-        outputs=[audio_output, file_output]
+        inputs=[
+            input_text,
+            voice_dropdown,
+            rate_slider,
+            volume_slider,
+            pitch_slider
+        ],
+        outputs=[
+            audio_output,
+            file_output
+        ]
     )
 
 
