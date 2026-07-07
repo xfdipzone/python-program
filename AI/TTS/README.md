@@ -36,6 +36,8 @@
 
   基于 Microsoft Edge TTS 模型，实现可视化文本转语音功能，可输入文本内容，选择适合的语音声音播放（男声/女声，国语/粤语/台语）
 
+  支持语速，音量，音调调整
+
 - [获取 Microsoft Edge TTS 所有中文语音音色](./Edge-TTS/edge_tts_voices_list.py)
 
   获取 Microsoft Edge TTS 所有中文声音列表，包括（男声/女声，国语/粤语/台语/辽宁话/陕西话）
