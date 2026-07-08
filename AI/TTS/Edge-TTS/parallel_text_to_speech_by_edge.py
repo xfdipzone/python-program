@@ -39,8 +39,7 @@ async def _fetch_single_audio(text, voice, label):
 # 文本转为语音
 async def speak_async(text, voice_labels, output_dir="output_audio"):
     # 检查保存的目录，如不存在则创建目录
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    os.makedirs(output_dir, exist_ok=True)
 
     # 定义并发任务
     tasks = [
