@@ -35,8 +35,7 @@ favorite_voices = {
 output_dir = "output_audio"
 
 # 检查保存的目录，如不存在则创建目录
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+os.makedirs(output_dir, exist_ok=True)
 
 # 初始化并加载模型
 chat = ChatTTS.Chat()
