@@ -142,8 +142,9 @@ df["embedding"] = list(embeddings)
 
 # 输出路径
 output_dir = './data'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+
+# 检查输出路径，如不存在则创建
+os.makedirs(output_dir, exist_ok=True)
 
 # csv 文件
 csv_file = os.path.join(output_dir, 'product_data.csv')
