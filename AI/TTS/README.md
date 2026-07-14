@@ -88,7 +88,7 @@
 
 ## Qwen3-TTS
 
-Qwen3-TTS 是阿里巴巴通义千问团队于 2026 年开源的新一代文本转语音（Text-to-Speech，TTS）模型系列
+**Qwen3-TTS** 是阿里巴巴通义千问团队于 2026 年开源的新一代文本转语音（Text-to-Speech，TTS）模型系列
 
 支持高质量语音合成、声音克隆（Voice Clone）、声音设计（Voice Design）以及自然语言控制音色、情绪、语速和语气等能力
 
