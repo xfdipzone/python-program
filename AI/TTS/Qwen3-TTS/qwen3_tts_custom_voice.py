@@ -10,10 +10,10 @@ from IPython.display import Audio, display, Markdown
 
 模型：
 https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice
-3.9GB，显存需求 6-8 GB，推理速度较慢，音质更自然，更稳定，情绪表达丰富，长文本稳定性高，支持 Instruction 控制
+3.9 GB，显存需求 6-8 GB，推理速度较慢，音质更自然，更稳定，情绪表达丰富，长文本稳定性高，支持 Instruction 控制
 
 https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice
-1.8GB，显存需求 2-4 GB，推理速度很快，音质很好，情绪表达一般，长文本稳定性弱，不支持 Instruction 控制
+1.8 GB，显存需求 2-4 GB，推理速度很快，音质很好，情绪表达一般，长文本稳定性弱，不支持 Instruction 控制
 
 dependency packages
 pip install -U qwen-tts
