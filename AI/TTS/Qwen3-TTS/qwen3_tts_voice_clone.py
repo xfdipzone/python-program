@@ -27,7 +27,10 @@ tts = Qwen3TTSModel.from_pretrained(
 )
 
 # 参考语音源
-source_sound = "reference.wav"
+ref_audio = "reference.wav"
+
+# 参考语音源文本内容
+ref_text = "很高兴认识你哦，我刚刚去买了杯奶茶，要一起去长椅上坐坐吗？"
 
 # 文本内容集合
 texts = [
@@ -49,8 +52,8 @@ for index, text in enumerate(texts, start=1):
     audio = tts.generate_voice_clone(
         text=text,
         language="chinese",
-        ref_audio=source_sound,
-        ref_text="很高兴认识你哦，我刚刚去买了杯奶茶，要一起去长椅上坐坐吗？",
+        ref_audio=ref_audio,
+        ref_text=ref_text,
         max_new_tokens=1024,
         temperature=0.3,
         top_k=10,
