@@ -5,7 +5,7 @@ from qwen_tts import Qwen3TTSModel
 from IPython.display import Audio, display, Markdown
 
 """
-文本转为克隆得语音（基于 Qwen3-TTS）
+文本转为克隆的语音（基于 Qwen3-TTS）
 使用用户提供的音色文件提取特征
 
 模型：
@@ -47,13 +47,18 @@ output_dir = "data/output_audio"
 # 检查保存的目录，如不存在则创建目录
 os.makedirs(output_dir, exist_ok=True)
 
+# 分析语音特征生成 prompt（循环复用）
+voice_clone_prompt = tts.create_voice_clone_prompt(
+    ref_audio=ref_audio,
+    ref_text=ref_text,
+)
+
 # 遍历文本内容集合，转为语音播放
 for index, text in enumerate(texts, start=1):
     audio = tts.generate_voice_clone(
         text=text,
         language="chinese",
-        ref_audio=ref_audio,
-        ref_text=ref_text,
+        voice_clone_prompt=voice_clone_prompt,
         max_new_tokens=1024,
         temperature=0.3,
         top_k=10,
