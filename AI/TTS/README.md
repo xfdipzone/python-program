@@ -99,3 +99,7 @@
 - [基于 Qwen3-TTS 实现的文本转语音](./Qwen3-TTS/qwen3_tts_custom_voice.py)
 
   基于 Qwen3-TTS 模型，实现文本转语音功能，可选择适合的语音声音播放（Custom Voice）
+
+- [基于 Qwen3-TTS 实现的文本转克隆的语音](./Qwen3-TTS/qwen3_tts_voice_clone.py)
+
+  基于 Qwen3-TTS 模型，使用用户提供的音色文件提取特征，实现文本转克隆的语音功能（Voice Clone）
