@@ -106,4 +106,6 @@
 
 - [基于 Qwen3-TTS 实现的文本转自然语言描述的语音](./Qwen3-TTS/qwen3_tts_voice_design.py)
 
-  基于 Qwen3-TTS 模型，不需要参考音频，只需要用自然语言描述，生成一种全新的声音，实现文本转自然语言描述的语音功能（Voice Design）
+  基于 Qwen3-TTS 模型，不需要参考音频，只需要用自然语言描述，生成一种全新的声音
+
+  实现文本转自然语言描述的语音功能（Voice Design）
