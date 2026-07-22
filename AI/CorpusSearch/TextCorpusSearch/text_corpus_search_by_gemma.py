@@ -13,6 +13,9 @@ import logging
 """
 根据提供的语料库，使用本地大语言模型（google/gemma-3-4b-it）分析，回答用户提出的问题
 
+模型：
+https://huggingface.co/google/gemma-3-4b-it
+
 dependency packages
 pip install llama-index-core
 pip install llama-index-embeddings-huggingface
