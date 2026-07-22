@@ -13,6 +13,9 @@ import logging
 """
 根据提供的语料库，使用本地大语言模型（unsloth/Llama-3.2-3B-Instruct）分析，回答用户提出的问题
 
+模型：
+https://huggingface.co/unsloth/Llama-3.2-3B-Instruct
+
 dependency packages
 pip install llama-index-core
 pip install llama-index-embeddings-huggingface
