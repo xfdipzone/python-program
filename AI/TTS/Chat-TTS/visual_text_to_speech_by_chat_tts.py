@@ -19,6 +19,9 @@ VOICE_LIBRARY_DIR = "data/chat-tts_voice_library"
 # 输出目录
 OUTPUT_DIR = "data/output_audio"
 
+# 创建输出目录
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 # 音色列表
 VOICE_LABELS = {
     "成熟女性": "speaker_01",
@@ -31,9 +34,6 @@ VOICE_LABELS = {
     "女医生": "speaker_31",
     "年轻女性": "speaker_39",
 }
-
-# 创建输出目录
-os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # 初始化模型
 chat = ChatTTS.Chat()
@@ -51,6 +51,7 @@ def text_to_speech_chat_tts(
         raise gr.Error("请输入文本！")
 
     try:
+        # 用户选择的音色
         speaker_name = VOICE_LABELS[voice_display_name]
 
         speaker_path = os.path.join(
@@ -97,7 +98,7 @@ def text_to_speech_chat_tts(
         return file_path, file_path
 
     except Exception as e:
-        raise gr.Error(f"生成失败：{str(e)}")
+        raise gr.Error(f"合成失败：{str(e)}")
 
 
 # Gradio 页面
@@ -116,47 +117,49 @@ with gr.Blocks(title="ChatTTS 可视化语音合成器") as demo:
                 lines=6
             )
 
-            # 选择声音风格
+            # 选择音色
             voice_dropdown = gr.Dropdown(
-                label="选择声音",
+                label="选择音色",
                 choices=list(VOICE_LABELS.keys()),
                 value="活泼女性"
             )
 
-            # 随机性（Temperature）
-            temperature_slider = gr.Slider(
-                minimum=0,
-                maximum=1,
-                value=0.3,
-                step=0.05,
-                label="随机性（Temperature）"
-            )
+            with gr.Accordion("高级参数", open=False):
 
-            # 采样范围（Top P）
-            top_p_slider = gr.Slider(
-                minimum=0,
-                maximum=1,
-                value=0.7,
-                step=0.05,
-                label="采样范围（Top P）"
-            )
+                # 随机性（Temperature）
+                temperature_slider = gr.Slider(
+                    minimum=0,
+                    maximum=1,
+                    value=0.3,
+                    step=0.05,
+                    label="随机性（Temperature）"
+                )
 
-            # 候选数量（Top K）
-            top_k_slider = gr.Slider(
-                minimum=1,
-                maximum=100,
-                value=20,
-                step=1,
-                label="候选数量（Top K）"
-            )
+                # 采样范围（Top P）
+                top_p_slider = gr.Slider(
+                    minimum=0,
+                    maximum=1,
+                    value=0.7,
+                    step=0.05,
+                    label="采样范围（Top P）"
+                )
 
-            btn = gr.Button("⚡ 开始生成语音", variant="primary")
+                # 候选数量（Top K）
+                top_k_slider = gr.Slider(
+                    minimum=1,
+                    maximum=100,
+                    value=20,
+                    step=1,
+                    label="候选数量（Top K）"
+                )
+
+            btn = gr.Button("⚡ 开始合成语音", variant="primary")
 
         with gr.Column():
             audio_output = gr.Audio(label="🎧 在线试听", type="filepath")
+            file_output = gr.File(label="📥 下载保存 WAV 音频文件")
 
-            file_output = gr.File(label="📥 下载 WAV 文件")
-
+    # 绑定按钮点击事件
     btn.click(
         fn=text_to_speech_chat_tts,
         inputs=[
