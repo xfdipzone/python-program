@@ -11,6 +11,12 @@ pip install edge-tts
 pip install gradio
 pip install uvicorn
 """
+# 输出目录
+OUTPUT_DIR = "data/output_audio"
+
+# 创建输出目录
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 # 声音标注
 VOICE_LABELS = {
     "普通话-晓晓（女）：温柔、情感丰富": "zh-CN-XiaoxiaoNeural",
@@ -55,23 +61,19 @@ async def text_to_speech_edge(
     rate,
     volume,
     pitch,
-    output_dir="data/output_audio"
 ):
     if not text.strip():
         return None, "请输入文字！"
 
-    # 检查并创建保存目录
-    os.makedirs(output_dir, exist_ok=True)
-
-    # 根据用户在网页选择的声音风格，获取实际的 Edge-TTS 音色 ID
-    actual_voice_id = VOICE_LABELS[voice_display_name]
-
     # 运行异步合成任务
     try:
+        # 根据用户在网页选择的声音风格，获取实际的 Edge-TTS 音色 ID
+        actual_voice_id = VOICE_LABELS[voice_display_name]
+
         audio_bytes = await _fetch_single_audio_bytes(text, actual_voice_id, rate, volume, pitch)
 
         # 保存音频到本地
-        file_path = os.path.join(output_dir, f"{actual_voice_id}.mp3")
+        file_path = os.path.join(OUTPUT_DIR, f"{actual_voice_id}.mp3")
         with open(file_path, "wb") as f:
             f.write(audio_bytes)
 
@@ -133,7 +135,7 @@ with gr.Blocks(title="Edge-TTS 语音合成器") as demo:
             btn = gr.Button("⚡ 开始合成语音", variant="primary")
 
         with gr.Column():
-            audio_output = gr.Audio(label="🎧 在线试听播放", type="filepath")
+            audio_output = gr.Audio(label="🎧 在线试听", type="filepath")
             file_output = gr.File(label="📥 下载保存 MP3 音频文件")
 
     # 绑定按钮点击事件
