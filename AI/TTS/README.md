@@ -109,3 +109,9 @@
   基于 Qwen3-TTS 模型，不需要参考音频，只需要用自然语言描述，生成一种全新的声音
 
   实现文本转自然语言描述的语音功能（Voice Design）
+
+- [基于 Qwen3-TTS 实现的可视化文本转语音](./Qwen3-TTS/qwen3_tts_visual_custom_voice.py)
+
+  基于 Qwen-3-TTS 模型，实现可视化文本转语音功能，可输入文本内容，选择音色库的语音声音播放（Custom Voice）
+
+  支持声音风格描述（Instruct），采样温度（Temperature），候选数量（Top-K），重复惩罚（Repetition Penalty）调整
