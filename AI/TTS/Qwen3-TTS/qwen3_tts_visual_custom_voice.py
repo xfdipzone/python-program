@@ -107,14 +107,14 @@ with gr.Blocks(title="Qwen3-TTS") as demo:
                 value="vivian（女）- 温柔、成熟、亲和发音标准"
             )
 
-            with gr.Accordion("高级参数", open=False):
+            # 声音风格描述
+            instruct_text = gr.Textbox(
+                label="声音风格描述",
+                value="声音甜美，温柔、撒娇、像恋人。",
+                lines=2
+            )
 
-                # 声音风格描述
-                instruct_box = gr.Textbox(
-                    label="声音风格描述",
-                    value="声音甜美，温柔、亲切、像秘书。",
-                    lines=2
-                )
+            with gr.Accordion("高级参数", open=False):
 
                 # 采样温度（Temperature）
                 temperature_slider = gr.Slider(
@@ -155,7 +155,7 @@ with gr.Blocks(title="Qwen3-TTS") as demo:
         inputs=[
             input_text,
             speaker_dropdown,
-            instruct_box,
+            instruct_text,
             temperature_slider,
             topk_slider,
             repetition_slider
