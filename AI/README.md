@@ -110,6 +110,24 @@
 
 **定位：** 将计算机中的文本信息（Text）转化为自然流畅的语音信号（Speech）
 
+- [Microsoft Edge TTS](./TTS/Edge-TTS/)
+
+  基于 Microsoft Edge TTS 实现文本转语音
+
+  微软开源的第三方库，通过 WebSocket 协议直接向微软的云端 TTS（从文本到语音）服务器发送请求
+
+- [Chat-TTS](./TTS/Chat-TTS/)
+
+  基于 Chat-TTS 实现文本转语音
+
+  专门为对话场景（如长文本朗读、小说播客、游戏 NPC 对话）设计的开源语音合成（TTS）模型
+
+- [Qwen3-TTS](./TTS/Qwen3-TTS/)
+
+  基于 Qwen3-TTS 实现文本转语音
+
+  支持高质量语音合成、声音克隆（Voice Clone）、声音设计（Voice Design）以及自然语言控制音色、情绪、语速和语气等能力
+
 ---
 
 ### ChatBot（机器人）| [Explore](./ChatBot/)
