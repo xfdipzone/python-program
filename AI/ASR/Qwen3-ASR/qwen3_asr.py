@@ -72,3 +72,17 @@ for i in range(0, len(audio_files), batch_size):
         print(f"语音文件: {audio_file}")
         print(f"识别的文本文件：{file_path}")
         print(f"识别的文本内容：{r.text}\n")
+
+"""
+语音文件: data/audio/warm_girl.mp3
+识别的文本文件：data/output/warm_girl.txt
+识别的文本内容：或许今天的你并不完美，或许你还在寻找那个属于自己的方向，但不要急，给自己一点时间吧。
+
+语音文件: data/audio/soft_girl.mp3
+识别的文本文件：data/output/soft_girl.txt
+识别的文本内容：很高兴认识你哦！我刚刚去买了杯奶茶，要一起去长椅上坐坐吗？
+
+语音文件: data/audio/warm_bestie.mp3
+识别的文本文件：data/output/warm_bestie.txt
+识别的文本内容：看你这样子，估计明天会有点头疼。不过没关系，多喝点水，明天会好得快一点。
+"""
