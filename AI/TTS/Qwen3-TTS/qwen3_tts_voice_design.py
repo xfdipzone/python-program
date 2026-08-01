@@ -19,7 +19,7 @@ pip install ipython
 # 加载模型
 tts = Qwen3TTSModel.from_pretrained(
     "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    device_map="cuda"
+    device_map="cuda:0"
 )
 
 # 文本内容集合

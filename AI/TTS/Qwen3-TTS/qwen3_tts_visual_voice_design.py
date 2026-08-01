@@ -24,7 +24,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # 初始化模型
 tts = Qwen3TTSModel.from_pretrained(
     "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    device_map="cuda"
+    device_map="cuda:0"
 )
 
 # 供 Gradio 调用的核心转换函数
@@ -39,7 +39,7 @@ def text_to_speech_qwen3_tts(
         raise gr.Error("请输入文本！")
 
     if not instruct.strip():
-        raise gr.Error("声音风格描述！")
+        raise gr.Error("请输入声音风格描述！")
 
     try:
         audio = tts.generate_voice_design(

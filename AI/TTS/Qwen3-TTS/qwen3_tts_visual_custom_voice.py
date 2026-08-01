@@ -34,7 +34,7 @@ SPEAKER_LABELS = {
 # 初始化模型
 tts = Qwen3TTSModel.from_pretrained(
     "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
-    device_map="cuda"
+    device_map="cuda:0"
 )
 
 # 供 Gradio 调用的核心转换函数
