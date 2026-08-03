@@ -37,3 +37,9 @@
   实现可视化文本转自然语言描述的语音功能（Voice Design）
 
   支持声音风格描述（Instruct），采样温度（Temperature），候选数量（Top-K），重复惩罚（Repetition Penalty）调整
+
+- [基于 Qwen3-TTS 实现的可视化文本转克隆的语音](./qwen3_tts_visual_voice_clone.py)
+
+  基于 Qwen-3-TTS 模型，使用用户提供的音色文件提取特征，实现可视化文本转克隆的语音功能（Voice Clone）
+
+  支持采样温度（Temperature），候选数量（Top-K），重复惩罚（Repetition Penalty）调整
