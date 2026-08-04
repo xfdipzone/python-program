@@ -6,7 +6,7 @@
 
 通过 WebSocket 协议直接向微软的云端 TTS（从文本到语音）服务器发送请求
 
-## 项目列表
+## 功能示例列表
 
 - [基于 Microsoft Edge TTS 实现的文本转语音](./text_to_speech_by_edge.py)
 
