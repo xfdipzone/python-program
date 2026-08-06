@@ -50,7 +50,7 @@ output_dir = "data/output"
 # 创建文本输出目录
 os.makedirs(output_dir, exist_ok=True)
 
-# 每批次音频的数量（按机器配置能力调整）
+# 每批次处理的音频数量（按机器配置能力调整）
 batch_size = 2
 
 # 批量识别音频转为文本
