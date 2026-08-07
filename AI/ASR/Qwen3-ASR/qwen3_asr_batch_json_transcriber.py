@@ -129,3 +129,33 @@ with open(output_json, "r", encoding="utf-8") as f:
     updated_json = json.load(f)
 
 print(json.dumps(updated_json, ensure_ascii=False, indent=2))
+
+"""
+修改后的 JSON 内容:
+[
+  {
+    "name": "Soft Girl",
+    "name_cn": "温柔女孩",
+    "description": "Adult, Female, Welcoming · Ideal for Vlog, Podcast",
+    "description_cn": "成年女性，亲切温暖 · 适用于Vlog、播客",
+    "file": "soft_girl.mp3",
+    "text": "很高兴认识你哦！我刚刚去买了杯奶茶，要一起去长椅上坐坐吗？"
+  },
+  {
+    "name": "Warm Bestie",
+    "name_cn": "暖心闺蜜",
+    "description": "Adult, Female, Crisp · Ideal for News, Explainer",
+    "description_cn": "成年女性，声音清晰利落 · 适用于新闻、知识讲解",
+    "file": "warm_bestie.mp3",
+    "text": "看你这样子，估计明天会有点头疼。不过没关系，多喝点水，明天会好得快一点。"
+  },
+  {
+    "name": "Warm Girl",
+    "name_cn": "温暖女孩",
+    "description": "Female, Soft · Ideal for Meditation, Storytelling",
+    "description_cn": "女性，柔和温暖 · 适用于冥想、故事讲述",
+    "file": "warm_girl.mp3",
+    "text": "或许今天的你并不完美，或许你还在寻找那个属于自己的方向，但不要急，给自己一点时间吧。"
+  }
+]
+"""
