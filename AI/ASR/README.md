@@ -13,3 +13,7 @@
 - [基于 Qwen3-ASR 实现语音与文本强制对齐](./Qwen3-ASR/qwen3_forced_aligner.py)
 
   基于 Qwen3-ASR `Qwen3-ForcedAligner-0.6B` 模型，实现语音与文本强制对齐，返回词级/字级时间戳
+
+- [基于 Qwen3-ASR 实现批量识别语音并将文本更新到 JSON 文件](./Qwen3-ASR/qwen3_asr_batch_json_transcriber.py)
+
+  基于 Qwen3-ASR 实现批量识别语音，将识别的文本内容更新到 JSON 文件
