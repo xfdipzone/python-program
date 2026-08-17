@@ -100,3 +100,10 @@ for audio_file in audio_files:
         json_content = json.load(f)
 
     print(json.dumps(json_content, ensure_ascii=False, indent=2))
+
+"""
+音频与文本强制对齐结果
+data/alignment/soft_girl_alignment.json
+data/alignment/warm_bestie_alignment.json
+data/alignment/warm_girl_alignment.json
+"""
