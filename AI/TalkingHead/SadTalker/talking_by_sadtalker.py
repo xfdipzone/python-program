@@ -16,8 +16,9 @@ import site
 # 定义真人照片，音频，音频与文本对齐数据文件路径（支持相对路径或绝对路径）
 IMAGE_PATH = "input/person.jpg"
 AUDIO_PATH = "input/speech.mp3"
-JSON_PATH = "input/subtitles.json"
+SUBTITLE_JSON = "input/subtitles.json"
 
+# 定义基础路径
 WORK_DIR = "talking_head"
 OUTPUT_DIR = "output"
 
@@ -29,7 +30,7 @@ RAW_VIDEO = os.path.join(OUTPUT_DIR, "talking_head_512.mp4")
 FINAL_VIDEO = os.path.join(OUTPUT_DIR, "talking_head_512_subtitle.mp4")
 
 print("=" * 60)
-print(">>> 开始执行播报视频生成全流程脚本...")
+print(">>> 开始执行真人播报视频生成全流程脚本...")
 print("=" * 60)
 
 
@@ -261,11 +262,11 @@ if not os.path.isfile(IMAGE_PATH):
 if not os.path.isfile(AUDIO_PATH):
     raise FileNotFoundError(f"找不到语音: {AUDIO_PATH}")
 
-if not os.path.isfile(JSON_PATH):
-    raise FileNotFoundError(f"找不到字幕 JSON 文件: {JSON_PATH}")
+if not os.path.isfile(SUBTITLE_JSON):
+    raise FileNotFoundError(f"找不到字幕 JSON 文件: {SUBTITLE_JSON}")
 
 # 从 JSON 文件加载时间戳
-with open(JSON_PATH, "r", encoding="utf-8") as f:
+with open(SUBTITLE_JSON, "r", encoding="utf-8") as f:
     WORDS = json.load(f)
 
 if not WORDS:
@@ -355,7 +356,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: KTV,Noto Sans CJK SC,30,&H00FFFFFF,&H0000FFFF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,2,1,2,20,20,35,1
+Style: KTV,Noto Sans CJK SC,30,&H0000FFFF,&H00FFFFFF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,2,1,2,20,20,35,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
