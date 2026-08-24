@@ -1,6 +1,8 @@
 # 语音驱动人像说话/播报视频生成 (Talking Head Generation)
 
-基于多模态输入（单张人像照片、音频及文本对齐数据）实现高保真度的“语音驱动人像说话/播报”视频生成 (Talking Head Generation / Talking Face Synthesis)
+基于多模态输入（单张人像照片、音频及文本对齐数据）实现高保真度的“语音驱动人像说话/播报”视频生成
+
+Talking Head Generation / Talking Face Synthesis
 
 核心关注点在于面部表情、口型同步（Lip-Sync）与头部微动作
 
