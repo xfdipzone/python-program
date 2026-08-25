@@ -621,3 +621,113 @@ print(f"Size: {size_mb:.2f} MB")
 print(f"Log: {LOG_FILE}")
 
 print("\n✓ ALL DONE")
+
+"""
+============================================================
+MuseTalk 1.5 | T4 | FP16
+============================================================
+
+[1/16] Python 3.10
+  ✓ Python 3.10
+
+[2/16] Python environment
+  Creating environment...
+  Installing python3.10-venv...
+  ✓ Environment ready
+
+[3/16] pip
+  ✓ pip ready
+
+[4/16] PyTorch 2.0.1 + CUDA 11.8
+  Installing PyTorch...
+  ✓ PyTorch ready
+
+[5/16] Basic dependencies
+  ✓ Basic dependencies ready
+
+[6/16] Diffusers / Transformers
+  ✓ Diffusers / Transformers ready
+
+[7/16] OpenMMLab
+  Cloning MMPose 1.1.0...
+  ✓ OpenMMLab ready
+
+[8/16] MuseTalk source
+  Cloning MuseTalk...
+
+[9/16] MuseTalk PYTHONPATH
+  ✓ PYTHONPATH configured
+
+[10/16] MuseTalk V1.5 models
+  [1/8] UNet
+  ↓ Downloading unet.pth...
+  ✓ unet.pth (3242.6 MB)
+  [2/8] MuseTalk config
+  ↓ Downloading musetalk.json...
+  ✓ musetalk.json (0.0 MB)
+  [3/8] DWPose
+  ↓ Downloading dw-ll_ucoco_384.pth...
+  ✓ dw-ll_ucoco_384.pth (388.0 MB)
+  [4/8] SyncNet
+  ↓ Downloading latentsync_syncnet.pt...
+  ✓ latentsync_syncnet.pt (1419.1 MB)
+  [5/8] SD VAE
+  ↓ Downloading config.json...
+  ✓ config.json (0.0 MB)
+  ↓ Downloading diffusion_pytorch_model.bin...
+  ✓ diffusion_pytorch_model.bin (319.2 MB)
+  [6/8] Whisper
+  ↓ Downloading config.json...
+  ✓ config.json (0.0 MB)
+  ↓ Downloading pytorch_model.bin...
+  ✓ pytorch_model.bin (144.1 MB)
+  ↓ Downloading preprocessor_config.json...
+  ✓ preprocessor_config.json (0.2 MB)
+  [7/8] Face Parsing
+  ↓ Downloading 79999_iter.pth...
+  ✓ 79999_iter.pth (50.8 MB)
+  [8/8] Face Parsing ResNet18
+  ↓ Downloading resnet18-5c106cde.pth...
+  ✓ resnet18-5c106cde.pth (44.7 MB)
+  ✓ All model downloads checked
+
+[11/16] Environment verification
+  ✓ Environment OK
+
+[12/16] Model verification
+  ✓ DWPose
+  ✓ Face Parsing
+  ✓ Face Parsing ResNet
+  ✓ MuseTalk V1.5 UNet
+  ✓ MuseTalk V1.5 config
+  ✓ SyncNet
+  ✓ SD VAE
+  ✓ SD VAE config
+  ✓ Whisper
+  ✓ Whisper config
+  ✓ Whisper preprocessor
+  ✓ All models ready
+
+[13/16] Input
+  ✓ Image: person.jpg
+  ✓ Audio: speech.mp3
+
+[14/16] Prepare image
+  ✓ Image ready: 1280x1706
+
+[15/16] Inference config
+  ✓ Config ready
+
+[16/16] MuseTalk V1.5 inference
+  🚀 T4 / FP16 inference starting...
+  ✓ MuseTalk inference finished
+
+============================================================
+🎉 MuseTalk FINISHED
+============================================================
+Output: /content/musetalk_work/result/v15/person_even_speech.mp4
+Size: 0.26 MB
+Log: /content/musetalk_work/musetalk.log
+
+✓ ALL DONE
+"""
