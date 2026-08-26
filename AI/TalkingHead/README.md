@@ -1,6 +1,6 @@
 # 语音驱动人像说话/播报视频生成 (Talking Head Generation)
 
-基于多模态输入（单张人像照片、音频及文本对齐数据）实现高保真度的“语音驱动人像说话/播报”视频生成
+基于多模态输入（单张人像照片、音频及文本对齐数据）实现高保真度的 "语音驱动人像说话/播报" 视频生成
 
 Talking Head Generation / Talking Face Synthesis
 
@@ -18,4 +18,4 @@ Talking Head Generation / Talking Face Synthesis
 
 - [基于 MuseTalk1.5 实现真人播报视频生成](./MuseTalk1.5/talking_by_musetalk.py)
 
-  基于 MuseTalk1.5 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成播报视频
+  基于 MuseTalk1.5 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
