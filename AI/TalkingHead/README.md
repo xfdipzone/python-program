@@ -10,12 +10,12 @@ Talking Head Generation / Talking Face Synthesis
 
 - [基于 SadTalker 实现真人播报视频生成](./SadTalker/talking_by_sadtalker.py)
 
-  基于 SadTalker 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
+  基于 **SadTalker** 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
 
 ---
 
 ## MuseTalk 1.5
 
-- [基于 MuseTalk1.5 实现真人播报视频生成](./MuseTalk1.5/talking_by_musetalk.py)
+- [基于 MuseTalk 1.5 实现真人播报视频生成](./MuseTalk1.5/talking_by_musetalk.py)
 
-  基于 MuseTalk1.5 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
+  基于 **MuseTalk 1.5** 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
