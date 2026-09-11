@@ -11,7 +11,7 @@ from transformers import (
 from qwen_vl_utils import process_vision_info
 
 """
-自动识别图片内容为文本（基于 Qwen2.5-VL）
+自动识别图像内容为自然语言文本（基于 Qwen2.5-VL）
 
 模型：
 https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
