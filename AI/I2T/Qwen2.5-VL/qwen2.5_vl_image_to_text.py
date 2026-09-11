@@ -1,5 +1,8 @@
 # coding=utf-8
 import torch
+
+from IPython.display import display
+from PIL import Image
 from transformers import (
     Qwen2_5_VLForConditionalGeneration,
     AutoProcessor,
@@ -16,6 +19,7 @@ https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
 
 dependency packages
 !pip install -U transformers accelerate bitsandbytes qwen-vl-utils
+!pip install pillow ipython
 """
 # 模型配置
 model_id = "Qwen/Qwen2.5-VL-7B-Instruct"
@@ -167,7 +171,17 @@ output_text = processor.batch_decode(
 )
 
 
+# 显示原始图片
+image = Image.open(image_path)
+
+display(
+    image.resize(
+        (800, int(image.height * 800 / image.width))
+    )
+)
+
 # 输出结果
+print("\n")
 print("📷 图片分析结果")
 print("=" * 50)
 print(output_text[0])
@@ -175,9 +189,9 @@ print(output_text[0])
 """
 📷 图片分析结果
 ==================================================
-一位女性坐在泳池边的瓷砖地板上。她穿着一件粉红色的比基尼，露出健康的肤色和纤细的四肢。她的头发扎成一个高高的发髻，显得非常整洁。她面带微笑，表情愉悦，似乎在享受阳光和游泳池带来的乐趣。
+一位女性坐在泳池边的瓷砖地板上。她穿着一件粉红色的比基尼，露出健康的肤色和纤细的四肢。她的头发扎成一个高马尾，显得清爽利落。她面带微笑，表情愉悦，似乎在享受阳光和游泳池带来的美好时光。
 
-背景中可以看到一个清澈的蓝色泳池，泳池周围是绿色植物和一些大型盆栽。这些盆栽整齐地排列着，为整个场景增添了一丝生机。泳池旁边有一堵浅色的墙壁，上面有一些绿色植物点缀其中。墙后方还有一排黑色的金属栅栏，可能用于保护隐私或安全。
+背景中可以看到一个清澈的蓝色泳池，泳池周围是绿色植物和一些大型盆栽。这些植物为场景增添了一抹生机，营造出一种宁静和谐的氛围。远处还有一些建筑物的部分轮廓，可能是酒店或度假村的一部分。
 
-地面是由深色的瓷砖铺成，反射出周围的光线，显得格外明亮。整体环境给人一种宁静而舒适的氛围，适合放松和享受夏日时光。
+地面的瓷砖地板反射出阳光，增加了画面的明亮感。整体来看，这个场景给人一种轻松愉快的感觉，仿佛是一个温暖的夏日午后。
 """
