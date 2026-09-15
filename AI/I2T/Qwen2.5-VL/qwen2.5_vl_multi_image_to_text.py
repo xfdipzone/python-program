@@ -1,7 +1,8 @@
 # coding=utf-8
 import torch
+import base64
 
-from IPython.display import display
+from IPython.display import display, HTML
 from PIL import Image
 from transformers import (
     Qwen2_5_VLForConditionalGeneration,
@@ -192,14 +193,42 @@ output_text = processor.batch_decode(
 
 
 # 显示原始图片集合
-for image_path in image_paths:
-    image = Image.open(image_path)
+images_per_row = 3
+image_width = 400
 
-    display(
-        image.resize(
-            (300, int(image.height * 300 / image.width))
-        )
-    )
+html = "<table><tr>"
+
+for index, image_path in enumerate(image_paths):
+    image_name = Path(image_path).name
+    suffix = Path(image_path).suffix.lower()
+
+    mime_type = {
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".png": "image/png",
+        ".webp": "image/webp",
+    }.get(suffix, "image/jpeg")
+
+    with open(image_path, "rb") as f:
+        image_data = base64.b64encode(f.read()).decode("utf-8")
+
+    html += f"""
+        <td style="text-align:center; padding:10px;">
+            <img
+                src="data:{mime_type};base64,{image_data}"
+                width="{image_width}"
+            >
+            <br>
+            {image_name}
+        </td>
+    """
+
+    if (index + 1) % images_per_row == 0:
+        html += "</tr><tr>"
+
+html += "</tr></table>"
+
+display(HTML(html))
 
 # 输出结果
 print("\n")
