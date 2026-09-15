@@ -192,43 +192,53 @@ output_text = processor.batch_decode(
 )
 
 
+# 显示原始图片集合方法（HTML）
+def display_images(
+        image_paths,
+        images_per_row=3,
+        image_width=400
+):
+    html = "<table><tr>"
+
+    for index, image_path in enumerate(image_paths):
+        image_name = Path(image_path).name
+        suffix = Path(image_path).suffix.lower()
+
+        mime_type = {
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".png": "image/png",
+            ".webp": "image/webp",
+        }.get(suffix, "image/jpeg")
+
+        with open(image_path, "rb") as f:
+            image_data = base64.b64encode(f.read()).decode("utf-8")
+
+        html += f"""
+            <td style="text-align:center; padding:10px;">
+                <img
+                    src="data:{mime_type};base64,{image_data}"
+                    width="{image_width}"
+                >
+                <br>
+                {image_name}
+            </td>
+        """
+
+        if (index + 1) % images_per_row == 0:
+            html += "</tr><tr>"
+
+    html += "</tr></table>"
+
+    display(HTML(html))
+
+
 # 显示原始图片集合
-images_per_row = 3
-image_width = 400
-
-html = "<table><tr>"
-
-for index, image_path in enumerate(image_paths):
-    image_name = Path(image_path).name
-    suffix = Path(image_path).suffix.lower()
-
-    mime_type = {
-        ".jpg": "image/jpeg",
-        ".jpeg": "image/jpeg",
-        ".png": "image/png",
-        ".webp": "image/webp",
-    }.get(suffix, "image/jpeg")
-
-    with open(image_path, "rb") as f:
-        image_data = base64.b64encode(f.read()).decode("utf-8")
-
-    html += f"""
-        <td style="text-align:center; padding:10px;">
-            <img
-                src="data:{mime_type};base64,{image_data}"
-                width="{image_width}"
-            >
-            <br>
-            {image_name}
-        </td>
-    """
-
-    if (index + 1) % images_per_row == 0:
-        html += "</tr><tr>"
-
-html += "</tr></table>"
-
-display(HTML(html))
+display_images(
+    image_paths=image_paths,
+    images_per_row=3,
+    image_width=400
+)
 
 # 输出结果
 print("\n")
@@ -241,9 +251,9 @@ print(output_text[0])
 ==================================================
 第一张图片展示了一位女性坐在沙滩上。她穿着一件蓝色的连衣裙，戴着一顶编织的草帽，面带微笑。她的右手在沙地上画了一个心形图案。背景是波光粼粼的海水和细腻的沙滩，给人一种宁静而愉悦的感觉。
 
-第二张图片中，一位女性坐在一个巨大的玫瑰熊旁边。这个玫瑰熊是由红色玫瑰制成的，胸前有一个粉色的心形装饰。她穿着白色上衣和灰色裙子，脚上穿着白色的鞋子。背景是一个室内场景，有玻璃墙和灯光效果，营造出一种浪漫温馨的氛围。
+第二张图片中，一位女性坐在一个巨大的玫瑰熊旁边。这个玫瑰熊由许多红色的玫瑰花组成，胸前有一个粉色的心形装饰。她穿着白色上衣和灰色裙子，脚上穿着白色的鞋子。背景是一个室内场景，有玻璃墙和灯光效果，营造出一种浪漫温馨的氛围。
 
-第三张图片显示了一位女性抱着一只猫。她穿着白色T恤，头上戴着一个毛绒兔耳朵发饰。她的表情显得很温柔，似乎在享受与猫咪相处的时光。背景是一个室内环境，墙壁是浅绿色的，旁边有一些装饰品。猫咪有着灰白相间的毛色，正依偎在她的怀里，显得非常可爱。
+第三张图片显示了一位女性抱着一只猫。她穿着白色的衣服，头上戴着一个毛绒兔耳朵发饰。她的表情温柔，目光看向镜头。这只猫有着灰白相间的毛色，正依偎在她的怀里。背景是一间房间，墙壁是浅绿色，床上铺着白色床单，旁边放着一些物品。整个场景显得非常温馨和谐。
 
-这三张图片虽然拍摄地点和场景各不相同，但都传递出一种轻松愉快的氛围。第一张和第三张图片中的人物都展现出愉悦的心情，而第二张图片则充满了浪漫的气息。
+这三张图片虽然拍摄地点和场景各不相同，但都传递出一种轻松愉快的情绪。第一张是在海滩上的休闲时光，第二张是在室内享受浪漫时刻，第三张则是在家中与宠物亲密互动。每一张照片都捕捉到了人物的幸福瞬间，展现了不同场景下的美好时光。
 """
