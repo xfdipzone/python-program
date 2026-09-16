@@ -92,7 +92,7 @@
 
 ---
 
-### TalkingHead（自动语音识别）| [Explore](./TalkingHead/)
+### TalkingHead（语音驱动人像说话/播报视频生成）| [Explore](./TalkingHead/)
 
 **定位：** 基于多模态输入（单张人像照片、音频及文本对齐数据）实现高保真度的 "语音驱动人像说话/播报" 视频生成
 
