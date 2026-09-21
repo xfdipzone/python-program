@@ -29,3 +29,7 @@
 - [基于 InternVL3 实现自动识别图像内容为自然语言文本](./InternVL3/internvl3_image_to_text.py)
 
   基于 InternVL3 实现自动识别图像，并将识别的图像内容描述为自然语言文本
+
+- [基于 InternVL3 实现批量独立自动识别图像内容为自然语言文本](./InternVL3/internvl3_batch_image_to_text.py)
+
+  基于 InternVL3 实现批量独立自动识别图像，并将识别的多个图像内容分别描述为自然语言文本
