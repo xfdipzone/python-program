@@ -36,11 +36,11 @@ output_dir = "data/generated"
 os.makedirs(output_dir, exist_ok=True)
 
 # 生成的图片路径
-output_image = os.path.join(output_dir, "qwen_image_2.1.png")
+output_image = os.path.join(output_dir, "qwen_image_2.1.jpg")
 
 # Prompt
 prompt = """
-一张全景全身照，一位优雅的中国短发女模特，皮肤较白净，自信地站立着，直视镜头。
+一张全景全身照，一位17岁优雅的中国长发女模特，皮肤较白净，自信地站立着，直视镜头。
 她身穿一套淡黄色分体式蕾丝内衣，包括精致的文胸和蕾丝内裤，均为半透光的。
 她的黑发自然下垂，表情从容。背景是纯白色的墙壁，没有多余的装饰或观众。
 光线柔和而均匀，突出了模特的气质和内衣的细节。
@@ -131,7 +131,7 @@ with torch.inference_mode():
 
 
 # 保存图片
-result.save(output_image)
+result.convert("RGB").save(output_image, format="JPEG", quality=95)
 
 # 显示图片
 display(result)
