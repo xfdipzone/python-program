@@ -8,7 +8,7 @@ from diffusers import QwenImage21Pipeline
 from diffusers.quantizers import PipelineQuantizationConfig
 
 """
-根据参考图与文字内容生成图片（基于 Qwen-Image-2.1）
+根据参考图与自然语言文本内容生成图片（基于 Qwen-Image-2.1）
 
 模型：
 https://huggingface.co/Qwen/Qwen-Image-2.1
