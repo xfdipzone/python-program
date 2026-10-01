@@ -11,3 +11,7 @@
 - [基于 Qwen-Image-2.1 实现自然语言文本生成图像](./Qwen-Image-2.1/qwen_image_2.1_text_to_image.py)
 
   基于 Qwen-Image-2.1 模型，实现自然语言文本生成图像
+
+- [基于 Qwen-Image-2.1 实现根据参考图与自然语言文本生成图像](./Qwen-Image-2.1/qwen_image_2.1_text_to_image_with_reference.py)
+
+  基于 Qwen-Image-2.1 模型，实现根据用户提供的参考图与自然语言文本，生成图像
