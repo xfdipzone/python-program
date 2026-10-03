@@ -12,6 +12,46 @@
 
   基于 Qwen-Image-2.1 模型，实现自然语言文本生成图像
 
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  一张全景全身照，一位18岁可爱的中国长发女模特，皮肤较白净，自信地站立着，直视镜头。
+  她身穿一套淡紫色分体式蕾丝内衣，包括精致的文胸和蕾丝内裤，均为半透光的。
+  她的黑发自然下垂，表情从容。背景是纯白色的墙壁，没有多余的装饰或观众。
+  光线柔和而均匀，突出了模特的气质和内衣的细节。
+  高清写实风格，电影级画质，8K分辨率。
+  </pre>
+  <img src="./data/generated/qwen_image_2.1.jpg" width="500" />
+  </details>
+  </div>
+
 - [基于 Qwen-Image-2.1 实现根据参考图与自然语言文本生成图像](./Qwen-Image-2.1/qwen_image_2.1_text_to_image_with_reference.py)
 
   基于 Qwen-Image-2.1 模型，实现根据用户提供的参考图与自然语言文本，生成图像
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  将人物改为穿粉红色的旗袍。
+
+  保持人物的脸部、发型、身体、姿势、背景、街道环境、
+  建筑物、构图和摄影角度尽可能不变。
+
+  只修改人物的服装。
+
+  真实摄影风格，
+  自然的人物姿态，
+  真实的皮肤质感，
+  自然光照，
+  高细节。
+  </pre>
+  <p>参考图</p>
+  <img src="./data/reference.jpg" weight="500" />
+  <p>生成图</p>
+  <img src="./data/generated/qwen_image_2.1_with_reference.jpg" weight="500" />
+  </details>
+  </div>
