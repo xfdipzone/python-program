@@ -50,8 +50,8 @@
   高细节。
   </pre>
   <p>参考图</p>
-  <img src="./data/reference.jpg" weight="500" />
+  <img src="./data/reference.jpg" width="500" />
   <p>生成图</p>
-  <img src="./data/generated/qwen_image_2.1_with_reference.jpg" weight="500" />
+  <img src="./data/generated/qwen_image_2.1_with_reference.jpg" width="500" />
   </details>
   </div>
