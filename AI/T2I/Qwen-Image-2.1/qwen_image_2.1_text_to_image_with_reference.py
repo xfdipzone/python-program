@@ -152,6 +152,6 @@ print("参考图\n")
 display(reference_image)
 
 # 显示图片
-print("生成的图片\n")
+print("\n生成的图片\n")
 
 display(result)
