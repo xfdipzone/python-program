@@ -20,7 +20,7 @@ from diffusers import (
 from nunchaku import NunchakuZImageTransformer2DModel
 
 """
-根据自然语言文本内容生成图片（基于 Z-Image-Trubo）
+根据自然语言文本内容生成图片（基于 Z-Image-Turbo）
 
 模型：
 https://huggingface.co/Tongyi-MAI/Z-Image-Turbo
@@ -40,7 +40,7 @@ output_dir = "data/generated"
 os.makedirs(output_dir, exist_ok=True)
 
 # 生成的图片路径
-output_image = os.path.join(output_dir, "z-image-trubo.jpg")
+output_image = os.path.join(output_dir, "z-image-turbo.jpg")
 
 # Prompt
 prompt = """
@@ -65,7 +65,7 @@ model_id = "Tongyi-MAI/Z-Image-Turbo"
 
 
 # 加载模型
-print("开始加载 Z-Image-Trubo")
+print("开始加载 Z-Image-Turbo")
 
 nunchaku_model = (
     "nunchaku-ai/nunchaku-z-image-turbo/"
