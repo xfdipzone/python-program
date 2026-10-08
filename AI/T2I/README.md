@@ -55,3 +55,32 @@
   <img src="./data/generated/qwen_image_2.1_with_reference.jpg" width="500" />
   </details>
   </div>
+
+---
+
+## Z-Image-Turbo
+
+**Z-Image-Turbo** 是阿里通义实验室开源的一款高效文本生成图像模型，采用约 6B 参数的单流 DiT 架构，并通过蒸馏技术将生成过程压缩至约 8 个 NFE，在保持较高图像质量的同时显著提升生成速度
+
+该模型支持中英文文本提示，在写实人物、复杂场景、构图控制以及图像中文字生成方面表现突出，并针对消费级 GPU 进行了优化，可通过量化与显存优化方案在 16GB 级别显存设备上运行
+
+- [基于 Z-Image-Turbo 实现自然语言文本生成图像](./Z-Image-Turbo/z_image_turbo_text_to_image.py)
+
+  基于 Z-Image-Turbo 模型，实现自然语言文本生成图像
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  全身人像摄影，人物从头顶到脚底完整出现在画面中，头部、双肩、双臂、双手、双腿和双脚全部清晰可见。
+  人物身体任何部分都没有被画面边缘裁切。
+  一位18岁可爱的中国长发女模特，皮肤较白净，自信地站立着，直视镜头。
+  她身穿一套淡紫色分体式蕾丝内衣，包括精致的文胸和蕾丝内裤，均为半透光的。
+  她的黑发自然下垂，表情从容。背景是纯白色的墙壁，没有多余的装饰或观众。
+  光线柔和而均匀，突出了模特的气质和内衣的细节。
+  高清写实风格，电影级画质，8K分辨率。
+  </pre>
+  <img src="./data/generated/z-image-turbo.jpg" width="500" />
+  </details>
+  </div>
