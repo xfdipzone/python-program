@@ -84,3 +84,32 @@
   <img src="./data/generated/z-image-turbo.jpg" width="500" />
   </details>
   </div>
+
+- [基于 Z-Image-Turbo 实现根据参考图与自然语言文本生成图像](./Z-Image-Turbo/z_image_turbo_text_to_image_with_reference.py)
+
+  基于 Z-Image-Turbo 模型，实现根据用户提供的参考图与自然语言文本，生成图像
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  将人物改为穿粉红色的旗袍。
+
+  保持人物的脸部、发型、身体、姿势、背景、街道环境、
+  建筑物、构图和摄影角度尽可能不变。
+
+  只修改人物的服装。
+
+  真实摄影风格，
+  自然的人物姿态，
+  真实的皮肤质感，
+  自然光照，
+  高细节。
+  </pre>
+  <p>参考图</p>
+  <img src="./data/reference.jpg" width="500" />
+  <p>生成图</p>
+  <img src="./data/generated/z-image-turbo_with_reference.jpg" width="500" />
+  </details>
+  </div>
