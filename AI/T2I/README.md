@@ -113,3 +113,28 @@
   <img src="./data/generated/z-image-turbo_with_reference.jpg" width="500" />
   </details>
   </div>
+
+---
+
+## Animagine XL 3.1
+
+**Animagine XL 3.1** 是由 CagliostroLab 基于 Stable Diffusion XL (SDXL) 0.9/1.0 深度微调的高质量二次元/动漫风格图像生成模型。
+
+作为 3.0 版本的改进迭代，它在动漫角色还原度、画风一致性以及对复杂提示词（Prompt）的理解能力上做出了显著提升，拥有庞大的标签库（Tag）和更精准的色彩控制，能够稳定生成高分辨率、细节丰富且极其地道的日系动漫插画与角色立绘，是目前开源社区中最顶级的 Anime 风格文生图模型之一
+
+**注意：** 不支持中文提示词，需要先使用 `translators` 翻译为英文提示词
+
+- [基于 Animagine XL 3.1 实现自然语言文本生成动漫图像](./Animagine-XL-3.1/animagine_xl_3.1_text_to_image.py)
+
+  基于 Animagine XL 3.1 模型，实现自然语言文本生成动漫图像
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  一位银色长发、蓝色眼睛的动漫少女，穿着白色连衣裙，站在盛开的樱花树下，柔和的春日阳光，精致的二次元插画。
+  </pre>
+  <img src="./data/generated/animagine-xl-3.1.jpg" width="500" />
+  </details>
+  </div>
