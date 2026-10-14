@@ -138,3 +138,26 @@
   <img src="./data/generated/animagine-xl-3.1.jpg" width="500" />
   </details>
   </div>
+
+---
+
+## NetaYume-Lumina-Image
+
+基于 `Lumina Image 2.0` 微调的二次元动漫图像生成模型，支持 Danbooru 标签与自然语言提示词控制，在日系动漫插画、角色立绘、丰富场景描绘与复杂提示词遵循方面具有良好的表现，兼顾角色细节刻画、色彩表现与多元素构图生成
+
+擅长结合丰富的角色特征、服饰细节、鲜明配色、柔和光影与景深效果，呈现富有层次感和氛围感的动漫画面，兼顾复杂提示词理解、多元素构图组织与画面细节表达，适用于角色设计、唯美插画及高质量二次元场景创作
+
+- [基于 NetaYume-Lumina-Image-2.0-Diffusers 实现自然语言文本生成动漫图像](./NetaYume-Lumina-Image/netayume_lumina_image_2.0_text_to_image.py)
+
+  基于 NetaYume-Lumina-Image-2.0-Diffusers 模型，实现自然语言文本生成动漫图像
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  一位银色长发、蓝色眼睛的动漫少女，穿着白色连衣裙，站在盛开的樱花树下，柔和的春日阳光，精致的二次元插画。
+  </pre>
+  <img src="./data/generated/netayume_lumina_image_2.0_diffusers.jpg" width="500" />
+  </details>
+  </div>
