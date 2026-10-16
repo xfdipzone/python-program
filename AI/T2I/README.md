@@ -161,3 +161,18 @@
   <img src="./data/generated/netayume_lumina_image_2.0_diffusers.jpg" width="500" />
   </details>
   </div>
+
+- [基于 NetaYume-Lumina-Image-2.0-Diffusers-v40 实现自然语言文本生成动漫图像](./NetaYume-Lumina-Image/netayume_lumina_image_2.0_v40_text_to_image.py)
+
+  基于 NetaYume-Lumina-Image-2.0-Diffusers-v40 模型，实现自然语言文本生成动漫图像
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <pre>
+  Prompt:
+  一位银色长发、蓝色眼睛的动漫少女，穿着白色连衣裙，站在盛开的樱花树下，柔和的春日阳光，精致的二次元插画。
+  </pre>
+  <img src="./data/generated/netayume_lumina_image_2.0_diffusers_v40.jpg" width="500" />
+  </details>
+  </div>
