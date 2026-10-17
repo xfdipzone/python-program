@@ -14,20 +14,27 @@ import site
 # ============================================================
 
 # 定义真人照片，音频，音频与文本对齐数据文件路径（支持相对路径或绝对路径）
-IMAGE_PATH = "input/person.jpg"
-AUDIO_PATH = "input/speech.mp3"
-SUBTITLE_JSON = "input/subtitles.json"
+IMAGE_PATH = "data/input/person.jpg"
+AUDIO_PATH = "data/input/speech.mp3"
+SUBTITLE_JSON = "data/input/subtitles.json"
+
+# 输出目录
+OUTPUT_DIR = "data/generated"
+
+# 检查输出目录，如不存在则创建目录
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# 输出视频
+RAW_VIDEO = os.path.join(OUTPUT_DIR, "sadtalker.mp4")
+FINAL_VIDEO = os.path.join(OUTPUT_DIR, "sadtalker_with_subtitle.mp4")
 
 # 定义基础路径
 WORK_DIR = "talking_head"
-OUTPUT_DIR = "output"
 
 # 衍生路径计算
 SADTALKER_DIR = os.path.abspath("SadTalker")
 WAV_PATH = os.path.join(WORK_DIR, "audio.wav")
 RAW_DIR = os.path.join(WORK_DIR, "raw")
-RAW_VIDEO = os.path.join(OUTPUT_DIR, "talking_head_512.mp4")
-FINAL_VIDEO = os.path.join(OUTPUT_DIR, "talking_head_512_subtitle.mp4")
 
 print("=" * 60)
 print(">>> 开始执行真人播报视频生成全流程脚本...")
@@ -501,14 +508,14 @@ print("=" * 60)
  ✓ 阶段 5/7 完成：素材与语音采样就绪。
 
 [6/7] 正在运行 SadTalker 神经网络驱动生成说话人脸视频（耗时较长，请稍候）...
- ✓ 阶段 6/7 完成：基础数字人视频生成完成 -> output/talking_head_512.mp4
+ ✓ 阶段 6/7 完成：基础数字人视频生成完成 -> data/generated/sadtalker.mp4
 
 [7/7] 正在生成按字数限制分行的 KTV 变色字幕 (ASS) 并进行压制...
  ✓ 阶段 7/7 完成：带字幕的最终视频压制完成。
 
 ============================================================
 🎉 全部流程顺利执行结束！
-原视频保存路径: output/talking_head_512.mp4
-最终字幕视频路径: output/talking_head_512_subtitle.mp4
+原视频保存路径: data/generated/sadtalker.mp4
+最终字幕视频路径: data/generated/sadtalker_with_subtitle.mp4
 ============================================================
 """
