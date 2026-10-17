@@ -14,9 +14,19 @@ from pathlib import Path
 ROOT = Path.cwd()
 
 # 定义真人照片，音频，音频与文本对齐数据文件路径
-INPUT_IMAGE = ROOT / "input/person.jpg"
-INPUT_AUDIO = ROOT / "input/speech.mp3"
-SUBTITLE_JSON = ROOT / "input/subtitles.json"
+INPUT_IMAGE = ROOT / "data/input/person.jpg"
+INPUT_AUDIO = ROOT / "data/input/speech.mp3"
+SUBTITLE_JSON = ROOT / "data/input/subtitles.json"
+
+# 输出目录
+OUTPUT_DIR = ROOT / "data/generated"
+
+# 检查输出目录，如不存在则创建目录
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# 输出视频
+RAW_VIDEO = OUTPUT_DIR / "musetalk.mp4"
+FINAL_VIDEO = OUTPUT_DIR / "musetalk_with_subtitle.mp4"
 
 # 定义基础路径
 MUSE_ROOT = ROOT / "MuseTalk"
@@ -26,15 +36,13 @@ PYTHON310 = "/usr/bin/python3.10"
 PYTHON = ENV_ROOT / "bin" / "python"
 
 MODEL_ROOT = MUSE_ROOT / "models"
-PREPARED_IMAGE = ROOT / "input/person_even.jpg"
+PREPARED_IMAGE = ROOT / "data/input/person_even.jpg"
 
 WORK_DIR = ROOT / "musetalk_work"
-RESULT_DIR = WORK_DIR / "result"
 CONFIG = WORK_DIR / "inference.yaml"
 LOG_FILE = WORK_DIR / "musetalk.log"
 
 WORK_DIR.mkdir(parents=True, exist_ok=True)
-RESULT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ============================================================
@@ -847,7 +855,7 @@ cmd = [
     str(CONFIG),
 
     "--result_dir",
-    str(RESULT_DIR),
+    str(OUTPUT_DIR),
 
     "--version",
     "v15",
@@ -931,7 +939,7 @@ print("\n  ✓ MuseTalk inference finished")
 
 output_videos = []
 
-for p in RESULT_DIR.rglob("*"):
+for p in OUTPUT_DIR.rglob("*"):
     if not p.is_file():
         continue
 
@@ -946,7 +954,7 @@ MuseTalk 执行成功，
 但没有找到输出视频。
 
 Result:
-{RESULT_DIR}
+{OUTPUT_DIR}
 
 Log:
 {LOG_FILE}
@@ -1006,8 +1014,6 @@ print("    ", font_check.stdout.strip())
 print("\n[18/19] subtitles")
 
 ASS_FILE = WORK_DIR / "subtitles.ass"
-RAW_VIDEO = RESULT_DIR / "raw_musetalk.mp4"
-FINAL_VIDEO = RESULT_DIR / "final_musetalk_subtitle.mp4"
 
 if not SUBTITLE_JSON.exists():
     raise FileNotFoundError(f"找不到字幕文件：\n{SUBTITLE_JSON}")
@@ -1222,12 +1228,12 @@ print("\n[19/19] Burn subtitles")
 # 保存原始 MuseTalk 视频
 # ------------------------------------------------------------
 
-# 当前 RESULT_DIR 中可能已经存在历史输出。
+# 当前 OUTPUT_DIR 中可能已经存在历史输出。
 # 排除 raw/final 后，只选择本次最新生成的视频。
 
 output_videos = []
 
-for p in RESULT_DIR.rglob("*"):
+for p in OUTPUT_DIR.rglob("*"):
     if not p.is_file():
         continue
 
@@ -1384,11 +1390,10 @@ MuseTalk 1.5 | T4 | FP16
 ============================================================
 
 [1/16] Python 3.10
-  ✓ Python 3.10
+  Installing Python 3.10...
 
 [2/16] Python environment
   Creating environment...
-  Installing python3.10-venv...
   ✓ Environment ready
 
 [3/16] pip
@@ -1476,6 +1481,9 @@ MuseTalk 1.5 | T4 | FP16
 
 [16/16] MuseTalk V1.5 inference
   🚀 T4 / FP16 inference starting...
+
+  🚀 Starting MuseTalk subprocess...
+
   ✓ MuseTalk inference finished
 
 [17/19] Chinese font
@@ -1489,7 +1497,7 @@ MuseTalk 1.5 | T4 | FP16
   ✓ ASS generated: /content/musetalk_work/subtitles.ass
 
 [19/19] Burn subtitles
-  ✓ Raw video: /content/musetalk_work/result/raw_musetalk.mp4
+  ✓ Raw video: /content/data/generated/musetalk.mp4
   ✓ Raw size: 0.26 MB
   🚀 Rendering video...
 
@@ -1498,10 +1506,10 @@ MuseTalk 1.5 | T4 | FP16
 ======================================================================
 
 Raw video:
-  /content/musetalk_work/result/raw_musetalk.mp4
+  /content/data/generated/musetalk.mp4
 
 Subtitle video:
-  /content/musetalk_work/result/final_musetalk_subtitle.mp4
+  /content/data/generated/musetalk_with_subtitle.mp4
 
 Subtitle Video Size: 0.39 MB
 
