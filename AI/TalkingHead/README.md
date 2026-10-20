@@ -12,6 +12,13 @@ Talking Head Generation / Talking Face Synthesis
 
   基于 **SadTalker** 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
 
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <video src="./data/generated/sadtalker_with_subtitle.mp4" controls width="600"></video>
+  </details>
+  </div>
+
 ---
 
 ## MuseTalk 1.5
