@@ -15,7 +15,7 @@ Talking Head Generation / Talking Face Synthesis
   <div style="margin-bottom: 14px;">
   <details>
   <summary>点击展开查看</summary>
-  <video src="./data/generated/sadtalker_with_subtitle.mp4" controls width="600"></video>
+  <video src="./data/generated/sadtalker_with_subtitle.mp4" controls width="512"></video>
 
   https://github.com/user-attachments/assets/c251c86e-3c1b-45fb-9e4c-25579fdc676f
   </details>
@@ -28,3 +28,12 @@ Talking Head Generation / Talking Face Synthesis
 - [基于 MuseTalk 1.5 实现真人播报视频生成](./MuseTalk1.5/talking_by_musetalk.py)
 
   基于 **MuseTalk 1.5** 实现真人播报视频生成，通过真人人像照片、音频、以及文本对齐数据生成带字幕变色的播报视频
+
+  <div style="margin-bottom: 14px;">
+  <details>
+  <summary>点击展开查看</summary>
+  <video src="./data/generated/musetalk_with_subtitle.mp4" controls width="512"></video>
+
+  https://github.com/user-attachments/assets/8b084f96-c6bb-485b-8f43-be24e866fa9f
+  </details>
+  </div>
