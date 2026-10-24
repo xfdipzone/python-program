@@ -1,6 +1,10 @@
 # coding=utf-8
 import os
 from openai import OpenAI, AsyncOpenAI
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的变量到系统的环境变量中
+load_dotenv()
 
 class AIClient:
     """封装 AI 模型的同步、异步及流式调用。"""
