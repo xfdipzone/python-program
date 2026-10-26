@@ -9,11 +9,11 @@ dependency packages
 pip install openai
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL"),
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 # 调用 AI 写一封情信
 def write_love_letter():
@@ -22,7 +22,8 @@ def write_love_letter():
             model=COMPLETION_MODEL,
             messages=[
                 {"role": "user", "content": "write a lover letter, use chinese language."}
-            ]
+            ],
+            extra_body={"thinking": {"type": "disabled"}}
         )
     except Exception as e:
         raise e
