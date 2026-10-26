@@ -9,11 +9,11 @@ dependency packages
 pip install openai
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL"),
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 prompt = """
 Consideration product : 轩辕剑三外传天之痕steam
@@ -22,7 +22,8 @@ Consideration product : 轩辕剑三外传天之痕steam
 2. Write 5 selling points for the products in Amazon.
 3. Evaluate a price range for this product in U.S.
 
-Output the result in json format with three properties called title, selling_points and price_range, use chinese language.
+Output the result in json format with three properties called title, selling_points and price_range
+Response title and all content use chinese language.
 """
 
 def get_response(prompt):
@@ -34,6 +35,7 @@ def get_response(prompt):
             n=1,
             stop=None,
             temperature=0.0,
+            extra_body={"thinking": {"type": "disabled"}}
         )
     except Exception as e:
         raise e
