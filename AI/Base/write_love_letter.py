@@ -10,7 +10,7 @@ pip install openai
 """
 client = OpenAI(
     api_key=userdata.get("API_KEY"),
-    base_url=userdata.get("AI_BASE_URL"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
 COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")

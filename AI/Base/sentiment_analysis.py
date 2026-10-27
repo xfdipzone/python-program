@@ -9,11 +9,18 @@ dependency packages
 pip install openai
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
+
+# 系统提示词
+system_prompt = """
+你是一个情感分析器。判断用户评论是正面还是负面。
+
+请只输出一行，格式严格为：情感：正面 或 情感：负面。不要输出任何解释或其他内容。
+"""
 
 # 提示词，给出正面与负面例子
 prompts = """
@@ -25,15 +32,19 @@ prompts = """
 情感：负面
 """
 
-def get_response(prompt):
+def get_response(system_prompt, prompt):
     try:
         completions = client.chat.completions.create(
             model=COMPLETION_MODEL,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt}
+            ],
             max_tokens=1024,
             n=1,
             stop=None,
-            temperature=0.0
+            temperature=0.0,
+            extra_body={"thinking": {"type": "disabled"}}
         )
     except Exception as e:
         raise e
@@ -51,7 +62,7 @@ good_case = prompts + """
 情感：
 """
 
-print(get_response(good_case) + "\n")
+print(get_response(system_prompt, good_case) + "\n")
 
 # 负面的评论
 bad_case = prompts + """
@@ -59,7 +70,7 @@ bad_case = prompts + """
 情感：
 """
 
-print(get_response(bad_case) + "\n")
+print(get_response(system_prompt, bad_case) + "\n")
 
 # 正面的评论
 good_restaurant = prompts + """
@@ -67,7 +78,7 @@ good_restaurant = prompts + """
 情感：
 """
 
-print(get_response(good_restaurant) + "\n")
+print(get_response(system_prompt, good_restaurant) + "\n")
 
 # 负面的评论
 bad_restaurant = prompts + """
@@ -75,26 +86,15 @@ bad_restaurant = prompts + """
 情感：
 """
 
-print(get_response(bad_restaurant) + "\n")
+print(get_response(system_prompt, bad_restaurant) + "\n")
 
 
 """
 情感：正面
 
-这个评论中，用户对苹果产品的外形外观、拍照效果、运行速度等方面都给予了积极的评价，并且提到了“苹果审美一直很好”、“4800万像素真的是没的说，太好了”、“苹果的反应速度好，用上三五年也不会卡顿的”等正面表述。同时，用户还特别提到了“14pro的磨砂金真的太好看了”，表达了对产品外观的喜爱。整体来看，这个评论的情感倾向是正面的。
-
 情感：负面
-
-这个评论提到了信号不好和电池不耐用的问题，并且明确表示不推荐购买，所以整体情感是负面的。
 
 情感：正面
 
-分析：
-1. 评论中提到“这家餐馆太好吃了”，表示用户对餐馆的食物质量感到满意，这是一个正面的评价。
-2. 评论中提到“一点都不糟糕”，表示用户认为餐馆没有任何不好的地方，这也是一个正面的评价。
-综合以上两点，可以判断这条评论的情感倾向是正面的。
-
 情感：负面
-
-这个评论中使用了“太糟糕了”和“一点都不好吃”这样的负面词汇，表达了用户对这家餐馆的不满和失望，所以情感倾向是负面的。
 """
