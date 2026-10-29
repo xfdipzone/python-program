@@ -45,6 +45,7 @@ def ask(prompt, stop=None):
             n=1,
             stop=stop,
             temperature=0.5,
+            extra_body={"thinking": {"type": "disabled"}}
         )
     except Exception as e:
         raise e
