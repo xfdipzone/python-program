@@ -14,9 +14,11 @@ pip install openai
 pip install tiktoken
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
+
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 """
 配置日志
@@ -52,7 +54,8 @@ class Conversation:
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.5
+                temperature=0.5,
+                extra_body={"thinking": {"type": "disabled"}}
             )
         except Exception as e:
             raise e
@@ -91,7 +94,8 @@ class Conversation:
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.0
+                temperature=0.0,
+                extra_body={"thinking": {"type": "disabled"}}
             )
         except Exception as e:
             raise e
@@ -106,7 +110,6 @@ prompt = """你是一个游戏百科全书，用中文回答游戏的问题。�
 2. 回答限制在100个字以内"""
 
 # 初始化对话管理器
-COMPLETION_MODEL = "moonshot-v1-8k"
 conv = Conversation(COMPLETION_MODEL, prompt, 2)
 
 # 使用 tiktoken 统计 token 消耗数量
