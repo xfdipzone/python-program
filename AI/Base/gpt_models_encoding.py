@@ -25,3 +25,12 @@ df = pd.DataFrame(data, columns=['model', 'encoding'])
 
 print("OpenAI GPT Models Encoding\n")
 display(df[['model', 'encoding']])
+
+"""
+    model           encoding
+0   gpt-4o-mini     o200k_base
+1   gpt-4o          o200k_base
+2   gpt-3.5-turbo   cl100k_base
+3   davinci-002     cl100k_base
+4   gpt-5           o200k_base
+"""
