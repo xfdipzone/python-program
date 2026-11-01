@@ -1,6 +1,7 @@
 # coding=utf-8
 from openai import OpenAI
 from google.colab import userdata
+import json
 
 """
 AI 检测文字内容是否符合法规
@@ -9,11 +10,11 @@ dependency packages
 pip install openai
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 """
 判断文字内容是否被标记
@@ -37,7 +38,8 @@ def custom_moderation(content, parameters):
             messages=[
                 {"role": "system", "content": "您是一名内容审核助理。"},
                 {"role": "user", "content": prompt}
-            ]
+            ],
+            extra_body={"thinking": {"type": "disabled"}}
         )
     except Exception as e:
         raise e
@@ -61,12 +63,14 @@ violence/graphic : 以极端血腥细节描绘死亡、暴力或严重身体伤�
 parameters = "hate, hate/threatening, self-harm, sexual, sexual/minors, violence, violence/graphic"
 
 good_text = "I love my motherland"
+result = custom_moderation(good_text, parameters)
 print("text : %s\nresult : %s\n\n" %
-      (good_text, custom_moderation(good_text, parameters)))
+      (good_text, json.dumps(json.loads(result), ensure_ascii=False, indent=2)))
 
 bad_text = "I'm going to rape you daughter and then chop you to death with a knife"
+result = custom_moderation(bad_text, parameters)
 print("text : %s\nresult : %s\n\n" %
-      (bad_text, custom_moderation(bad_text, parameters)))
+      (bad_text, json.dumps(json.loads(result), ensure_ascii=False, indent=2)))
 
 
 """
