@@ -9,11 +9,11 @@ dependency packages
 pip install openai
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
-COMPLETION_MODEL = "kimi-k2-thinking"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 # 提示词
 prompt = """你是一个文本插入器，根据前文与后文的内容，补充中间的文本内容。
@@ -65,7 +65,7 @@ print("后文：\n%s" % suffix)
 在这些挑战和困难中，有些是由外部因素引起的，例如经济萧条、全球变暖和自然灾害等。
 
 AI 插入的文本：
-而另一些则源于我们内心，如心理压力、职业倦怠和人际关系紧张等。无论源自何处，这些挑战都在考验着我们的适应能力与成长潜力。
+而另一些则源于我们自身，比如能力不足、情绪波动、时间管理不善或人际关系紧张。只有全面认识这些内外因素，才能更好地应对挑战。
 
 后文：
 面对这些挑战和困难，我们需要采取积极的态度和行动来克服它们。
