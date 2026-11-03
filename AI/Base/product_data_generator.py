@@ -27,11 +27,11 @@ pip install pandas
 pip install numpy
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 # 产品数据生成器
 class ProductDataGenerator:
@@ -55,7 +55,8 @@ class ProductDataGenerator:
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.8
+                temperature=0.8,
+                extra_body={"thinking": {"type": "disabled"}}
             )
         except Exception as e:
             raise e
