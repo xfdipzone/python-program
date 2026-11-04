@@ -15,9 +15,11 @@ pip install openai
 pip install gradio
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
+
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 # 对话管理器类
 class Conversation:
@@ -39,7 +41,8 @@ class Conversation:
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.5
+                temperature=0.5,
+                extra_body={"thinking": {"type": "disabled"}}
             )
         except Exception as e:
             print(e)
@@ -77,7 +80,8 @@ class Conversation:
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.0
+                temperature=0.0,
+                extra_body={"thinking": {"type": "disabled"}}
             )
         except Exception as e:
             print(e)
@@ -96,7 +100,6 @@ prompt = """你是一个游戏百科全书，用中文回答游戏的问题。�
 2. 回答限制在100个字以内"""
 
 # 初始化对话管理器
-COMPLETION_MODEL = "moonshot-v1-8k"
 conv = Conversation(COMPLETION_MODEL, prompt, 2)
 
 # 定义提问按钮的方法
@@ -110,17 +113,30 @@ def answer(question, history=[]):
 
 
 # 构建 Gradio 界面
-with gr.Blocks(theme=gr.themes.Soft(), css="#chatbot{height:300px} .overflow-y-auto{height:500px}") as demo:
-    gr.Markdown('<h1 style="text-align: center;">游戏百科聊天机器人</h1>')
-    chatbot = gr.Chatbot(elem_id="chatbot", type="messages", allow_tags=False)
+with gr.Blocks() as demo:
+    gr.Markdown(
+        '<h1 style="text-align: center;">游戏百科聊天机器人</h1>'
+    )
+
+    chatbot = gr.Chatbot(elem_id="chatbot")
+
     state = gr.State([])
 
     with gr.Row():
-        txt = gr.Textbox(show_label=False, placeholder="请输入你的问题")
+        txt = gr.Textbox(
+            show_label=False,
+            placeholder="请输入你的问题"
+        )
 
-    txt.submit(answer, [txt, state], [chatbot, txt])
+    txt.submit(
+        answer,
+        [txt, state],
+        [chatbot, txt]
+    )
 
 demo.launch(
     share=True,
-    debug=True
+    debug=True,
+    theme=gr.themes.Soft(),
+    css="#chatbot{height:300px} .overflow-y-auto{height:500px}"
 )
