@@ -93,10 +93,11 @@ userdata.get("OPENAI_API_KEY")
 
 使用其他 AI 则修改为对应的 API KEY
 
-| AI     | API KEY        |
-| ------ | -------------- |
-| Gemini | GOOGLE_API_KEY |
-| Kimi   | KIMI_API_KEY   |
+| AI         | API KEY            |
+| ---------- | ------------------ |
+| Gemini     | GOOGLE_API_KEY     |
+| Kimi       | KIMI_API_KEY       |
+| DeepSeek   | DEEPSEEK_API_KEY   |
 
 ---
 
