@@ -32,6 +32,10 @@
 
   获取 Kimi 支持的模型列表
 
+- [DeepSeek 模型列表](./Models/deepseek_models.py)
+
+  获取 DeepSeek 支持的模型列表
+
 ---
 
 ### Embedding（向量嵌入）| [Explore](./Embedding/)
