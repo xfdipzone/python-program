@@ -18,7 +18,7 @@
 
 ### Models（模型）| [Explore](./Models/)
 
-**定位：** 热门模型，包括 OpenAI, Kimi, Gemini 等 AI 平台支持的具体模型列表
+**定位：** 热门模型，包括 OpenAI, Gemini, Kimi, DeepSeek 等 AI 平台支持的具体模型列表
 
 - [OpenAI GPT 模型列表](./Models/gpt_models.py)
 
