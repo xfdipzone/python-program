@@ -89,7 +89,7 @@ print("✅ 模型加载完成")
 
 
 # Processor
-# min_pixels / max_pixels 用于控制图片处理后的视觉 token 数量
+# shortest_edge / longest_edge 用于控制图片处理后的视觉 token 数量
 processor = AutoProcessor.from_pretrained(
     model_id,
     size={
@@ -140,7 +140,7 @@ inputs = inputs.to(model.device)
 
 
 # 开始推理
-print("\n正在分析图片，请稍候...\n")
+print("\n正在分析小票，请稍候...\n")
 
 with torch.inference_mode():
     generated_ids = model.generate(
@@ -168,7 +168,7 @@ output_text = processor.batch_decode(
 )
 
 
-# 显示原始图片
+# 显示原始小票
 image = Image.open(image_path)
 
 display(
