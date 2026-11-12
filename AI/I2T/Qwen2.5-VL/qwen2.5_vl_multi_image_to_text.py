@@ -114,11 +114,13 @@ print("✅ 模型加载完成")
 
 
 # Processor
-# min_pixels / max_pixels 用于控制图片处理后的视觉 token 数量
+# shortest_edge / longest_edge 用于控制图片处理后的视觉 token 数量
 processor = AutoProcessor.from_pretrained(
     model_id,
-    min_pixels=256 * 28 * 28,
-    max_pixels=1280 * 28 * 28
+    size={
+        "shortest_edge": 256 * 28 * 28,
+        "longest_edge": 1280 * 28 * 28
+    }
 )
 
 
