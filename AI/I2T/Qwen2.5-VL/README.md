@@ -17,3 +17,7 @@
 - [基于 Qwen2.5-VL 实现自动识别多图像内容综合分析为自然语言文本](./qwen2.5_vl_multi_image_to_text.py)
 
   基于 Qwen2.5-VL 实现自动识别多图像内容，并综合分析，将多图像内容描述为自然语言文本
+
+- [基于 Qwen2.5-VL 实现识别小票内容为文本](./qwen2.5_vl_scan_receipt.py)
+
+  基于 Qwen2.5-VL 实现识别小票内容为文本，并使用 JSON 格式输出
