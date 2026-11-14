@@ -12,7 +12,7 @@ from transformers import (
 from qwen_vl_utils import process_vision_info
 
 """
-识别小票内容（基于 Qwen2.5-VL）
+识别小票内容并结构化输出（基于 Qwen2.5-VL）
 
 模型：
 https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
@@ -182,3 +182,165 @@ print("\n")
 print("🧾 小票识别结果")
 print("=" * 50)
 print(output_text[0])
+
+"""
+🧾 小票识别结果
+==================================================
+{
+  "receipt_number": "192",
+  "merchant": {
+    "name": "McDonald's",
+    "address": "16725 Stony Plain Rd Edmonton AB T5P 4A9",
+    "phone": "780-414-8362",
+    "tax_id": null
+  },
+  "receipt_type": "retail",
+  "currency": "CAD",
+  "transaction_date": "2018-03-10",
+  "transaction_time": "19:39:12",
+  "items": [
+    {
+      "name": "Delivery",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 0.00,
+      "subtotal": 0.00,
+      "discount": 0.00,
+      "total": 0.00
+    },
+    {
+      "name": "10 McNuggets EVM",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 10.29,
+      "subtotal": 10.29,
+      "discount": 0.00,
+      "total": 10.29
+    },
+    {
+      "name": "Barbeque Sauce",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 0.40,
+      "subtotal": 0.40,
+      "discount": 0.00,
+      "total": 0.40
+    },
+    {
+      "name": "L Coke",
+      "category": "Beverages",
+      "quantity": 1,
+      "unit": "L",
+      "unit_price": 0.00,
+      "subtotal": 0.00,
+      "discount": 0.00,
+      "total": 0.00
+    },
+    {
+      "name": "M French Fries",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 2.99,
+      "subtotal": 2.99,
+      "discount": 0.00,
+      "total": 2.99
+    },
+    {
+      "name": "HM GrChs S-Fry Yog",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 3.99,
+      "subtotal": 3.99,
+      "discount": 0.00,
+      "total": 3.99
+    },
+    {
+      "name": "Snoopy",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 0.00,
+      "subtotal": 0.00,
+      "discount": 0.00,
+      "total": 0.00
+    },
+    {
+      "name": "HM Apple Juice",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 0.00,
+      "subtotal": 0.00,
+      "discount": 0.00,
+      "total": 0.00
+    },
+    {
+      "name": "Cookies",
+      "category": "Food & Groceries",
+      "quantity": 6,
+      "unit": "pcs",
+      "unit_price": 0.00,
+      "subtotal": 2.89,
+      "discount": 0.00,
+      "total": 2.89
+    },
+    {
+      "name": "Choc Chip Cookie",
+      "category": "Food & Groceries",
+      "quantity": 6,
+      "unit": "pcs",
+      "unit_price": 0.00,
+      "subtotal": 2.89,
+      "discount": 0.00,
+      "total": 2.89
+    },
+    {
+      "name": "Baked Apple Pie",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "pcs",
+      "unit_price": 1.19,
+      "subtotal": 1.19,
+      "discount": 0.00,
+      "total": 1.19
+    },
+    {
+      "name": "French Fries",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "L",
+      "unit_price": 3.29,
+      "subtotal": 3.29,
+      "discount": 0.00,
+      "total": 3.29
+    },
+    {
+      "name": "Iced Tea",
+      "category": "Food & Groceries",
+      "quantity": 1,
+      "unit": "L",
+      "unit_price": 2.99,
+      "subtotal": 2.99,
+      "discount": 0.00,
+      "total": 2.99
+    }
+  ],
+  "summary": {
+    "subtotal": 25.04,
+    "discount": 1.11,
+    "tax": 1.11,
+    "service_charge": null,
+    "tip": null,
+    "total": 26.15,
+    "amount_paid": 26.15,
+    "change": 0.00
+  },
+  "warnings": [],
+  "confidence": 0.8
+}
+"""
