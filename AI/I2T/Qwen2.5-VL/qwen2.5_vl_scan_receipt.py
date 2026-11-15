@@ -15,15 +15,15 @@ from qwen_vl_utils import process_vision_info
 识别小票内容并结构化输出（基于 Qwen2.5-VL）
 
 模型：
-https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
-轻量高效的 7B 级多模态模型，在复杂视觉与高难文档解析上具备极高准确率，性能达同体量领先水平
+https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct
+轻量高效的 3B 级多模态模型，具备图像理解、文字识别、文档解析及结构化信息提取能力，更少的模型参数和更低的计算资源需求
 
 dependency packages
 !pip install -U transformers accelerate bitsandbytes qwen-vl-utils
 !pip install pillow ipython
 """
 # 模型配置
-model_id = "Qwen/Qwen2.5-VL-7B-Instruct"
+model_id = "Qwen/Qwen2.5-VL-3B-Instruct"
 
 # 小票路径
 image_path = "data/receipt/receipt.jpg"
@@ -37,7 +37,7 @@ def readfile(file):
         if not os.path.exists(file):
             raise FileNotFoundError(f"文件不存在: {file}")
 
-        with open(prompt_file, "r", encoding="utf-8") as f:
+        with open(file, "r", encoding="utf-8") as f:
             prompt = f.read()
 
         return prompt
