@@ -187,160 +187,62 @@ print(output_text[0])
 🧾 小票识别结果
 ==================================================
 {
-  "receipt_number": "192",
-  "merchant": {
-    "name": "McDonald's",
-    "address": "16725 Stony Plain Rd Edmonton AB T5P 4A9",
-    "phone": "780-414-8362",
-    "tax_id": null
-  },
-  "receipt_type": "retail",
-  "currency": "CAD",
-  "transaction_date": "2018-03-10",
-  "transaction_time": "19:39:12",
-  "items": [
+  "raw_text": [
+    "****DUPLICATE****",
+    "## BILLA",
+    "Story",
+    "16725 Stony Plain Rd",
+    "Edmonton AB T5P 4A9",
+    "Store#: 3859 Tel#: 780-414-6362",
+    "Welcome to all day breakfast",
+    "# Mc Donald's",
+    "192",
+    "KSN# 1 03/10/2018 07:39:12 PM",
+    "QTY ITEM TOTAL",
+    "1 Delivery 0.00",
+    "1 IQ McNuggets EVM 10.29",
+    "1 Barbeque Sauce",
+    "1 Barbeque Sauce",
+    "1 L Coke 0.40",
+    "1 M French Fries",
+    "1 HM GrChs S-Fry Yog 3.99",
+    "1 Snoopy",
+    "1 HM Apple Juice 2.89",
+    "1 6 Cookies",
+    "6 Choc Chip Cookie",
+    "1 Baked Apple Pie 1.19",
+    "1 L French Fries 3.29",
+    "1 L Iced Tea 2.99",
+    "Subtotal 25.04",
+    "GST 1.11",
+    "Take-Out Total 26.15",
+    "CREDIT SALES - McDelivery 26.15",
+    "Change 0.00",
+    "GST #: 120907092",
+    "SALE #04kdfw9532"
+  ],
+  "fields": [
     {
-      "name": "Delivery",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 0.00,
-      "subtotal": 0.00,
-      "discount": 0.00,
-      "total": 0.00
+      "label": "Subtotal",
+      "value": "25.04"
     },
     {
-      "name": "10 McNuggets EVM",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 10.29,
-      "subtotal": 10.29,
-      "discount": 0.00,
-      "total": 10.29
+      "label": "GST",
+      "value": "1.11"
     },
     {
-      "name": "Barbeque Sauce",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 0.40,
-      "subtotal": 0.40,
-      "discount": 0.00,
-      "total": 0.40
+      "label": "Take-Out Total",
+      "value": "26.15"
     },
     {
-      "name": "L Coke",
-      "category": "Beverages",
-      "quantity": 1,
-      "unit": "L",
-      "unit_price": 0.00,
-      "subtotal": 0.00,
-      "discount": 0.00,
-      "total": 0.00
+      "label": "Change",
+      "value": "0.00"
     },
     {
-      "name": "M French Fries",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 2.99,
-      "subtotal": 2.99,
-      "discount": 0.00,
-      "total": 2.99
-    },
-    {
-      "name": "HM GrChs S-Fry Yog",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 3.99,
-      "subtotal": 3.99,
-      "discount": 0.00,
-      "total": 3.99
-    },
-    {
-      "name": "Snoopy",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 0.00,
-      "subtotal": 0.00,
-      "discount": 0.00,
-      "total": 0.00
-    },
-    {
-      "name": "HM Apple Juice",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 0.00,
-      "subtotal": 0.00,
-      "discount": 0.00,
-      "total": 0.00
-    },
-    {
-      "name": "Cookies",
-      "category": "Food & Groceries",
-      "quantity": 6,
-      "unit": "pcs",
-      "unit_price": 0.00,
-      "subtotal": 2.89,
-      "discount": 0.00,
-      "total": 2.89
-    },
-    {
-      "name": "Choc Chip Cookie",
-      "category": "Food & Groceries",
-      "quantity": 6,
-      "unit": "pcs",
-      "unit_price": 0.00,
-      "subtotal": 2.89,
-      "discount": 0.00,
-      "total": 2.89
-    },
-    {
-      "name": "Baked Apple Pie",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "pcs",
-      "unit_price": 1.19,
-      "subtotal": 1.19,
-      "discount": 0.00,
-      "total": 1.19
-    },
-    {
-      "name": "French Fries",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "L",
-      "unit_price": 3.29,
-      "subtotal": 3.29,
-      "discount": 0.00,
-      "total": 3.29
-    },
-    {
-      "name": "Iced Tea",
-      "category": "Food & Groceries",
-      "quantity": 1,
-      "unit": "L",
-      "unit_price": 2.99,
-      "subtotal": 2.99,
-      "discount": 0.00,
-      "total": 2.99
+      "label": "GST #",
+      "value": "120907092"
     }
   ],
-  "summary": {
-    "subtotal": 25.04,
-    "discount": 1.11,
-    "tax": 1.11,
-    "service_charge": null,
-    "tip": null,
-    "total": 26.15,
-    "amount_paid": 26.15,
-    "change": 0.00
-  },
-  "warnings": [],
-  "confidence": 0.8
+  "warnings": []
 }
 """
