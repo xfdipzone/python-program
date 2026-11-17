@@ -124,9 +124,20 @@ warnings 仅用于记录 OCR 识别问题，例如：
 
 {
   "raw_text": [],
-  "fields": [],
+  "fields": [
+    {
+      "label": "",
+      "value": ""
+    }
+  ],
   "warnings": []
 }
+
+所有 raw_text、label 和 value 均使用字符串。
+如果没有识别到任何辅助字段，fields 输出空数组。
+如果没有 OCR 警告，warnings 输出空数组。
+必须保留小票上的原始标签和原始数值，
+不要翻译、修改、计算或推断。
 
 字段要求：
 
@@ -134,11 +145,38 @@ warnings 仅用于记录 OCR 识别问题，例如：
 - fields：必填，对象数组，保存能够明确识别的原始标签和值。
 - warnings：必填，字符串数组，保存 OCR 识别问题。
 
-所有 raw_text、label 和 value 均使用字符串。
+fields 提取规则：
 
-如果没有识别到任何辅助字段，fields 输出空数组。
+fields 应提取小票中所有明确出现的标签和值，
+不限于金额字段。
 
-如果没有 OCR 警告，warnings 输出空数组。
+包括但不限于：
+Store#
+Tel#
+Receipt Number
+Date
+Time
+GST #
+SALE #
+Subtotal
+GST
+Take-Out Total
+Change
+
+如果标签和数值明确对应，必须提取。
+如果无法确定对应关系，不要猜测。
+
+特别注意：
+
+1. 不要只提取金额和税务字段，商家信息、电话号码、门店编号、交易编号等也必须检查。
+2. 一行中如果出现多个标签和值，必须分别提取。
+   例如：
+   "Store#: 3859 Tel#: 780-414-6362"
+   应提取为两个独立对象：
+   {"label": "Store#", "value": "3859"}
+   {"label": "Tel#", "value": "780-414-6362"}
+3. 对于明确带有标签的编号，例如 "SALE #04kdfw9532"，必须提取。
+4. 不要因为某个字段不是金额字段而忽略它。
 
 # 八、最终输出限制
 
