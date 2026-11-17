@@ -15,15 +15,15 @@ from qwen_vl_utils import process_vision_info
 识别小票内容并结构化输出（基于 Qwen2.5-VL）
 
 模型：
-https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct
-轻量高效的 3B 级多模态模型，具备图像理解、文字识别、文档解析及结构化信息提取能力，更少的模型参数和更低的计算资源需求
+https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
+轻量高效的 7B 级多模态模型，在复杂视觉与高难文档解析上具备极高准确率，性能达同体量领先水平
 
 dependency packages
 !pip install -U transformers accelerate bitsandbytes qwen-vl-utils
 !pip install pillow ipython
 """
 # 模型配置
-model_id = "Qwen/Qwen2.5-VL-3B-Instruct"
+model_id = "Qwen/Qwen2.5-VL-7B-Instruct"
 
 # 小票路径
 image_path = "data/receipt/receipt.jpg"
@@ -188,27 +188,30 @@ print(output_text[0])
 ==================================================
 {
   "raw_text": [
-    "****DUPLICATE****",
-    "## BILLA",
+    "8A3",
+    "**** DUPLICATE",
+    "** BILLA",
+    "McDonald's",
     "Story",
     "16725 Stony Plain Rd",
     "Edmonton AB T5P 4A9",
     "Store#: 3859 Tel#: 780-414-6362",
     "Welcome to all day breakfast",
-    "# Mc Donald's",
+    "0 Mc Donald's",
     "192",
-    "KSN# 1 03/10/2018 07:39:12 PM",
+    "KS# 1",
+    "03/10/2018 07:39:12 PM",
     "QTY ITEM TOTAL",
     "1 Delivery 0.00",
-    "1 IQ McNuggets EVM 10.29",
+    "1 10 McNuggets EVM 10.29",
     "1 Barbeque Sauce",
     "1 Barbeque Sauce",
     "1 L Coke 0.40",
     "1 M French Fries",
     "1 HM GrChs S-Fry Yog 3.99",
     "1 Snoopy",
-    "1 HM Apple Juice 2.89",
-    "1 6 Cookies",
+    "1 HM Apple Juice",
+    "1 6 Cookies 2.89",
     "6 Choc Chip Cookie",
     "1 Baked Apple Pie 1.19",
     "1 L French Fries 3.29",
@@ -222,6 +225,34 @@ print(output_text[0])
     "SALE #04kdfw9532"
   ],
   "fields": [
+    {
+      "label": "Store#",
+      "value": "3859"
+    },
+    {
+      "label": "Tel#",
+      "value": "780-414-6362"
+    },
+    {
+      "label": "Receipt Number",
+      "value": "192"
+    },
+    {
+      "label": "Date",
+      "value": "03/10/2018"
+    },
+    {
+      "label": "Time",
+      "value": "07:39:12 PM"
+    },
+    {
+      "label": "GST #",
+      "value": "120907092"
+    },
+    {
+      "label": "SALE #",
+      "value": "04kdfw9532"
+    },
     {
       "label": "Subtotal",
       "value": "25.04"
@@ -237,10 +268,6 @@ print(output_text[0])
     {
       "label": "Change",
       "value": "0.00"
-    },
-    {
-      "label": "GST #",
-      "value": "120907092"
     }
   ],
   "warnings": []
