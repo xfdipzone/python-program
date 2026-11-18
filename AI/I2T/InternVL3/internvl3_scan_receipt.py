@@ -170,3 +170,56 @@ print("\n")
 print("🧾 小票识别结果")
 print("=" * 50)
 print(output_text[0])
+
+"""
+🧾 小票识别结果
+==================================================
+{
+  "raw_text": [
+    "*** DUPLICATE ***",
+    "*** BILLA ***",
+    "Stony",
+    "16725 Stony Plain Rd",
+    "Edmonton AB T5P 4A9",
+    "Store#: 3859 Tel#: 780-414-6362",
+    "Welcome to all day breakfast Mc Donald's",
+    "192",
+    "03/10/2018 07:39:12 PM",
+    "KS# 1",
+    "QTY ITEM",
+    "1 Delivery",
+    "1 10 McNuggets EVM",
+    "1 Barbeque Sauce",
+    "1 Barbeque Sauce",
+    "1 L Coke",
+    "1 M French Fries",
+    "1 HM Grchs S-Fry Yog",
+    "1 Snoopy",
+    "1 HM Apple Juice",
+    "1 6 Cookies",
+    "6 Choc Chip Cookie",
+    "1 Baked Apple Pie",
+    "1 L French Fries",
+    "1 L Iced Tea",
+    "Subtotal",
+    "25.04",
+    "GST",
+    "1.11",
+    "Take-Out Total",
+    "26.15",
+    "CREDIT SALES - McDelivery",
+    "26.15",
+    "Change",
+    "0.00",
+    "GST #: 120907092",
+    "SALE #04kdfw9532"
+  ],
+  "fields": [
+    {"label": "Store#", "value": "3859"},
+    {"label": "Tel#", "value": "780-414-6362"},
+    {"label": "GST #", "value": "120907092"},
+    {"label": "SALE #", "value": "04kdfw9532"}
+  ],
+  "warnings": []
+}
+"""
