@@ -12,10 +12,10 @@ class AIClient:
     def __init__(self, model=os.environ.get("AI_DEFAULT_MODEL")):
         self.model = model
 
-        api_key = os.environ.get("KIMI_API_KEY")
+        api_key = os.environ.get("API_KEY")
 
         if not api_key:
-            raise ValueError("未找到 KIMI_API_KEY，请检查环境变量配置。")
+            raise ValueError("未找到 API_KEY，请检查环境变量配置。")
 
         self.client = OpenAI(
             api_key=api_key,
