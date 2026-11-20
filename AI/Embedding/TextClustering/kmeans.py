@@ -99,11 +99,11 @@ display(new_df)
 # 3. 生成聚类主题
 # ==========================================
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 # 每个聚类中取 10% 的数据用于总结主题
 items_per_cluster = 10
@@ -134,6 +134,7 @@ for i in range(num_of_clusters):
         temperature=0,
         max_tokens=100,
         top_p=1,
+        extra_body={"thinking": {"type": "disabled"}}
     )
 
     response = completions.choices[0].message.content
