@@ -169,24 +169,24 @@ cluster  count                     rank1  rank1_count                     rank2 
 
 Clustering Themes
 
-Cluster 00, Rank 1: comp.sys.ibm.pc.hardware, Theme: 电脑硬件与显示器问题讨论
-Cluster 01, Rank 1: soc.religion.christian, Theme: 宗教与信仰讨论
-Cluster 02, Rank 1: talk.politics.misc, Theme: 网络幽默与轶事
-Cluster 03, Rank 1: misc.forsale, Theme: 电子产品与滑雪设备交易
-Cluster 04, Rank 1: sci.med, Theme: 医疗健康与疾病探讨
-Cluster 05, Rank 1: talk.politics.misc, Theme: 社会观点与科学哲学讨论
-Cluster 06, Rank 1: rec.autos, Theme: 汽车维修与技术讨论
-Cluster 07, Rank 1: talk.politics.mideast, Theme: 国际冲突与地缘政治争议
-Cluster 08, Rank 1: rec.sport.hockey, Theme: 冰球争议与讨论
-Cluster 09, Rank 1: rec.motorcycles, Theme: 摩托车安全与驾驶技巧
-Cluster 10, Rank 1: comp.os.ms-windows.misc, Theme: 跨平台文件传输与系统兼容性问题
-Cluster 11, Rank 1: comp.windows.x, Theme: "X Window系统开发与问题解决"
-Cluster 12, Rank 1: rec.sport.baseball, Theme: 棒球赛事分析与讨论
-Cluster 13, Rank 1: comp.sys.mac.hardware, Theme: 计算机硬件与网络问题讨论
-Cluster 14, Rank 1: sci.electronics, Theme: 电子工程与传感器技术
-Cluster 15, Rank 1: talk.politics.guns, Theme: 枪支权利与自卫争议
-Cluster 16, Rank 1: sci.space, Theme: 太空探索与技术发展
-Cluster 17, Rank 1: sci.electronics, Theme: 技术交流与资源分享
-Cluster 18, Rank 1: comp.graphics, Theme: "图形算法与软件开发"
-Cluster 19, Rank 1: sci.crypt, Theme: 加密技术与隐私权讨论
+Cluster 00, Rank 1: comp.sys.ibm.pc.hardware, Theme: 显示器与外设
+Cluster 01, Rank 1: soc.religion.christian, Theme: 宗教与信仰辩论
+Cluster 02, Rank 1: talk.politics.misc, Theme: 网络论坛闲聊
+Cluster 03, Rank 1: misc.forsale, Theme: 二手交易
+Cluster 04, Rank 1: sci.med, Theme: 医疗健康讨论
+Cluster 05, Rank 1: talk.politics.misc, Theme: 宗教与社会议题辩论
+Cluster 06, Rank 1: rec.autos, Theme: 汽车维修与诊断
+Cluster 07, Rank 1: talk.politics.mideast, Theme: 中东与巴尔干冲突
+Cluster 08, Rank 1: rec.sport.hockey, Theme: 冰球运动与NHL争议
+Cluster 09, Rank 1: rec.motorcycles, Theme: 摩托车安全驾驶
+Cluster 10, Rank 1: comp.os.ms-windows.misc, Theme: 计算机软硬件技术讨论
+Cluster 11, Rank 1: comp.windows.x, Theme: X Window系统技术讨论
+Cluster 12, Rank 1: rec.sport.baseball, Theme: 棒球
+Cluster 13, Rank 1: comp.sys.mac.hardware, Theme: 老式PC硬件与网络设备讨论
+Cluster 14, Rank 1: sci.electronics, Theme: 电子工程与硬件技术
+Cluster 15, Rank 1: talk.politics.guns, Theme: 枪支管控与民兵争议
+Cluster 16, Rank 1: sci.space, Theme: 航天与太空探索
+Cluster 17, Rank 1: sci.electronics, Theme: 军事技术咨询
+Cluster 18, Rank 1: comp.graphics, Theme: 计算机图形学
+Cluster 19, Rank 1: sci.crypt, Theme: 政府加密监控争议
 """
