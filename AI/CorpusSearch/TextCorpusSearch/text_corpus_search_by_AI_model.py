@@ -26,12 +26,21 @@ embed_model = HuggingFaceEmbedding(
 
 # 初始化大语言模型
 llm = OpenAILike(
-    model="moonshot-v1-8k",
-    api_key=userdata.get("KIMI_API_KEY"),
-    api_base="https://api.moonshot.cn/v1",
+    model=userdata.get("AI_DEFAULT_MODEL"),
+    api_key=userdata.get("API_KEY"),
+    api_base=userdata.get("AI_BASE_URL"),
     is_chat_model=True,
     context_window=8192,  # 显式声明上下文窗口，省去手动覆盖属性的麻烦
-    is_function_calling_model=False
+    is_function_calling_model=False,
+
+    # 关闭模型思考模式
+    additional_kwargs={
+        "extra_body": {
+            "thinking": {
+                "type": "disabled"
+            }
+        }
+    }
 )
 
 # 配置全局的大语言模型（LLM）
@@ -62,7 +71,10 @@ else:
     index = load_index_from_storage(storage_context)
 
 # 查询引擎
-query_engine = index.as_query_engine()
+query_engine = index.as_query_engine(
+    similarity_top_k=5,
+    response_mode="compact"
+)
 
 # 执行查询
 questions = [
