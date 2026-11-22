@@ -10,11 +10,11 @@ dependency packages
 pip install openai
 """
 client = OpenAI(
-    api_key=userdata.get("KIMI_API_KEY"),
-    base_url="https://api.moonshot.cn/v1"
+    api_key=userdata.get("API_KEY"),
+    base_url=userdata.get("AI_BASE_URL")
 )
 
-COMPLETION_MODEL = "moonshot-v1-8k"
+COMPLETION_MODEL = userdata.get("AI_DEFAULT_MODEL")
 
 # 读取文件
 def read_file(file_path):
@@ -45,7 +45,8 @@ class corpusSearcher:
                 max_tokens=2048,
                 n=1,
                 stop=None,
-                temperature=0.5
+                temperature=0.5,
+                extra_body={"thinking": {"type": "disabled"}}
             )
         except Exception as e:
             print(e)
